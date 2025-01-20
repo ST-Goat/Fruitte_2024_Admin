@@ -2,16 +2,8 @@ import Dropzone from "dropzone";
 import { useEffect } from "react";
 
 const FileDropZone = () => {
-  useEffect(() => {
-    let myDropzone = new Dropzone("#demo-upload", { url: "/file/post" });
-
-    return () => {
-      (myDropzone as any).destroy();
-    };
-  }, []);
-
   return (
-    <>
+    <div className="p-6.5">
       <div
         id="FileUpload"
         className="relative mb-5.5 block w-full cursor-pointer appearance-none rounded border border-dashed border-primary bg-gray px-4 py-4 dark:bg-meta-4 sm:py-7.5"
@@ -51,14 +43,14 @@ const FileDropZone = () => {
             </svg>
           </span>
           <p>
-            <span className="text-primary">클릭하거나</span> 드래그하여
-            업로드해주세요.
+            <span className="text-primary">Click to upload</span> or drag and
+            drop
           </p>
           <p className="mt-1.5">SVG, PNG, JPG or GIF</p>
           <p>(max, 800 X 800px)</p>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

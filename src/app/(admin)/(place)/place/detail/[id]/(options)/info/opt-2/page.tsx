@@ -1,7 +1,8 @@
 "use client";
 
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
-import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
+import Breadcrumb from "../_components/Breadcrumb";
+import MainThumbnailImage from "./_components/MainThumbnailImage";
 import Images from "./_components/Images";
 import FileDropZone from "./_components/FileDropZone";
 export default function InfoOpt1() {
@@ -15,7 +16,21 @@ export default function InfoOpt1() {
             <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
               <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
                 <h3 className="font-medium text-black dark:text-white">
-                  썸네일 설정
+                  메인 썸네일 설정
+                </h3>
+              </div>
+              <form action="#">
+                <div className="p-6.5">
+                  <MainThumbnailImage />
+                  <FileDropZone />
+                  <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+                    메인 썸네일 저장
+                  </button>
+                </div>
+              </form>
+              <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+                <h3 className="font-medium text-black dark:text-white">
+                  슬라이더 썸네일 설정
                 </h3>
               </div>
               <form action="#">
@@ -25,7 +40,7 @@ export default function InfoOpt1() {
                   <Images />
                   <FileDropZone />
                   <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
-                    설정 완료
+                    슬라이더 썸네일 저장
                   </button>
                 </div>
               </form>

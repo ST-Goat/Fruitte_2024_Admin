@@ -1,8 +1,10 @@
 import { useState } from "react";
 import { usePlaceInfoOpt1Store } from "@/features/place/hooks/placeInfo";
+import { usePlaceInfoOpt3Store } from "@/features/place/hooks/placeInfo";
 
 const Checkbox = () => {
   const { openStatus, setOpenStatus } = usePlaceInfoOpt1Store();
+  const { indoorStatus, setIndoorStatus } = usePlaceInfoOpt3Store();
 
   return (
     <div className="my-5">
@@ -16,15 +18,15 @@ const Checkbox = () => {
             id="checkboxLabelTwo"
             className="sr-only"
             onChange={() => {
-              setOpenStatus(!openStatus);
+              setIndoorStatus(!indoorStatus);
             }}
           />
           <div
             className={`mr-4 flex h-5 w-5 items-center justify-center rounded border ${
-              openStatus && "border-primary bg-gray dark:bg-transparent"
+              indoorStatus && "border-primary bg-gray dark:bg-transparent"
             }`}
           >
-            <span className={`opacity-0 ${openStatus && "!opacity-100"}`}>
+            <span className={`opacity-0 ${indoorStatus && "!opacity-100"}`}>
               <svg
                 width="11"
                 height="8"
@@ -42,7 +44,7 @@ const Checkbox = () => {
             </span>
           </div>
         </div>
-        팜크닉 오픈 여부
+        실내활동 여부
       </label>
     </div>
   );

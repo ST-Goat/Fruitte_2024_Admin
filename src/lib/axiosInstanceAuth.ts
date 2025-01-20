@@ -95,23 +95,9 @@ axiosInstance.interceptors.request.use(
  */
 axiosInstance.interceptors.response.use(
   (response) => {
-    // 응답 헤더에서 새로운 accessToken을 가져옴
-    // const accessToken = response.headers["authorization"];
-    // const storedAccessToken = localStorage.getItem("accessToken");
-
-    // // 새로운 토큰이 있고, 기존 토큰과 다르면 로컬 스토리지 갱신
-    // if (accessToken && accessToken !== storedAccessToken) {
-    //   localStorage.setItem("accessToken", accessToken);
-    //   localStorage.setItem("refreshToken", response.headers["refreshauth"]);
-    // }
-
     return response; // 원래 응답을 그대로 반환
   },
   (error) => {
-    // if (error.response?.status === 401 || error.response?.status === 400) {
-    //   redirectToLogin();
-    // }
-
     const e = error as AxiosError<ResponseBody<any>>;
 
     const { response, msg } = e.response?.data || {};

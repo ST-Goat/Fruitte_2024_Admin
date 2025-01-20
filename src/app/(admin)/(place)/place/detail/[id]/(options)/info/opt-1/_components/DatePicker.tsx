@@ -1,5 +1,6 @@
 import flatpickr from "flatpickr";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
+import { usePlaceInfoOpt1Store } from "@/features/place/hooks/placeInfo";
 
 const DatePicker = () => {
   useEffect(() => {
@@ -17,9 +18,16 @@ const DatePicker = () => {
         '<svg className="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
       nextArrow:
         '<svg className="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
+      defaultDate: openDateTime,
+      onChange: (selectedDates) => {
+        if (selectedDates.length > 0) {
+          setOpenDateTime(selectedDates[0]); // Zustand 상태 업데이트
+        }
+      },
     });
   }, []);
-
+  const { openDateTime, setOpenDateTime } = usePlaceInfoOpt1Store();
+  const datePickerRef = useRef<HTMLInputElement | null>(null);
   return (
     <div>
       <label className="mb-3 block text-sm font-medium text-black dark:text-white">
@@ -27,6 +35,7 @@ const DatePicker = () => {
       </label>
       <div className="relative">
         <input
+          ref={datePickerRef}
           className="form-datepicker w-full rounded border-[1.5px] border-stroke bg-transparent px-5 py-3 font-normal outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
           placeholder="오픈일을 설정해주세요."
           data-class="flatpickr-right"

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { placeDetailOptions } from "./options";
-
+import { useParams } from "next/navigation";
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
@@ -12,7 +12,7 @@ interface SidebarProps {
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
-
+  const { id } = useParams();
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
 
@@ -106,9 +106,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               {placeDetailOptions.info.options.map((option, index) => (
                 <li key={index}>
                   <Link
-                    href={
-                      "/place/detail/" + "1" + "/info/opt-" + `${index + 1}`
-                    }
+                    href={"/place/detail/" + id + "/info/opt-" + `${index + 1}`}
                     className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                       pathname.includes(option.link) &&
                       "bg-graydark dark:bg-meta-4"
@@ -130,7 +128,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <li key={index}>
                   <Link
                     href={
-                      "/place/detail/" + "1" + "/intro/opt-" + `${index + 1}`
+                      "/place/detail/" + id + "/intro/opt-" + `${index + 1}`
                     }
                     className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                       pathname.includes(option.link) &&
@@ -153,7 +151,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <li key={index}>
                   <Link
                     href={
-                      "/place/detail/" + "1" + "/schedule/opt-" + `${index + 1}`
+                      "/place/detail/" + id + "/schedule/opt-" + `${index + 1}`
                     }
                     className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                       pathname.includes(option.link) &&
@@ -177,7 +175,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   <Link
                     href={
                       "/place/detail/" +
-                      "1" +
+                      id +
                       "/orderPrice/opt-" +
                       `${index + 1}`
                     }
@@ -202,7 +200,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 <li key={index}>
                   <Link
                     href={
-                      "/place/detail/" + "1" + "/nearby/opt-" + `${index + 1}`
+                      "/place/detail/" + id + "/nearby/opt-" + `${index + 1}`
                     }
                     className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
                       pathname.includes(option.link) &&
