@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { usePlaceInfoOpt4Store } from "@/features/place/hooks/placeInfo";
+import { usePlaceInfoOpt6Store } from "@/features/place/hooks/placeInfo";
 
 interface Option {
   id: string;
@@ -13,11 +13,11 @@ const options: Option[] = [
 ];
 
 const SelectNewBadgeActivate: React.FC = () => {
-  const { foodStatus, setFoodStatus } = usePlaceInfoOpt4Store();
+  const { new: newStatus, setNew } = usePlaceInfoOpt6Store();
 
   const handleRadioChange = (value: string) => {
     const status = value === "true";
-    setFoodStatus(status);
+    setNew(status);
   };
 
   return (
@@ -42,14 +42,14 @@ const SelectNewBadgeActivate: React.FC = () => {
               />
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  String(foodStatus) === option.id
+                  String(newStatus) === option.id
                     ? "border-primary"
                     : "border-body"
                 }`}
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    String(foodStatus) === option.id ? "flex" : "hidden"
+                    String(newStatus) === option.id ? "flex" : "hidden"
                   }`}
                 ></span>
               </span>

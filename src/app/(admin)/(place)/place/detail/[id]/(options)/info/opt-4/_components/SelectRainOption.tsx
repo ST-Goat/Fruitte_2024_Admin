@@ -17,10 +17,10 @@ const options: Option[] = [
 ];
 
 const SelectRainOption: React.FC = () => {
-  const { rainStatus, setRainStatus } = usePlaceInfoOpt4Store();
+  const { rain, setRain } = usePlaceInfoOpt4Store();
 
   const handleRadioChange = (value: rainStatus) => {
-    setRainStatus(value);
+    setRain(value);
   };
   return (
     <div className="mb-5.5">
@@ -44,12 +44,12 @@ const SelectRainOption: React.FC = () => {
               />
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  rainStatus === option.id ? "border-primary" : "border-body"
+                  rain === option.id ? "border-primary" : "border-body"
                 }`}
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    rainStatus === option.id ? "flex" : "hidden"
+                    rain === option.id ? "flex" : "hidden"
                   }`}
                 ></span>
               </span>

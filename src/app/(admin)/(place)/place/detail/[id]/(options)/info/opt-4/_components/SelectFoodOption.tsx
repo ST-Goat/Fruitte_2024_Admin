@@ -13,11 +13,11 @@ const options: Option[] = [
 ];
 
 const SelectFoodOption: React.FC = () => {
-  const { foodStatus, setFoodStatus } = usePlaceInfoOpt4Store();
+  const { food, setFood } = usePlaceInfoOpt4Store();
 
   const handleRadioChange = (value: string) => {
     const status = value === "true";
-    setFoodStatus(status);
+    setFood(status);
   };
 
   return (
@@ -42,14 +42,12 @@ const SelectFoodOption: React.FC = () => {
               />
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  String(foodStatus) === option.id
-                    ? "border-primary"
-                    : "border-body"
+                  String(food) === option.id ? "border-primary" : "border-body"
                 }`}
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    String(foodStatus) === option.id ? "flex" : "hidden"
+                    String(food) === option.id ? "flex" : "hidden"
                   }`}
                 ></span>
               </span>

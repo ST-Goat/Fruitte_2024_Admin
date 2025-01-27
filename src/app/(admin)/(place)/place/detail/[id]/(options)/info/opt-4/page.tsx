@@ -1,5 +1,6 @@
 "use client";
 
+import { use, useEffect } from "react";
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
 import Breadcrumb from "../_components/Breadcrumb";
 import SelectRestroomOption from "./_components/SelectRestroomOption";
@@ -8,12 +9,56 @@ import SelectRainOption from "./_components/SelectRainOption";
 import SelectBabycarOption from "./_components/SelectBabycarOption";
 import SelectPetOption from "./_components/SelectPetOption";
 import SelectFoodOption from "./_components/SelectFoodOption";
+import {
+  useCreateInfoOpt4,
+  useGetInfoOpt4,
+  useUpdateInfoOpt4,
+} from "@/features/place/queries";
+import { useRouter } from "next/navigation";
+import Loader from "@/components/common/Loader";
+import { usePlaceInfoOpt4Store } from "@/features/place/hooks/placeInfo";
 
-export default function InfoOpt4() {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+export default function InfoOpt4({ params }: Props) {
+  const router = useRouter();
+  const { mode } = usePlaceInfoOpt4Store();
+  const {
+    isLoading: isFetchLoading,
+    isSuccess: isFetchSuccess,
+    isError: isFetchError,
+  } = useGetInfoOpt4(params.id);
+  const { mutate: create, isPending: isCreating } = useCreateInfoOpt4();
+  const { mutate: update, isPending: isUpdating } = useUpdateInfoOpt4();
+
+  useEffect(() => {
+    if (isFetchError) {
+      router.push("/");
+    }
+  }, [isFetchError]);
+
+  const handleUpdate = () => {
+    if (mode === "create" && !isCreating) {
+      create(params.id);
+    }
+
+    if (mode === "update" && !isUpdating) {
+      update(params.id);
+    }
+  };
+
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName="프로그램 환경 설정" />
+        <Breadcrumb
+          pageName={`프로그램 환경 설정 ${(isFetchSuccess && mode) === "create" ? "(최초 설정)" : ""}`}
+        />
+        {isFetchLoading && <Loader />}
+
         <div className="grid grid-cols-1 gap-9">
           <div className="flex flex-col gap-9">
             {/* <!-- Survey Form --> */}
@@ -23,7 +68,7 @@ export default function InfoOpt4() {
                   프로그램 환경 설정
                 </h3>
               </div>
-              <form action="#">
+              <form action={handleUpdate}>
                 <div className="p-6.5">
                   <SelectRestroomOption />
                   <SelectParkingOption />

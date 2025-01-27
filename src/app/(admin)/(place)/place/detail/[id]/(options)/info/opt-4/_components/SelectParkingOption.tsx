@@ -15,10 +15,10 @@ const options: Option[] = [
 ];
 
 const SelectParkingOption: React.FC = () => {
-  const { parkingStatus, setParkingStatus } = usePlaceInfoOpt4Store();
+  const { parking, setParking } = usePlaceInfoOpt4Store();
 
   const handleRadioChange = (value: parkingStatus) => {
-    setParkingStatus(value);
+    setParking(value);
   };
   return (
     <div className="mb-5.5">
@@ -42,12 +42,12 @@ const SelectParkingOption: React.FC = () => {
               />
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  parkingStatus === option.id ? "border-primary" : "border-body"
+                  parking === option.id ? "border-primary" : "border-body"
                 }`}
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    parkingStatus === option.id ? "flex" : "hidden"
+                    parking === option.id ? "flex" : "hidden"
                   }`}
                 ></span>
               </span>

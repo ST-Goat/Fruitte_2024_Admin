@@ -13,11 +13,11 @@ const options: Option[] = [
 ];
 
 const SelectBabycarOption: React.FC = () => {
-  const { babycarStatus, setBabycarStatus } = usePlaceInfoOpt4Store();
+  const { babycar, setBabycar } = usePlaceInfoOpt4Store();
 
   const handleRadioChange = (value: string) => {
     const status = value === "true";
-    setBabycarStatus(status);
+    setBabycar(status);
   };
 
   return (
@@ -42,14 +42,14 @@ const SelectBabycarOption: React.FC = () => {
               />
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  String(babycarStatus) === option.id
+                  String(babycar) === option.id
                     ? "border-primary"
                     : "border-body"
                 }`}
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    String(babycarStatus) === option.id ? "flex" : "hidden"
+                    String(babycar) === option.id ? "flex" : "hidden"
                   }`}
                 ></span>
               </span>

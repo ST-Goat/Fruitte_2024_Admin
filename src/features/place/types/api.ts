@@ -1,5 +1,6 @@
 import { ResponseBody } from "@/constants/types";
-import { extend } from "dayjs";
+
+export type mode = "create" | "update";
 
 export interface CreatePlaceRequest {
   partnerUsername: string;
@@ -43,7 +44,6 @@ export interface GetInfoOpt3Response
     mode: "create" | "update";
     info: infoOpt3;
   }> {}
-export type mode = "create" | "update";
 export interface CreateInfoOpt3Request extends infoOpt3 {
   placeId: string;
 }
@@ -54,3 +54,75 @@ export interface UpdateInfoOpt3Request extends infoOpt3 {
 }
 export interface UpdateInfoOpt3Response
   extends ResponseBody<UpdateInfoOpt3Request> {}
+
+export type restroomStatus = "traditional" | "flush" | "none";
+export type parkingStatus = "perfection" | "narrow" | "disable";
+export type rainStatus = "progress" | "raincoat" | "disable";
+export interface infoOpt4 {
+  restroom: restroomStatus;
+  parking: parkingStatus;
+  babycar: boolean;
+  pet: boolean;
+  food: boolean;
+  rain: rainStatus;
+}
+export interface GetInfoOpt4Request {}
+export interface GetInfoOpt4Response
+  extends ResponseBody<{
+    mode: "create" | "update";
+    info: infoOpt4;
+  }> {}
+export interface CreateInfoOpt4Request extends infoOpt4 {
+  placeId: string;
+}
+export interface CreateInfoOpt4Response
+  extends ResponseBody<UpdateInfoOpt4Request> {}
+export interface UpdateInfoOpt4Request extends infoOpt4 {
+  placeId: string;
+}
+export interface UpdateInfoOpt4Response
+  extends ResponseBody<UpdateInfoOpt4Request> {}
+
+export interface GetInfoOpt5Request {}
+export interface GetInfoOpt5Response
+  extends ResponseBody<{
+    mode: "create" | "update";
+    info: {
+      placeId: number;
+      sections: string[];
+    };
+  }> {}
+export interface CreateInfoOpt5Request {
+  sections: string;
+  placeId: string;
+}
+export interface CreateInfoOpt5Response
+  extends ResponseBody<{ placeId: string; sections: string[] }> {}
+export interface UpdateInfoOpt5Request {
+  sections: string;
+  placeId: string;
+}
+export interface UpdateInfoOpt5Response
+  extends ResponseBody<{ placeId: string; sections: string[] }> {}
+
+export interface infoOpt6 {
+  fruitte: boolean;
+  new: boolean;
+  eco: boolean;
+}
+export interface GetInfoOpt6Request {}
+export interface GetInfoOpt6Response
+  extends ResponseBody<{
+    mode: "create" | "update";
+    info: infoOpt6;
+  }> {}
+export interface CreateInfoOpt6Request extends infoOpt6 {
+  placeId: string;
+}
+export interface CreateInfoOpt6Response
+  extends ResponseBody<CreateInfoOpt6Request> {}
+export interface UpdateInfoOpt6Request extends infoOpt6 {
+  placeId: string;
+}
+export interface UpdateInfoOpt6Response
+  extends ResponseBody<UpdateInfoOpt6Request> {}

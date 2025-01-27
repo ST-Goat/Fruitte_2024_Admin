@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
 import Breadcrumb from "../_components/Breadcrumb";
 import Checkbox from "./_components/Checkbox";
@@ -10,6 +11,8 @@ import {
   useCreateInfoOpt3,
 } from "@/features/place/queries";
 import Loader from "@/components/common/Loader";
+import { useRouter } from "next/navigation";
+
 type Props = {
   params: {
     id: string;
@@ -17,6 +20,7 @@ type Props = {
 };
 
 export default function InfoOpt3({ params }: Props) {
+  const router = useRouter();
   const {
     progressTime,
     minimumPrice,
@@ -28,9 +32,19 @@ export default function InfoOpt3({ params }: Props) {
     setYoutubeLink,
     mode,
   } = usePlaceInfoOpt3Store();
-  const { isLoading } = useGetInfoOpt3(params.id);
+  const {
+    isLoading: isFetchLoading,
+    isSuccess: isFetchSuccess,
+    isError: isFetchError,
+  } = useGetInfoOpt3(params.id);
   const { mutate: create, isPending: isCreating } = useCreateInfoOpt3();
   const { mutate: update, isPending: isUpdating } = useUpdateInfoOpt3();
+
+  useEffect(() => {
+    if (isFetchError) {
+      router.push("/");
+    }
+  }, [isFetchError]);
 
   const handleUpdate = () => {
     if (mode === "create" && !isCreating) {
@@ -46,11 +60,10 @@ export default function InfoOpt3({ params }: Props) {
     <>
       <PlaceDetailLayout>
         <Breadcrumb
-          pageName={`상세 정보 설정  ${mode === "create" && "(최초 설정)"}`}
+          pageName={`상세 정보 설정  ${(isFetchSuccess && mode) === "create" ? "(최초 설정)" : ""}`}
         />
-        {isLoading ? (
-          <Loader />
-        ) : (
+        {isFetchLoading && <Loader />}
+        {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">
             <div className="flex flex-col gap-9">
               {/* <!-- Survey Form --> */}

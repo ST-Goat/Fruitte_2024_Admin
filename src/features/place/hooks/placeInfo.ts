@@ -1,4 +1,6 @@
 import { create } from "zustand";
+import { mode, infoOpt4, infoOpt6 } from "../types/api";
+import { toast } from "react-toastify";
 
 interface PlaceInfoOpt1State {
   title: string;
@@ -17,7 +19,6 @@ interface PlaceInfoOpt1State {
   }) => void;
   resetPlaceInfoOpt1: () => void;
 }
-
 export const usePlaceInfoOpt1Store = create<PlaceInfoOpt1State>((set) => ({
   title: "",
   partnerUsername: "",
@@ -39,13 +40,13 @@ export const usePlaceInfoOpt1Store = create<PlaceInfoOpt1State>((set) => ({
 }));
 
 interface PlaceInfoOpt3State {
-  mode: "create" | "update";
+  mode: mode;
   progressTime: string;
   indoorStatus: boolean;
   minimumPrice: string;
   pricePerPerson: string;
   youtubeLink: string;
-  setMode: (mode: PlaceInfoOpt3State["mode"]) => void;
+  setMode: (mode: mode) => void;
   setProgressTime: (time: string) => void;
   setIndoorStatus: (status: boolean) => void;
   setMinimumPrice: (price: string) => void;
@@ -59,7 +60,6 @@ interface PlaceInfoOpt3State {
     youtubeLink: string;
   }) => void;
 }
-
 export const usePlaceInfoOpt3Store = create<PlaceInfoOpt3State>((set) => ({
   mode: "create",
   progressTime: "",
@@ -92,50 +92,148 @@ export const usePlaceInfoOpt3Store = create<PlaceInfoOpt3State>((set) => ({
 export type restroomStatus = "traditional" | "flush" | "none";
 export type parkingStatus = "perfection" | "narrow" | "disable";
 export type rainStatus = "progress" | "raincoat" | "disable";
-interface PlaceInfoOpt4State {
-  restroomStatus: restroomStatus;
-  setRestroomStatus: (status: restroomStatus) => void;
-  parkingStatus: parkingStatus;
-  setParkingStatus: (status: parkingStatus) => void;
-  babycarStatus: boolean;
-  petStatus: boolean;
-  foodStatus: boolean;
-  rainStatus: rainStatus;
-  setBabycarStatus: (status: boolean) => void;
-  setPetStatus: (status: boolean) => void;
-  setFoodStatus: (status: boolean) => void;
-  setRainStatus: (status: rainStatus) => void;
+interface PlaceInfoOpt4State extends infoOpt4 {
+  mode: mode;
+  setMode: (mode: mode) => void;
+  setRestroom: (status: restroomStatus) => void;
+  setParking: (status: parkingStatus) => void;
+  setBabycar: (status: boolean) => void;
+  setPet: (status: boolean) => void;
+  setFood: (status: boolean) => void;
+  setRain: (status: rainStatus) => void;
+  reset: () => void;
+  setAll: (data: infoOpt4) => void;
+  getAll: () => infoOpt4;
 }
-
-export const usePlaceInfoOpt4Store = create<PlaceInfoOpt4State>((set) => ({
-  restroomStatus: "none",
-  setRestroomStatus: (status: "traditional" | "flush" | "none") =>
-    set({ restroomStatus: status }),
-  babycarStatus: false,
-  petStatus: false,
-  foodStatus: false,
-  parkingStatus: "disable",
-  setParkingStatus: (status: parkingStatus) => set({ parkingStatus: status }),
-  rainStatus: "disable",
-  setBabycarStatus: (status: boolean) => set({ babycarStatus: status }),
-  setPetStatus: (status: boolean) => set({ petStatus: status }),
-  setFoodStatus: (status: boolean) => set({ foodStatus: status }),
-  setRainStatus: (status: rainStatus) => set({ rainStatus: status }),
+export const usePlaceInfoOpt4Store = create<PlaceInfoOpt4State>((set, get) => ({
+  mode: "create",
+  setMode: (mode: mode) => set({ mode }),
+  restroom: "none",
+  setRestroom: (status: "traditional" | "flush" | "none") =>
+    set({ restroom: status }),
+  babycar: false,
+  pet: false,
+  food: false,
+  parking: "disable",
+  setParking: (status: parkingStatus) => set({ parking: status }),
+  rain: "disable",
+  setBabycar: (status: boolean) => set({ babycar: status }),
+  setPet: (status: boolean) => set({ pet: status }),
+  setFood: (status: boolean) => set({ food: status }),
+  setRain: (status: rainStatus) => set({ rain: status }),
+  reset: () =>
+    set({
+      mode: "create",
+      restroom: "none",
+      parking: "disable",
+      babycar: false,
+      pet: false,
+      food: false,
+      rain: "disable",
+    }),
+  setAll: (data) =>
+    set({
+      restroom: data.restroom,
+      parking: data.parking,
+      babycar: data.babycar,
+      pet: data.pet,
+      food: data.food,
+      rain: data.rain,
+    }),
+  getAll: () => {
+    return get();
+  },
 }));
 
+const validSections = [
+  "픽킹체험",
+  "요리체험",
+  "미술놀이",
+  "몸놀이",
+  "물놀이",
+  "흙놀이",
+  "자유시간",
+  "피크닉",
+  "바베큐",
+];
+const isValidSection = (section: string): boolean => {
+  return validSections.includes(section);
+};
+export const filterValidSections = (sections: string[]): string[] => {
+  return sections.filter((section) => validSections.includes(section));
+};
 interface PlaceInfoOpt5State {
+  mode: mode;
+  setMode: (mode: mode) => void;
   sections: string[];
   setSections: (section: string) => void;
+  setInitialSections: (sections: string[]) => void;
+  getAll: () => string[];
+  setAll: (data: string[]) => void;
 }
-
 export const usePlaceInfoOpt5Store = create<PlaceInfoOpt5State>((set, get) => ({
+  mode: "create",
+  setMode: (mode: mode) => set({ mode }),
   sections: [],
   setSections: (section: string) => {
     const { sections } = get();
+
+    if (!isValidSection(section)) {
+      toast.error("포함할 수 없는 구분항목입니다.");
+      return;
+    }
+
     if (sections.includes(section)) {
       set({ sections: sections.filter((s) => s !== section) });
     } else {
       set({ sections: [...sections, section] });
     }
+  },
+  setInitialSections: (sections: string[]) => {
+    const { sections: initialSections } = get();
+
+    if (initialSections.length === 0) {
+      set({ sections: filterValidSections(sections) });
+    }
+  },
+  getAll: () => {
+    return get().sections;
+  },
+  setAll: (data) => {
+    set({ sections: data });
+  },
+}));
+
+interface PlaceInfoOpt6State {
+  mode: mode;
+  fruitte: boolean;
+  new: boolean;
+  eco: boolean;
+  setMode: (mode: mode) => void;
+  setFruitte: (status: boolean) => void;
+  setNew: (status: boolean) => void;
+  setEco: (status: boolean) => void;
+  setAll: (data: infoOpt6) => void;
+  getAll: () => infoOpt6;
+}
+export const usePlaceInfoOpt6Store = create<PlaceInfoOpt6State>((set, get) => ({
+  mode: "create",
+  fruitte: false,
+  new: false,
+  eco: false,
+  setMode: (mode) => set({ mode }),
+  setFruitte: (status: boolean) => set({ fruitte: status }),
+  setNew: (status: boolean) => set({ new: status }),
+  setEco: (status: boolean) => set({ eco: status }),
+  setAll: (data) =>
+    set({
+      fruitte: data.fruitte,
+      new: data.new,
+      eco: data.eco,
+    }),
+  getAll: () => {
+    const { fruitte, eco } = get();
+    const newStatus = get().new;
+    return { fruitte, eco, new: newStatus };
   },
 }));

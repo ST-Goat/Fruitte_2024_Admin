@@ -17,10 +17,10 @@ const options: Option[] = [
 ];
 
 const SelectRestroomOption: React.FC = () => {
-  const { restroomStatus, setRestroomStatus } = usePlaceInfoOpt4Store();
+  const { restroom, setRestroom } = usePlaceInfoOpt4Store();
 
   const handleRadioChange = (value: "traditional" | "flush" | "none") => {
-    setRestroomStatus(value);
+    setRestroom(value);
   };
 
   return (
@@ -45,14 +45,12 @@ const SelectRestroomOption: React.FC = () => {
               />
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  restroomStatus === option.id
-                    ? "border-primary"
-                    : "border-body"
+                  restroom === option.id ? "border-primary" : "border-body"
                 }`}
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    restroomStatus === option.id ? "flex" : "hidden"
+                    restroom === option.id ? "flex" : "hidden"
                   }`}
                 ></span>
               </span>

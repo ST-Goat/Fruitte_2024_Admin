@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { usePlaceInfoOpt5Store } from "@/features/place/hooks/placeInfo";
-
+import { useGetInfoOpt5 } from "@/features/place/queries";
 interface Section {
   id: string;
 }
@@ -58,7 +58,7 @@ const SelectSectionOption: React.FC = () => {
         프로그램의 구분을 선택해주세요. (다수 선택 가능)
       </label>
 
-      <div className="flex flex-col gap-2.5">
+      <div className="flex flex-col gap-5">
         {sections.map((section) => (
           <CheckboxInputGroup
             key={section.id}

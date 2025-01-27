@@ -13,11 +13,11 @@ const options: Option[] = [
 ];
 
 const SelectPetOption: React.FC = () => {
-  const { petStatus, setPetStatus } = usePlaceInfoOpt4Store();
+  const { pet, setPet } = usePlaceInfoOpt4Store();
 
   const handleRadioChange = (value: string) => {
     const status = value === "true";
-    setPetStatus(status);
+    setPet(status);
   };
 
   return (
@@ -42,14 +42,12 @@ const SelectPetOption: React.FC = () => {
               />
               <span
                 className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  String(petStatus) === option.id
-                    ? "border-primary"
-                    : "border-body"
+                  String(pet) === option.id ? "border-primary" : "border-body"
                 }`}
               >
                 <span
                   className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    String(petStatus) === option.id ? "flex" : "hidden"
+                    String(pet) === option.id ? "flex" : "hidden"
                   }`}
                 ></span>
               </span>
