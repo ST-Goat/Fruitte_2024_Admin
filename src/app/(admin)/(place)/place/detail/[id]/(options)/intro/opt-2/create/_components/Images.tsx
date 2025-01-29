@@ -10,7 +10,7 @@ const Images = () => {
   return (
     <>
       <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-        PICKPOINT 이미지
+        이미지
       </label>
       {images?.map((imgSrc, i) => (
         <ImageCommponent key={i} src={imgSrc} index={i} />

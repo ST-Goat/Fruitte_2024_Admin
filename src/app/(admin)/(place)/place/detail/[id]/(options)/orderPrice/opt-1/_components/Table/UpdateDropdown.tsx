@@ -72,7 +72,7 @@ const UpdateDropdown: React.FC<{
         }`}
       >
         <Link
-          href={`/place/detail/${pathname?.split("/")[3]}/intro/opt-5/${contentId}/update`}
+          href={`/place/detail/${pathname?.split("/")[3]}/orderPrice/opt-1/${contentId}/update`}
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
         >
           수정

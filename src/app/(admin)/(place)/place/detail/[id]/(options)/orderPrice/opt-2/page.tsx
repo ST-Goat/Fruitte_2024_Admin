@@ -15,11 +15,11 @@ type Props = {
 const PlaceOrderPriceOpt1 = ({ params }: Props) => {
   return (
     <PlaceDetailLayout>
-      <Breadcrumb pageName={`"가격 및 상품 정보" 티켓 리스트`} />
+      <Breadcrumb pageName={`"가격 및 상품 정보" 옵션 리스트`} />
       <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
           <h3 className="font-medium text-black dark:text-white">
-            "가격 및 상품 정보" 티켓 리스트{" "}
+            "가격 및 상품 정보" 옵션 리스트{" "}
           </h3>
         </div>
         <div className="p-6.5">

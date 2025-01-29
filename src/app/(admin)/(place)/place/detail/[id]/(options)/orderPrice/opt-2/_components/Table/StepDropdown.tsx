@@ -1,15 +1,12 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-const UpdateDropdown: React.FC<{
-  classes: string;
-  id: number;
-}> = ({ classes, id: contentId }) => {
-  const pathname = usePathname(); // 현재 경로 가져오기
-
-  // Pathname에서 PlaceId를 추출 (예: /place/detail/[placeId]/intro/...)
+import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
+const StepDropdown: React.FC<{ classes: string; id: number; step: number }> = ({
+  classes,
+  id,
+  step,
+}) => {
+  const { setInfoStep } = usePlaceIntroOpt2Store();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);
@@ -48,7 +45,7 @@ const UpdateDropdown: React.FC<{
         ref={trigger}
         onClick={() => setDropdownOpen(!dropdownOpen)}
       >
-        설정
+        노출순위 수정
         <svg
           className="fill-current"
           width="16"
@@ -71,21 +68,21 @@ const UpdateDropdown: React.FC<{
           dropdownOpen === true ? "block" : "hidden"
         }`}
       >
-        <Link
-          href={`/place/detail/${pathname?.split("/")[3]}/intro/opt-5/${contentId}/update`}
+        <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
+          onClick={() => setInfoStep(id, -1)}
         >
-          수정
-        </Link>
-        <Link
-          href="#"
+          ↑
+        </button>
+        <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
+          onClick={() => setInfoStep(id, 1)}
         >
-          삭제
-        </Link>
+          ↓
+        </button>
       </div>
     </div>
   );
 };
 
-export default UpdateDropdown;
+export default StepDropdown;
