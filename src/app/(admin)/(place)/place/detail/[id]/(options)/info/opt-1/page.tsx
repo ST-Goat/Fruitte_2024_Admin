@@ -12,6 +12,7 @@ import Loader from "@/components/common/Loader";
 import { useUpdateInfoOpt1 } from "@/features/place/queries";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
+
 type Props = {
   params: {
     id: string;

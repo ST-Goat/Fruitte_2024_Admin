@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import ImageResize from "@/js/image-resize";
 import Image from "next/image";
-const Images: React.FC = () => {
+import { usePlaceIntroOpt2CreateStore } from "@/features/place/hooks/placeIntro";
+
+const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
+  const { setImageStep, removeImage } = usePlaceIntroOpt2CreateStore();
   useEffect(() => {
     ImageResize();
   });
@@ -9,23 +12,30 @@ const Images: React.FC = () => {
   return (
     <>
       <div className="flex justify-between border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-7.5">
-        <h3 className="font-medium text-black dark:text-white">1번째 썸네일</h3>
+        <h3 className="font-medium text-black dark:text-white">
+          {index + 1}번째 썸네일
+        </h3>
         <div className="flex gap-2">
+          {index !== 0 && (
+            <svg
+              onClick={() => setImageStep(index, -1)}
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              strokeWidth="1.5"
+              stroke="currentColor"
+              className="size-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+              />
+            </svg>
+          )}
+
           <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
-            />
-          </svg>
-          <svg
+            onClick={() => setImageStep(index, 1)}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -40,6 +50,7 @@ const Images: React.FC = () => {
             />
           </svg>
           <svg
+            onClick={() => removeImage(index)}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -58,12 +69,7 @@ const Images: React.FC = () => {
       <div className="p-4 sm:p-6 xl:p-10">
         <div className="relative">
           <div id="pane" className="overflow-hidden">
-            <Image
-              src={"/images/cover/cover-02.jpg"}
-              width={1374}
-              height={520}
-              alt="Cover"
-            />
+            <Image src={src} width={1374} height={520} alt="Cover" />
           </div>
           <div
             id="ghostpane"
@@ -75,4 +81,4 @@ const Images: React.FC = () => {
   );
 };
 
-export default Images;
+export default ImageCommponent;
