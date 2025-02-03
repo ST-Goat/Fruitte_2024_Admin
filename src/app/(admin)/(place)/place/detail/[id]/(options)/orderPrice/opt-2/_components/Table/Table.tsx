@@ -63,7 +63,7 @@ const Table: React.FC = () => {
             <h5 className="font-medium text-white">고유번호</h5>
           </div>
           <div className="col-span-3">
-            <h5 className="font-medium text-white">티켓명</h5>
+            <h5 className="font-medium text-white">옵션명</h5>
           </div>
           <div className="col-span-1">
             <h5 className="font-medium text-white">가격</h5>

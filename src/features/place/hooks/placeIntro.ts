@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { toast } from "react-toastify";
 import { mode } from "../types/api";
+import { Opt2Info } from "../types/intro/api";
 
 interface PlaceIntroOpt1DescState {
   description: string;
@@ -22,14 +23,9 @@ export const usePlaceIntroOpt1DescStore = create<PlaceIntroOpt1DescState>(
   }),
 );
 
-interface Opt2Info {
-  id: number;
-  step: number;
-  description: string;
-  img: string[];
-}
 interface PlaceIntroOpt2State {
   info: Opt2Info[];
+  setInfo: (info: Opt2Info[]) => void;
   setInfoStep: (id: number, step: 1 | -1) => void;
 }
 export const usePlaceIntroOpt2Store = create<PlaceIntroOpt2State>((set) => ({
@@ -53,6 +49,9 @@ export const usePlaceIntroOpt2Store = create<PlaceIntroOpt2State>((set) => ({
       img: [""],
     },
   ],
+  setInfo: (info: Opt2Info[]) => {
+    set({ info });
+  },
   setInfoStep: (id: number, step: 1 | -1) => {
     set((state) => {
       // 현재 객체를 앞으로 또는 뒤로 이동
@@ -90,6 +89,69 @@ interface PlaceIntroOpt2CreateState {
   removeImage: (index: number) => void;
 }
 export const usePlaceIntroOpt2CreateStore = create<PlaceIntroOpt2CreateState>(
+  (set) => ({
+    description: "",
+    setDescription: (description: string) => {
+      set({ description });
+    },
+    images: [],
+    setImages: (images: string[]) => {
+      set({ images });
+    },
+    setImageStep: (index: number, step: 1 | -1) => {
+      set((state) => {
+        const currentImages = [...state.images];
+
+        // 유효한 index인지 확인
+        if (index < 0 || index >= currentImages.length) {
+          console.warn("Invalid index for image step adjustment");
+          return state;
+        }
+
+        // 이동할 새 위치 계산
+        const newIndex = index + step;
+
+        // 이동 대상이 배열 범위를 벗어난 경우 처리하지 않음
+        if (newIndex < 0 || newIndex >= currentImages.length) {
+          console.warn("Step adjustment out of bounds");
+          return state;
+        }
+
+        // 이미지 위치 변경
+        const [movedImage] = currentImages.splice(index, 1); // 선택된 이미지를 제거
+        currentImages.splice(newIndex, 0, movedImage); // 새 위치에 삽입
+
+        return { images: currentImages };
+      });
+    },
+    removeImage: (index: number) => {
+      set((state) => {
+        const currentImages = [...state.images];
+
+        // 유효한 index인지 확인
+        if (index < 0 || index >= currentImages.length) {
+          console.warn("Invalid index for removing image");
+          return state;
+        }
+
+        // 해당 이미지를 제거
+        currentImages.splice(index, 1);
+
+        return { images: currentImages };
+      });
+    },
+  }),
+);
+
+interface PlaceIntroOpt2DetailState {
+  description: string;
+  setDescription: (description: string) => void;
+  images: string[];
+  setImages: (images: string[]) => void;
+  setImageStep: (index: number, step: 1 | -1) => void;
+  removeImage: (index: number) => void;
+}
+export const usePlaceIntroOpt2DetailStore = create<PlaceIntroOpt2DetailState>(
   (set) => ({
     description: "",
     setDescription: (description: string) => {

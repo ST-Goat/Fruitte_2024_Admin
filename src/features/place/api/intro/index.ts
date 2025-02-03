@@ -9,6 +9,12 @@ import {
   CreateIntroOpt1Response,
   UpdateIntroOpt1Request,
   UpdateIntroOpt1Response,
+  GetIntroOpt2Request,
+  GetIntroOpt2Response,
+  GetIntroOpt2DetailRequest,
+  GetIntroOpt2DetailResponse,
+  UpdateIntroOpt2Request,
+  UpdateIntroOpt2Response,
 } from "../../types/intro/api";
 
 export const getIntroOpt1 = async (id: string) => {
@@ -50,6 +56,58 @@ export const updateIntroOpt1 = async (
   const { statusCode, msg, response } = data;
 
   if (statusCode === 200) {
+    return response;
+  }
+};
+export const getIntroOpt2 = async (placeId: string) => {
+  try {
+    const { data } = await ApiUtils.fetch<
+      GetIntroOpt2Request,
+      AxiosResponse<GetIntroOpt2Response>
+    >(`${API_URL.getIntroOpt2}/${placeId}`);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const getIntroOpt2Detail = async (
+  placeId: string,
+  contentId: string,
+) => {
+  try {
+    const { data } = await ApiUtils.fetch<
+      GetIntroOpt2DetailRequest,
+      AxiosResponse<GetIntroOpt2DetailResponse>
+    >(`${API_URL.getIntroOpt2Detail}/${placeId}/${contentId}`);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const updateIntroOpt2 = async (updateInfo: UpdateIntroOpt2Request) => {
+  const { data } = await ApiUtils.patch<
+    UpdateIntroOpt2Request,
+    AxiosResponse<UpdateIntroOpt2Response>
+  >(
+    `${API_URL.getIntroOpt1Desc}/${updateInfo.placeId}/${updateInfo.id}`,
+    updateInfo,
+  );
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    console.log(response);
+
     return response;
   }
 };

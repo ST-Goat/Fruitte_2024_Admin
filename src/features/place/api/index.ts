@@ -34,6 +34,7 @@ import {
   UpdateInfoOpt6Request,
   UpdateInfoOpt6Response,
 } from "../types/api";
+import { GetIntroOpt2Request, GetIntroOpt2Response } from "../types/intro/api";
 
 export const createPlace = async (placeInfo: CreatePlaceRequest) => {
   const { data } = await ApiUtils.post<

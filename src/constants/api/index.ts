@@ -23,4 +23,6 @@ export const API_URL = {
   getIntroOpt1Desc: `${BASE_URL}/place/intro/opt1/desc`,
   createIntroOpt1Desc: `${BASE_URL}/place/intro/opt1/desc`,
   updateIntroOpt1Desc: `${BASE_URL}/place/intro/opt1/desc`,
+  getIntroOpt2: `${BASE_URL}/place/intro/opt2`,
+  getIntroOpt2Detail: `${BASE_URL}/place/intro/opt2/detail`,
 };
