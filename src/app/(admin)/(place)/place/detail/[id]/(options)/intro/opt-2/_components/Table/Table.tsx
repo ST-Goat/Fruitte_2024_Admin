@@ -71,6 +71,7 @@ const Table: React.FC = () => {
                         ? "bottom-full mb-1"
                         : ""
                   }
+                  placeId={item.placeId}
                   id={item.id}
                 />
               </div>

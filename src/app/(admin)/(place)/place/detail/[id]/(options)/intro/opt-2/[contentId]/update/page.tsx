@@ -32,7 +32,7 @@ const Opt2UpdatePage = ({ params }: Props) => {
 
   const handleUpdate = () => {
     if (!isUpdating) {
-      update(params.id);
+      update();
     }
   };
 
@@ -65,7 +65,10 @@ const Opt2UpdatePage = ({ params }: Props) => {
                   </div>
                   <DescriptionInput />
                   <Images />
-                  <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+                  <button
+                    className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                    onClick={handleUpdate}
+                  >
                     수정 완료
                   </button>
                 </div>

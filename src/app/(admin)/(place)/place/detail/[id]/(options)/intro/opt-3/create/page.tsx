@@ -5,8 +5,23 @@ import Breadcrumb from "../../_components/Breadcrumb";
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
 import DescriptionInput from "./_components/DescriptionInput";
 import Images from "./_components/Images";
+import { useCreateIntroOpt3 } from "@/features/place/queries/intro";
 
-const Opt2CreatePage = () => {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const Opt2CreatePage = ({ params }: Props) => {
+  const { mutate: create, isPending: isCreating } = useCreateIntroOpt3();
+
+  const handleCreate = () => {
+    if (!isCreating) {
+      create(params.id);
+    }
+  };
+
   return (
     <>
       <PlaceDetailLayout>
@@ -23,7 +38,10 @@ const Opt2CreatePage = () => {
               <div className="p-6.5">
                 <DescriptionInput />
                 <Images />
-                <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+                <button
+                  className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                  onClick={handleCreate}
+                >
                   컨텐츠 생성
                 </button>
               </div>

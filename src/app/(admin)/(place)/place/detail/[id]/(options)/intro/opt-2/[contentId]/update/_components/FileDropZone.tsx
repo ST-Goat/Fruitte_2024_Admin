@@ -1,7 +1,32 @@
-import Dropzone from "dropzone";
-import { useEffect } from "react";
+import { ChangeEvent } from "react";
+import { uploadImgOnS3 } from "@/features/upload/api";
+import { usePlaceIntroOpt2DetailStore } from "@/features/place/hooks/placeIntro";
 
 const FileDropZone = () => {
+  const { images, setImages } = usePlaceIntroOpt2DetailStore();
+
+  const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const newImages: string[] = [...images];
+
+    for (const file of [...files]) {
+      try {
+        const uploadedImageUrl = await uploadImgOnS3(
+          file,
+          "/pickpoint/images/",
+        );
+        newImages.push(uploadedImageUrl);
+      } catch (error) {
+        console.error("파일 업로드 실패:", error);
+      }
+    }
+
+    setImages(newImages);
+    event.target.value = ""; // 같은 파일 재업로드 가능하도록 초기화
+  };
+
   return (
     <div className="p-6.5">
       <div
@@ -12,6 +37,8 @@ const FileDropZone = () => {
           type="file"
           accept="image/*"
           className="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
+          multiple
+          onChange={handleFileUpload}
         />
         <div className="flex flex-col items-center justify-center space-y-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark">

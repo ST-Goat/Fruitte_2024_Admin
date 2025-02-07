@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import ImageCommponent from "./Image";
-import { usePlaceIntroOpt2CreateStore } from "@/features/place/hooks/placeIntro";
+import { usePlaceIntroOpt3CreateStore } from "@/features/place/hooks/placeIntro";
 import FileDropZone from "./FileDropZone";
 
 const Images = () => {
-  const { images } = usePlaceIntroOpt2CreateStore();
+  const { images } = usePlaceIntroOpt3CreateStore();
   return (
     <>
       <label className="mb-3 block text-sm font-medium text-black dark:text-white">
