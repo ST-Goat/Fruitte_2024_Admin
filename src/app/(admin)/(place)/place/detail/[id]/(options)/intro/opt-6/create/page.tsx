@@ -5,8 +5,24 @@ import Breadcrumb from "../../_components/Breadcrumb";
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
 import DescriptionInput from "./_components/DescriptionInput";
 import Images from "./_components/Images";
+import * as query from "@/features/place/queries/intro";
+import TitleInput from "./_components/TitleInput";
 
-const Opt2CreatePage = () => {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const Opt6CreatePage = ({ params }: Props) => {
+  const { mutate: create, isPending: isCreating } = query.useCreateIntroOpt6();
+
+  const handleCreate = () => {
+    if (!isCreating) {
+      create(params.id);
+    }
+  };
+
   return (
     <>
       <PlaceDetailLayout>
@@ -21,9 +37,13 @@ const Opt2CreatePage = () => {
                 </h3>
               </div>
               <div className="p-6.5">
+                <TitleInput />
                 <DescriptionInput />
                 <Images />
-                <button className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90">
+                <button
+                  className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
+                  onClick={handleCreate}
+                >
                   옵션 생성
                 </button>
               </div>
@@ -35,4 +55,4 @@ const Opt2CreatePage = () => {
   );
 };
 
-export default Opt2CreatePage;
+export default Opt6CreatePage;

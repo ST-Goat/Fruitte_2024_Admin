@@ -2,11 +2,11 @@
 
 import React, { useEffect } from "react";
 import ImageCommponent from "./Image";
-import { usePlaceIntroOpt2CreateStore } from "@/features/place/hooks/placeIntro";
+import { usePlaceScheduleOpt4Store } from "@/features/place/hooks/placeSchedule";
 import FileDropZone from "./FileDropZone";
 
 const Images = () => {
-  const { images } = usePlaceIntroOpt2CreateStore();
+  const { images } = usePlaceScheduleOpt4Store();
   return (
     <>
       <label className="mb-3 block text-sm font-medium text-black dark:text-white">

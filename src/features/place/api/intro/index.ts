@@ -1,44 +1,12 @@
 import ApiUtils from "@/lib/axiosInstanceAuth";
 import { API_URL } from "@/constants/api";
 import { AxiosResponse } from "axios";
-import {
-  introOpt1,
-  GetIntroOpt1Request,
-  GetIntroOpt1Response,
-  CreateIntroOpt1Request,
-  CreateIntroOpt1Response,
-  UpdateIntroOpt1Request,
-  UpdateIntroOpt1Response,
-  GetIntroOpt2Request,
-  GetIntroOpt2Response,
-  GetIntroOpt2DetailRequest,
-  GetIntroOpt2DetailResponse,
-  UpdateIntroOpt2Request,
-  UpdateIntroOpt2Response,
-  CreateIntroOpt2Request,
-  CreateIntroOpt2Response,
-  UpdateIntroOpt2StepRequest,
-  UpdateIntroOpt2StepResponse,
-  DeleteIntroOpt2Request,
-  DeleteIntroOpt2Response,
-  GetIntroOpt3Request,
-  GetIntroOpt3Response,
-  CreateIntroOpt3Request,
-  CreateIntroOpt3Response,
-  UpdateIntroOpt3Request,
-  UpdateIntroOpt3Response,
-  GetIntroOpt3DetailRequest,
-  GetIntroOpt3DetailResponse,
-  UpdateIntroOpt3StepRequest,
-  UpdateIntroOpt3StepResponse,
-  DeleteIntroOpt3Request,
-  DeleteIntroOpt3Response,
-} from "../../types/intro/api";
+import * as i from "../../types/intro/api";
 
 export const getIntroOpt1 = async (id: string) => {
   const { data } = await ApiUtils.fetch<
-    GetIntroOpt1Request,
-    AxiosResponse<GetIntroOpt1Response>
+    i.GetIntroOpt1Request,
+    AxiosResponse<i.GetIntroOpt1Response>
   >(`${API_URL.getIntroOpt1Desc}/${id}`);
 
   const { statusCode, msg, response } = data;
@@ -49,11 +17,11 @@ export const getIntroOpt1 = async (id: string) => {
 };
 export const createIntroOpt1 = async (
   placeId: string,
-  createInfo: CreateIntroOpt1Request,
+  createInfo: i.CreateIntroOpt1Request,
 ) => {
   const { data } = await ApiUtils.post<
-    CreateIntroOpt1Request,
-    AxiosResponse<CreateIntroOpt1Response>
+    i.CreateIntroOpt1Request,
+    AxiosResponse<i.CreateIntroOpt1Response>
   >(`${API_URL.createIntroOpt1Desc}/${placeId}`, createInfo);
 
   const { statusCode, msg, response } = data;
@@ -64,12 +32,12 @@ export const createIntroOpt1 = async (
 };
 export const updateIntroOpt1 = async (
   placeId: string,
-  updateInfo: UpdateIntroOpt1Request,
+  updateInfo: i.UpdateIntroOpt1Request,
 ) => {
   const { data } = await ApiUtils.patch<
-    UpdateIntroOpt1Request,
-    AxiosResponse<UpdateIntroOpt1Response>
-  >(`${API_URL.getIntroOpt1Desc}/${placeId}`, updateInfo);
+    i.UpdateIntroOpt1Request,
+    AxiosResponse<i.UpdateIntroOpt1Response>
+  >(`${API_URL.updateIntroOpt1Desc}/${placeId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
 
@@ -80,8 +48,8 @@ export const updateIntroOpt1 = async (
 export const getIntroOpt2 = async (placeId: string) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetIntroOpt2Request,
-      AxiosResponse<GetIntroOpt2Response>
+      i.GetIntroOpt2Request,
+      AxiosResponse<i.GetIntroOpt2Response>
     >(`${API_URL.getIntroOpt2}/${placeId}`);
 
     const { statusCode, msg, response } = data;
@@ -99,8 +67,8 @@ export const getIntroOpt2Detail = async (
 ) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetIntroOpt2DetailRequest,
-      AxiosResponse<GetIntroOpt2DetailResponse>
+      i.GetIntroOpt2DetailRequest,
+      AxiosResponse<i.GetIntroOpt2DetailResponse>
     >(`${API_URL.getIntroOpt2Detail}/${placeId}/${contentId}`);
 
     const { statusCode, msg, response } = data;
@@ -112,10 +80,10 @@ export const getIntroOpt2Detail = async (
     throw e;
   }
 };
-export const updateIntroOpt2 = async (updateInfo: UpdateIntroOpt2Request) => {
+export const updateIntroOpt2 = async (updateInfo: i.UpdateIntroOpt2Request) => {
   const { data } = await ApiUtils.patch<
-    UpdateIntroOpt2Request,
-    AxiosResponse<UpdateIntroOpt2Response>
+    i.UpdateIntroOpt2Request,
+    AxiosResponse<i.UpdateIntroOpt2Response>
   >(
     `${API_URL.updateIntroOpt2}/${updateInfo.placeId}/${updateInfo.id}`,
     updateInfo,
@@ -129,11 +97,11 @@ export const updateIntroOpt2 = async (updateInfo: UpdateIntroOpt2Request) => {
 };
 export const createIntroOpt2 = async (
   placeId: string,
-  createInfo: CreateIntroOpt2Request,
+  createInfo: i.CreateIntroOpt2Request,
 ) => {
   const { data } = await ApiUtils.post<
-    CreateIntroOpt2Request,
-    AxiosResponse<CreateIntroOpt2Response>
+    i.CreateIntroOpt2Request,
+    AxiosResponse<i.CreateIntroOpt2Response>
   >(`${API_URL.createIntroOpt2}/${placeId}`, createInfo);
 
   const { statusCode, msg, response } = data;
@@ -144,11 +112,11 @@ export const createIntroOpt2 = async (
 };
 export const updateIntroOpt2Step = async (
   placeId: string,
-  updateInfo: UpdateIntroOpt2StepRequest,
+  updateInfo: i.UpdateIntroOpt2StepRequest,
 ) => {
   const { data } = await ApiUtils.patch<
-    UpdateIntroOpt2StepRequest,
-    AxiosResponse<UpdateIntroOpt2StepResponse>
+    i.UpdateIntroOpt2StepRequest,
+    AxiosResponse<i.UpdateIntroOpt2StepResponse>
   >(`${API_URL.updateIntroOpt2Step}/${placeId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
@@ -159,8 +127,8 @@ export const updateIntroOpt2Step = async (
 };
 export const deleteIntroOpt2 = async (placeId: string, contentId: number) => {
   const { data } = await ApiUtils.patch<
-    DeleteIntroOpt2Request,
-    AxiosResponse<DeleteIntroOpt2Response>
+    i.DeleteIntroOpt2Request,
+    AxiosResponse<i.DeleteIntroOpt2Response>
   >(`${API_URL.deleteIntroOpt2}/${placeId}/${contentId}`);
 
   const { statusCode, msg, response } = data;
@@ -173,8 +141,8 @@ export const deleteIntroOpt2 = async (placeId: string, contentId: number) => {
 export const getIntroOpt3 = async (placeId: string) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetIntroOpt3Request,
-      AxiosResponse<GetIntroOpt3Response>
+      i.GetIntroOpt3Request,
+      AxiosResponse<i.GetIntroOpt3Response>
     >(`${API_URL.getIntroOpt3}/${placeId}`);
 
     const { statusCode, msg, response } = data;
@@ -192,8 +160,8 @@ export const getIntroOpt3Detail = async (
 ) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetIntroOpt3DetailRequest,
-      AxiosResponse<GetIntroOpt3DetailResponse>
+      i.GetIntroOpt3DetailRequest,
+      AxiosResponse<i.GetIntroOpt3DetailResponse>
     >(`${API_URL.getIntroOpt3Detail}/${placeId}/${contentId}`);
 
     const { statusCode, msg, response } = data;
@@ -207,11 +175,11 @@ export const getIntroOpt3Detail = async (
 };
 export const createIntroOpt3 = async (
   placeId: string,
-  createInfo: CreateIntroOpt3Request,
+  createInfo: i.CreateIntroOpt3Request,
 ) => {
   const { data } = await ApiUtils.post<
-    CreateIntroOpt2Request,
-    AxiosResponse<CreateIntroOpt3Response>
+    i.CreateIntroOpt2Request,
+    AxiosResponse<i.CreateIntroOpt3Response>
   >(`${API_URL.createIntroOpt3}/${placeId}`, createInfo);
 
   const { statusCode, msg, response } = data;
@@ -220,10 +188,10 @@ export const createIntroOpt3 = async (
     return response;
   }
 };
-export const updateIntroOpt3 = async (updateInfo: UpdateIntroOpt3Request) => {
+export const updateIntroOpt3 = async (updateInfo: i.UpdateIntroOpt3Request) => {
   const { data } = await ApiUtils.patch<
-    UpdateIntroOpt3Request,
-    AxiosResponse<UpdateIntroOpt3Response>
+    i.UpdateIntroOpt3Request,
+    AxiosResponse<i.UpdateIntroOpt3Response>
   >(
     `${API_URL.updateIntroOpt3}/${updateInfo.placeId}/${updateInfo.id}`,
     updateInfo,
@@ -237,11 +205,11 @@ export const updateIntroOpt3 = async (updateInfo: UpdateIntroOpt3Request) => {
 };
 export const updateIntroOpt3Step = async (
   placeId: string,
-  updateInfo: UpdateIntroOpt3StepRequest,
+  updateInfo: i.UpdateIntroOpt3StepRequest,
 ) => {
   const { data } = await ApiUtils.patch<
-    UpdateIntroOpt3StepRequest,
-    AxiosResponse<UpdateIntroOpt3StepResponse>
+    i.UpdateIntroOpt3StepRequest,
+    AxiosResponse<i.UpdateIntroOpt3StepResponse>
   >(`${API_URL.updateIntroOpt3Step}/${placeId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
@@ -252,9 +220,300 @@ export const updateIntroOpt3Step = async (
 };
 export const deleteIntroOpt3 = async (placeId: string, contentId: number) => {
   const { data } = await ApiUtils.patch<
-    DeleteIntroOpt3Request,
-    AxiosResponse<DeleteIntroOpt3Response>
+    i.DeleteIntroOpt3Request,
+    AxiosResponse<i.DeleteIntroOpt3Response>
   >(`${API_URL.deleteIntroOpt3}/${placeId}/${contentId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+
+export const getIntroOpt4 = async (placeId: string) => {
+  const { data } = await ApiUtils.fetch<
+    i.GetIntroOpt4Request,
+    AxiosResponse<i.GetIntroOpt4Response>
+  >(`${API_URL.getIntroOpt4}/${placeId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const createIntroOpt4 = async (
+  placeId: string,
+  createInfo: i.CreateIntroOpt4Request,
+) => {
+  const { data } = await ApiUtils.post<
+    i.CreateIntroOpt4Request,
+    AxiosResponse<i.CreateIntroOpt4Response>
+  >(`${API_URL.createIntroOpt4}/${placeId}`, createInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const updateIntroOpt4 = async (
+  placeId: string,
+  updateInfo: i.UpdateIntroOpt4Request,
+) => {
+  try {
+    const { data } = await ApiUtils.patch<
+      i.UpdateIntroOpt4Request,
+      AxiosResponse<i.UpdateIntroOpt4Response>
+    >(`${API_URL.updateIntroOpt4}/${placeId}`, updateInfo);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getIntroOpt5 = async (placeId: string) => {
+  try {
+    const { data } = await ApiUtils.fetch<
+      i.GetIntroOpt5Request,
+      AxiosResponse<i.GetIntroOpt5Response>
+    >(`${API_URL.getIntroOpt5}/${placeId}`);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const getIntroOpt5Detail = async (
+  placeId: string,
+  contentId: string,
+) => {
+  try {
+    const { data } = await ApiUtils.fetch<
+      i.GetIntroOpt5DetailRequest,
+      AxiosResponse<i.GetIntroOpt5DetailResponse>
+    >(`${API_URL.getIntroOpt5Detail}/${placeId}/${contentId}`);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const createIntroOpt5 = async (
+  placeId: string,
+  createInfo: i.CreateIntroOpt5Request,
+) => {
+  try {
+    const { data } = await ApiUtils.post<
+      i.CreateIntroOpt5Request,
+      AxiosResponse<i.CreateIntroOpt5Response>
+    >(`${API_URL.createIntroOpt5}/${placeId}`, createInfo);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const updateIntroOpt5Step = async (
+  placeId: string,
+  updateInfo: i.UpdateIntroOpt5StepRequest,
+) => {
+  const { data } = await ApiUtils.patch<
+    i.UpdateIntroOpt5StepRequest,
+    AxiosResponse<i.UpdateIntroOpt5StepResponse>
+  >(`${API_URL.updateIntroOpt5Step}/${placeId}`, updateInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const deleteIntroOpt5 = async (placeId: string, contentId: number) => {
+  const { data } = await ApiUtils.patch<
+    i.DeleteIntroOpt5Request,
+    AxiosResponse<i.DeleteIntroOpt5Response>
+  >(`${API_URL.deleteIntroOpt5}/${placeId}/${contentId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const updateIntroOpt5 = async (updateInfo: i.UpdateIntroOpt5Request) => {
+  try {
+    const { data } = await ApiUtils.patch<
+      i.UpdateIntroOpt5Request,
+      AxiosResponse<i.UpdateIntroOpt5Response>
+    >(
+      `${API_URL.updateIntroOpt5}/${updateInfo.placeId}/${updateInfo.id}`,
+      updateInfo,
+    );
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getIntroOpt6 = async (placeId: string) => {
+  try {
+    const { data } = await ApiUtils.fetch<
+      i.GetIntroOpt6Request,
+      AxiosResponse<i.GetIntroOpt6Response>
+    >(`${API_URL.getIntroOpt6}/${placeId}`);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const getIntroOpt6Detail = async (placeId: string, optionId: string) => {
+  try {
+    const { data } = await ApiUtils.fetch<
+      i.GetIntroOpt6DetailRequest,
+      AxiosResponse<i.GetIntroOpt6DetailResponse>
+    >(`${API_URL.getIntroOpt6Detail}/${placeId}/${optionId}`);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const createIntroOpt6 = async (
+  placeId: string,
+  createInfo: i.CreateIntroOpt5Request,
+) => {
+  try {
+    const { data } = await ApiUtils.post<
+      i.CreateIntroOpt6Request,
+      AxiosResponse<i.CreateIntroOpt6Response>
+    >(`${API_URL.createIntroOpt6}/${placeId}`, createInfo);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+export const updateIntroOpt6Step = async (
+  placeId: string,
+  updateInfo: i.UpdateIntroOpt5StepRequest,
+) => {
+  const { data } = await ApiUtils.patch<
+    i.UpdateIntroOpt6StepRequest,
+    AxiosResponse<i.UpdateIntroOpt6StepResponse>
+  >(`${API_URL.updateIntroOpt6Step}/${placeId}`, updateInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const deleteIntroOpt6 = async (placeId: string, optionId: number) => {
+  const { data } = await ApiUtils.patch<
+    i.DeleteIntroOpt6Request,
+    AxiosResponse<i.DeleteIntroOpt6Response>
+  >(`${API_URL.deleteIntroOpt6}/${placeId}/${optionId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const updateIntroOpt6 = async (updateInfo: i.UpdateIntroOpt5Request) => {
+  try {
+    const { data } = await ApiUtils.patch<
+      i.UpdateIntroOpt6Request,
+      AxiosResponse<i.UpdateIntroOpt6Response>
+    >(
+      `${API_URL.updateIntroOpt6}/${updateInfo.placeId}/${updateInfo.id}`,
+      updateInfo,
+    );
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
+export const getIntroOpt7 = async (id: string) => {
+  const { data } = await ApiUtils.fetch<
+    i.GetIntroOpt7Request,
+    AxiosResponse<i.GetIntroOpt7Response>
+  >(`${API_URL.getIntroOpt7}/${id}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    console.log(response);
+
+    return response;
+  }
+};
+export const createIntroOpt7 = async (
+  placeId: string,
+  createInfo: i.CreateIntroOpt1Request,
+) => {
+  const { data } = await ApiUtils.post<
+    i.CreateIntroOpt1Request,
+    AxiosResponse<i.CreateIntroOpt1Response>
+  >(`${API_URL.createIntroOpt7}/${placeId}`, createInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const updateIntroOpt7 = async (
+  placeId: string,
+  updateInfo: i.UpdateIntroOpt1Request,
+) => {
+  const { data } = await ApiUtils.patch<
+    i.UpdateIntroOpt1Request,
+    AxiosResponse<i.UpdateIntroOpt1Response>
+  >(`${API_URL.getIntroOpt7}/${placeId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
 

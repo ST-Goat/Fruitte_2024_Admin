@@ -1,10 +1,7 @@
 import Link from "next/link";
 import { useUpdateIntroOpt2Step } from "@/features/place/queries/intro";
-import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
 
 const ButtonsGroup = ({ placeId }: { placeId: string }) => {
-  const { info } = usePlaceIntroOpt2Store();
-
   const { mutate: updateStep, isPending: isUpdating } =
     useUpdateIntroOpt2Step();
   const handleUpdateStep = () => {

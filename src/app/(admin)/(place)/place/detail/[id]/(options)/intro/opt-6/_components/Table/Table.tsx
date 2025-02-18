@@ -1,55 +1,10 @@
 import React from "react";
 import StepDropdown from "./StepDropdown";
 import UpdateDropdown from "./UpdateDropdown";
-import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
-interface TableData {
-  id: number;
-  step: number;
-  description: string;
-  img: string[];
-}
-
-const data: TableData[] = [
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 2,
-    step: 2,
-    description: "2번설명",
-    img: [""],
-  },
-];
+import * as hook from "@/features/place/hooks/placeIntro";
 
 const Table: React.FC = () => {
-  const { info } = usePlaceIntroOpt2Store();
+  const { info } = hook.usePlaceIntroOpt6Store();
 
   return (
     <div className="max-w-full overflow-x-auto overflow-y-auto">
@@ -63,14 +18,14 @@ const Table: React.FC = () => {
             <h5 className="font-medium text-white">고유번호</h5>
           </div>
           <div className="col-span-3">
-            <h5 className="font-medium text-white">설명</h5>
+            <h5 className="font-medium text-white">제목</h5>
           </div>
         </div>
         {/* table header end */}
 
         {/* table body start */}
         <div className="rounded-b-[10px] bg-white dark:bg-boxdark">
-          {info.map((item, index) => (
+          {info?.map((item, index) => (
             <div
               key={index}
               className="grid grid-cols-7 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
@@ -83,7 +38,7 @@ const Table: React.FC = () => {
               </div>
               <div className="col-span-3">
                 <p className="text-[#637381] dark:text-bodydark">
-                  {item.description}
+                  {item.title}
                 </p>
               </div>
 
@@ -92,7 +47,7 @@ const Table: React.FC = () => {
                   classes={
                     index < 2
                       ? "top-full mt-1"
-                      : index >= data.length - 2
+                      : index >= info.length - 2
                         ? "bottom-full mb-1"
                         : ""
                   }
@@ -105,11 +60,12 @@ const Table: React.FC = () => {
                   classes={
                     index < 2
                       ? "top-full mt-1"
-                      : index >= data.length - 2
+                      : index >= info.length - 2
                         ? "bottom-full mb-1"
                         : ""
                   }
                   id={item.id}
+                  placeId={item.placeId}
                 />
               </div>
             </div>

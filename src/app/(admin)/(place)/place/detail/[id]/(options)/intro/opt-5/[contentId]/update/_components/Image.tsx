@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import ImageResize from "@/js/image-resize";
 import Image from "next/image";
-import { usePlaceIntroOpt2CreateStore } from "@/features/place/hooks/placeIntro";
+import { usePlaceIntroOpt5DetailStore } from "@/features/place/hooks/placeIntro";
 
 const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
-  const { setImageStep, removeImage } = usePlaceIntroOpt2CreateStore();
+  const { setImageStep, removeImage } = usePlaceIntroOpt5DetailStore();
   useEffect(() => {
     ImageResize();
   });
@@ -16,39 +16,6 @@ const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
           {index + 1}번째 썸네일
         </h3>
         <div className="flex gap-2">
-          {index !== 0 && (
-            <svg
-              onClick={() => setImageStep(index, -1)}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
-              />
-            </svg>
-          )}
-
-          <svg
-            onClick={() => setImageStep(index, 1)}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-            />
-          </svg>
           <svg
             onClick={() => removeImage(index)}
             xmlns="http://www.w3.org/2000/svg"

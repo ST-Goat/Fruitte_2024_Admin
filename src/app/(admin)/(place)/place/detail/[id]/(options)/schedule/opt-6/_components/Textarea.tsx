@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { usePlaceIntroOpt1DescStore } from "@/features/place/hooks/placeIntro";
+import { usePlaceScheduleOpt6Store } from "@/features/place/hooks/placeSchedule";
 
 const Textarea = () => {
-  const { description, setDescription } = usePlaceIntroOpt1DescStore();
+  const { description, setDescription } = usePlaceScheduleOpt6Store();
 
   return (
     <div className="mb-5.5">

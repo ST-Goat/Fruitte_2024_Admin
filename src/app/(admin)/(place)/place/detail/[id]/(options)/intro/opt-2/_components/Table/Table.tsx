@@ -2,13 +2,6 @@ import React from "react";
 import StepDropdown from "./StepDropdown";
 import UpdateDropdown from "./UpdateDropdown";
 import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
-import { useGetIntroOpt2 } from "@/features/place/queries/intro";
-interface TableData {
-  id: number;
-  step: number;
-  description: string;
-  img: string[];
-}
 
 const Table: React.FC = () => {
   const { info } = usePlaceIntroOpt2Store();

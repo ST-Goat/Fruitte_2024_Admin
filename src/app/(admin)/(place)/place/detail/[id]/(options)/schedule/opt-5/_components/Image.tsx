@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import ImageResize from "@/js/image-resize";
 import Image from "next/image";
-import { usePlaceIntroOpt2CreateStore } from "@/features/place/hooks/placeIntro";
+import { usePlaceScheduleOpt5Store } from "@/features/place/hooks/placeSchedule";
 
 const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
-  const { setImageStep, removeImage } = usePlaceIntroOpt2CreateStore();
+  const { setImageStep, removeImage } = usePlaceScheduleOpt5Store();
   useEffect(() => {
     ImageResize();
   });
@@ -69,7 +69,13 @@ const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
       <div className="p-4 sm:p-6 xl:p-10">
         <div className="relative">
           <div id="pane" className="overflow-hidden">
-            <Image src={src} width={1374} height={520} alt="Cover" />
+            <Image
+              src={src}
+              width={1374}
+              height={520}
+              alt="Cover"
+              priority={true}
+            />
           </div>
           <div
             id="ghostpane"

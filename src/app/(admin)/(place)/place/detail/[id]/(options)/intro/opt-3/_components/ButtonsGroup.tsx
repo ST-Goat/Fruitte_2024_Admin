@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { useUpdateIntroOpt3Step } from "@/features/place/queries/intro";
-import { usePlaceIntroOpt3Store } from "@/features/place/hooks/placeIntro";
 
 const ButtonsGroup = ({ placeId }: { placeId: string }) => {
   const { mutate: updateStep, isPending: isUpdating } =

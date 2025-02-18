@@ -1,38 +1,10 @@
 import React from "react";
 import StepDropdown from "./StepDropdown";
 import UpdateDropdown from "./UpdateDropdown";
-import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
-
-interface TableData {
-  id: number;
-  step: number;
-  time: number;
-  title: string;
-}
-
-const data: TableData[] = [
-  {
-    id: 1,
-    step: 1,
-    time: 10,
-    title: "1번 설명",
-  },
-  {
-    id: 2,
-    step: 2,
-    time: 30,
-    title: "2번 설명",
-  },
-  {
-    id: 3,
-    step: 3,
-    time: 40,
-    title: "3번 설명",
-  },
-];
+import * as hook from "@/features/place/hooks/placeSchedule";
 
 const Table: React.FC = () => {
-  const { info } = usePlaceIntroOpt2Store();
+  const { info } = hook.usePlaceScheduleOpt2Store();
 
   return (
     <div className="max-w-full overflow-x-auto overflow-y-auto">
@@ -56,7 +28,7 @@ const Table: React.FC = () => {
 
         {/* table body start */}
         <div className="rounded-b-[10px] bg-white dark:bg-boxdark">
-          {data.map((item, index) => (
+          {info.map((item, index) => (
             <div
               key={index}
               className="grid grid-cols-8 border-t border-[#EEEEEE] px-5 py-4 dark:border-strokedark lg:px-7.5 2xl:px-11"
@@ -81,7 +53,7 @@ const Table: React.FC = () => {
                   classes={
                     index < 2
                       ? "top-full mt-1"
-                      : index >= data.length - 2
+                      : index >= info.length - 2
                         ? "bottom-full mb-1"
                         : ""
                   }
@@ -94,10 +66,11 @@ const Table: React.FC = () => {
                   classes={
                     index < 2
                       ? "top-full mt-1"
-                      : index >= data.length - 2
+                      : index >= info.length - 2
                         ? "bottom-full mb-1"
                         : ""
                   }
+                  placeId={item.placeId}
                   id={item.id}
                 />
               </div>

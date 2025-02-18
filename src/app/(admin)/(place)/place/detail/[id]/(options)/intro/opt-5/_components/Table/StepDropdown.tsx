@@ -1,12 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
+import { usePlaceIntroOpt5Store } from "@/features/place/hooks/placeIntro";
+
 const StepDropdown: React.FC<{ classes: string; id: number; step: number }> = ({
   classes,
   id,
   step,
 }) => {
-  const { setInfoStep } = usePlaceIntroOpt2Store();
+  const { setInfoStep } = usePlaceIntroOpt5Store();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);

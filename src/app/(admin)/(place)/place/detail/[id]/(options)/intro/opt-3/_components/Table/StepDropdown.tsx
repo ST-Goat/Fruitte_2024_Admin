@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import {
-  usePlaceIntroOpt2Store,
-  usePlaceIntroOpt3Store,
-} from "@/features/place/hooks/placeIntro";
+import { usePlaceIntroOpt3Store } from "@/features/place/hooks/placeIntro";
 const StepDropdown: React.FC<{ classes: string; id: number; step: number }> = ({
   classes,
   id,
