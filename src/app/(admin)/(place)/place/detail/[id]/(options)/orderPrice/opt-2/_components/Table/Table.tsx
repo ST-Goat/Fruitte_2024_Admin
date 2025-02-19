@@ -1,55 +1,10 @@
 import React from "react";
 import StepDropdown from "./StepDropdown";
 import UpdateDropdown from "./UpdateDropdown";
-import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
-interface TableData {
-  id: number;
-  step: number;
-  description: string;
-  img: string[];
-}
-
-const data: TableData[] = [
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 1,
-    step: 1,
-    description: "1번설명",
-    img: [""],
-  },
-  {
-    id: 2,
-    step: 2,
-    description: "2번설명",
-    img: [""],
-  },
-];
+import * as hook from "@/features/place/hooks/orderPrice";
 
 const Table: React.FC = () => {
-  const { info } = usePlaceIntroOpt2Store();
+  const { info } = hook.usePlaceOrderPriceOpt2Store();
 
   return (
     <div className="max-w-full overflow-x-auto overflow-y-auto">
@@ -86,11 +41,13 @@ const Table: React.FC = () => {
               </div>
               <div className="col-span-3">
                 <p className="text-[#637381] dark:text-bodydark">
-                  {item.description}
+                  {item.title}
                 </p>
               </div>
               <div className="col-span-1">
-                <p className="text-[#637381] dark:text-bodydark">{item.id}</p>
+                <p className="text-[#637381] dark:text-bodydark">
+                  {item.price}
+                </p>
               </div>
 
               <div className="relative col-span-1">
@@ -98,7 +55,7 @@ const Table: React.FC = () => {
                   classes={
                     index < 2
                       ? "top-full mt-1"
-                      : index >= data.length - 2
+                      : index >= info.length - 2
                         ? "bottom-full mb-1"
                         : ""
                   }
@@ -111,11 +68,12 @@ const Table: React.FC = () => {
                   classes={
                     index < 2
                       ? "top-full mt-1"
-                      : index >= data.length - 2
+                      : index >= info.length - 2
                         ? "bottom-full mb-1"
                         : ""
                   }
                   id={item.id}
+                  placeId={item.placeId}
                 />
               </div>
             </div>

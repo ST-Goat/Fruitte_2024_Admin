@@ -63,6 +63,42 @@ export interface UpdateScheduleOpt2StepRequest {
 export interface UpdateScheduleOpt2StepResponse
   extends ResponseBody<Opt2Info[]> {}
 
+export interface ScheduleOpt3 {
+  placeText: string;
+  region: string;
+  address: string;
+  lat: string;
+  long: string;
+}
+export interface GetScheduleOpt3Request {}
+export interface GetScheduleOpt3Response
+  extends ResponseBody<{
+    mode: mode;
+    info: ScheduleOpt3;
+  }> {}
+export interface CreateScheduleOpt3Request
+  extends Omit<ScheduleOpt3, "lat" | "long"> {
+  placeId: string;
+  lat: number;
+  long: number;
+}
+export interface CreateScheduleOpt3Response
+  extends ResponseBody<{
+    mode: mode;
+    info: ScheduleOpt3;
+  }> {}
+export interface UpdateScheduleOpt3Request
+  extends Omit<ScheduleOpt3, "lat" | "long"> {
+  placeId: string;
+  lat: number;
+  long: number;
+}
+export interface UpdateScheduleOpt3Response
+  extends ResponseBody<{
+    mode: mode;
+    info: ScheduleOpt3;
+  }> {}
+
 export interface Opt4Info {
   description: string;
   img: string[];

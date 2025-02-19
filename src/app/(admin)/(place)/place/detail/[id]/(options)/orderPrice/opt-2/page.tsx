@@ -5,6 +5,8 @@ import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
 import Breadcrumb from "../_components/Breadcrumb";
 import ButtonsGroup from "./_components/ButtonsGroup";
 import Table from "./_components/Table/Table";
+import Loader from "@/components/common/Loader";
+import * as query from "@/features/place/queries/orderPrice";
 
 type Props = {
   params: {
@@ -12,23 +14,32 @@ type Props = {
   };
 };
 
-const PlaceOrderPriceOpt1 = ({ params }: Props) => {
+const PlaceOrderPriceOpt2 = ({ params }: Props) => {
+  const {
+    isLoading: isFetchLoading,
+    isSuccess: isFetchSuccess,
+    isError: isFetchError,
+  } = query.useGetOrderPriceOpt2(params.id);
+
   return (
     <PlaceDetailLayout>
       <Breadcrumb pageName={`"가격 및 상품 정보" 옵션 리스트`} />
-      <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
-        <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
-          <h3 className="font-medium text-black dark:text-white">
-            "가격 및 상품 정보" 옵션 리스트{" "}
-          </h3>
+      {isFetchLoading && <Loader />}
+      {isFetchSuccess && (
+        <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
+          <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
+            <h3 className="font-medium text-black dark:text-white">
+              "가격 및 상품 정보" 옵션 리스트{" "}
+            </h3>
+          </div>
+          <div className="p-6.5">
+            <ButtonsGroup placeId={params.id} />
+            <Table />
+          </div>
         </div>
-        <div className="p-6.5">
-          <ButtonsGroup placeId={params.id} />
-          <Table />
-        </div>
-      </div>
+      )}
     </PlaceDetailLayout>
   );
 };
 
-export default PlaceOrderPriceOpt1;
+export default PlaceOrderPriceOpt2;

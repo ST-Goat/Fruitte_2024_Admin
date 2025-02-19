@@ -2,11 +2,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import * as query from "@/features/place/queries/orderPrice";
 
 const UpdateDropdown: React.FC<{
   classes: string;
   id: number;
-}> = ({ classes, id: contentId }) => {
+  placeId: string;
+}> = ({ classes, id, placeId }) => {
   const pathname = usePathname(); // 현재 경로 가져오기
 
   // Pathname에서 PlaceId를 추출 (예: /place/detail/[placeId]/intro/...)
@@ -14,6 +16,16 @@ const UpdateDropdown: React.FC<{
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
+  const { mutate: deleteTicket, isPending: isDeleting } =
+    query.useDeleteOrderPriceOpt1(placeId, id);
+
+  const handleDelete = () => {
+    if (!isDeleting) {
+      if (window.confirm("정말 삭제하시겠습니까?")) {
+        deleteTicket();
+      }
+    }
+  };
 
   // close on click outside
   useEffect(() => {
@@ -72,17 +84,17 @@ const UpdateDropdown: React.FC<{
         }`}
       >
         <Link
-          href={`/place/detail/${pathname?.split("/")[3]}/orderPrice/opt-1/${contentId}/update`}
+          href={`/place/detail/${pathname?.split("/")[3]}/orderPrice/opt-1/${id}/update`}
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
         >
           수정
         </Link>
-        <Link
-          href="#"
+        <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
+          onClick={handleDelete}
         >
           삭제
-        </Link>
+        </button>
       </div>
     </div>
   );

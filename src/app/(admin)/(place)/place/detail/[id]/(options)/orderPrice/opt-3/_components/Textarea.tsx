@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { usePlaceIntroOpt1DescStore } from "@/features/place/hooks/placeIntro";
+import * as hook from "@/features/place/hooks/orderPrice";
 
 const Textarea = () => {
-  const { description, setDescription } = usePlaceIntroOpt1DescStore();
+  const { description, setDescription } = hook.usePlaceOrderPriceOpt3Store();
 
   return (
     <div className="mb-5.5">

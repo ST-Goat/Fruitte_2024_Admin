@@ -3,8 +3,9 @@ import ImageResize from "@/js/image-resize";
 import Image from "next/image";
 import * as hook from "@/features/place/hooks/placeInfo";
 
-const MainThumbnailImage: React.FC = () => {
-  const { mainImgSrc, removeMainImgSrc } = hook.usePlaceInfoOpt2Store();
+const SliderImages: React.FC = () => {
+  const { sliderImgsSrc, removeSliderImgsSrc, setSliderImgsSrcStep } =
+    hook.usePlaceInfoOpt2Store();
 
   useEffect(() => {
     ImageResize();
@@ -12,15 +13,51 @@ const MainThumbnailImage: React.FC = () => {
 
   return (
     <>
-      {mainImgSrc?.map((imgSrc, index) => (
+      {sliderImgsSrc?.map((imgSrc, index) => (
         <div key={index}>
-          <div className="flex justify-between  border-stroke px-4 dark:border-strokedark sm:px-6 xl:px-7.5">
+          <div
+            className="flex justify-between border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-7.5"
+            key={index}
+          >
             <h3 className="font-medium text-black dark:text-white">
-              메인 썸네일
+              {index + 1}번째 썸네일
             </h3>
             <div className="flex gap-2">
+              {index !== 0 && (
+                <svg
+                  onClick={() => setSliderImgsSrcStep(index, -1)}
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
+                  />
+                </svg>
+              )}
+              {index !== sliderImgsSrc.length - 1 && (
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  strokeWidth="1.5"
+                  stroke="currentColor"
+                  className="size-6"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+                  />
+                </svg>
+              )}
               <svg
-                onClick={() => removeMainImgSrc(index)}
+                onClick={() => removeSliderImgsSrc(index)}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"
@@ -53,4 +90,4 @@ const MainThumbnailImage: React.FC = () => {
   );
 };
 
-export default MainThumbnailImage;
+export default SliderImages;

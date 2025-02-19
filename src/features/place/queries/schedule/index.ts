@@ -243,7 +243,106 @@ export const useUpdateScheduleOpt2 = (data: i.Opt2Info) => {
 
   return { mutate, isError, isPending };
 };
+export const useGetScheduleOpt3 = (id: string) => {
+  const { setMode, setAddress, setLat, setLong, setRegion, setPlaceText } =
+    hook.usePlaceScheduleOpt3Store();
 
+  const { data, isLoading, isError, isSuccess } = useQuery({
+    queryKey: ["getScheduleOpt3", id],
+    queryFn: async () => {
+      const info = await api.getScheduleOpt3(id);
+      setMode(info?.mode as mode);
+
+      if (info?.mode === "update") {
+        setPlaceText(info?.info.placeText as string);
+        setRegion(info?.info.region as string);
+        setAddress(info?.info.address as string);
+        setLat(String(info?.info.lat) as string);
+        setLong(String(info?.info.long) as string);
+      }
+
+      return info;
+    },
+    enabled: !!id,
+    staleTime: 0,
+    gcTime: 0,
+  });
+  return { data, isLoading, isError, isSuccess };
+};
+export const useCreateScheduleOpt3 = () => {
+  const {
+    placeText,
+    region,
+    address,
+    lat,
+    long,
+    setPlaceText,
+    setRegion,
+    setAddress,
+    setLat,
+    setLong,
+  } = hook.usePlaceScheduleOpt3Store();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async (placeId: string) => {
+      const createdInfo = await api.createScheduleOpt3(placeId, {
+        placeId,
+        placeText: placeText,
+        region: region,
+        address: address,
+        lat: Number(lat),
+        long: Number(long),
+      });
+      return createdInfo;
+    },
+    onSuccess: (data) => {
+      setPlaceText(data?.info?.placeText as string);
+      setRegion(data?.info?.region as string);
+      setAddress(data?.info?.address as string);
+      setLat(String(data?.info?.lat) as string);
+      setLong(String(data?.info?.long) as string);
+      toast.success("최초설정이 완료되었습니다.");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
+export const useUpdateScheduleOpt3 = () => {
+  const {
+    placeText,
+    region,
+    address,
+    lat,
+    long,
+    setPlaceText,
+    setRegion,
+    setAddress,
+    setLat,
+    setLong,
+  } = hook.usePlaceScheduleOpt3Store();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async (placeId: string) => {
+      const updatedInfo = await api.updateScheduleOpt3(placeId, {
+        placeId,
+        placeText: placeText,
+        region: region,
+        address: address,
+        lat: Number(lat),
+        long: Number(long),
+      });
+      return updatedInfo;
+    },
+    onSuccess: (data) => {
+      setPlaceText(data?.info?.placeText as string);
+      setRegion(data?.info?.region as string);
+      setAddress(data?.info?.address as string);
+      setLat(String(data?.info?.lat) as string);
+      setLong(String(data?.info?.long) as string);
+      toast.success("수정완료되었습니다");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
 export const useGetScheduleOpt4 = (id: string) => {
   const { setMode, setDescription, setImages } =
     hook.usePlaceScheduleOpt4Store();

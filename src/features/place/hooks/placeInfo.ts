@@ -39,6 +39,89 @@ export const usePlaceInfoOpt1Store = create<PlaceInfoOpt1State>((set) => ({
     }),
 }));
 
+interface PlaceInfoOpt2State {
+  mode: mode;
+  setMode: (mode: mode) => void;
+  mainImgSrc: string[];
+  setMainImgSrc: (mainImgSrc: string[]) => void;
+  removeMainImgSrc: (index: number) => void;
+  sliderImgsSrc: string[];
+  setSliderImgsSrc: (images: string[]) => void;
+  setSliderImgsSrcStep: (index: number, step: 1 | -1) => void;
+  removeSliderImgsSrc: (index: number) => void;
+}
+
+export const usePlaceInfoOpt2Store = create<PlaceInfoOpt2State>((set) => ({
+  mode: "create",
+  setMode: (mode: mode) => set({ mode }),
+  mainImgSrc: [],
+  setMainImgSrc: (mainImgSrc: string[]) => {
+    set({ mainImgSrc });
+  },
+  removeMainImgSrc: (index: number) => {
+    set((state) => {
+      const currentImages = [...state.mainImgSrc];
+
+      // 유효한 index인지 확인
+      if (index < 0 || index >= currentImages.length) {
+        console.warn("Invalid index for removing image");
+        return state;
+      }
+
+      // 해당 이미지를 제거
+      currentImages.splice(index, 1);
+
+      return { sliderImgsSrc: currentImages };
+    });
+  },
+  sliderImgsSrc: [],
+  setSliderImgsSrc: (sliderImgsSrc: string[]) => {
+    set({ sliderImgsSrc });
+  },
+  setSliderImgsSrcStep: (index: number, step: 1 | -1) => {
+    set((state) => {
+      const currentImages = [...state.sliderImgsSrc];
+
+      // 유효한 index인지 확인
+      if (index < 0 || index >= currentImages.length) {
+        console.warn("Invalid index for image step adjustment");
+        return state;
+      }
+
+      // 이동할 새 위치 계산
+      const newIndex = index + step;
+
+      // 이동 대상이 배열 범위를 벗어난 경우 처리하지 않음
+      if (newIndex < 0 || newIndex >= currentImages.length) {
+        console.warn("Step adjustment out of bounds");
+        return state;
+      }
+
+      // 이미지 위치 변경
+      const [movedImage] = currentImages.splice(index, 1); // 선택된 이미지를 제거
+      currentImages.splice(newIndex, 0, movedImage); // 새 위치에 삽입
+
+      return { sliderImgsSrc: currentImages };
+    });
+  },
+  removeSliderImgsSrc: (index: number) => {
+    set((state) => {
+      const currentImages = [...state.sliderImgsSrc];
+
+      // 유효한 index인지 확인
+      if (index < 0 || index >= currentImages.length) {
+        console.warn("Invalid index for removing image");
+        return state;
+      }
+
+      // 해당 이미지를 제거
+      currentImages.splice(index, 1);
+
+      return { sliderImgsSrc: currentImages };
+    });
+  },
+}));
+
 interface PlaceInfoOpt3State {
   mode: mode;
   progressTime: string;

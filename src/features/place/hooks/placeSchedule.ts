@@ -125,8 +125,10 @@ export const usePlaceScheduleOpt2DetailStore =
   }));
 
 interface PlaceScheduleOpt3State {
-  place: string;
-  setPlace: (place: string) => void;
+  mode: mode;
+  setMode: (mode: mode) => void;
+  placeText: string;
+  setPlaceText: (plaplaceTextce: string) => void;
   region: string;
   setRegion: (region: string) => void;
   address: string;
@@ -138,9 +140,11 @@ interface PlaceScheduleOpt3State {
 }
 export const usePlaceScheduleOpt3Store = create<PlaceScheduleOpt3State>(
   (set) => ({
-    place: "",
-    setPlace: (place: string) => {
-      set({ place });
+    mode: "create",
+    setMode: (mode: mode) => set({ mode }),
+    placeText: "",
+    setPlaceText: (placeText: string) => {
+      set({ placeText });
     },
     region: "",
     setRegion: (region: string) => {

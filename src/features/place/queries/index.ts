@@ -14,16 +14,27 @@ import {
   getInfoOpt6,
   createInfoOpt6,
   updateInfoOpt6,
+  getInfoOpt2,
+  createInfoOpt2,
+  updateInfoOpt2,
 } from "../api";
 import {
   filterValidSections,
   usePlaceInfoOpt1Store,
+  usePlaceInfoOpt2Store,
   usePlaceInfoOpt3Store,
   usePlaceInfoOpt4Store,
   usePlaceInfoOpt5Store,
   usePlaceInfoOpt6Store,
 } from "../hooks/placeInfo";
-import { infoOpt1, infoOpt3, infoOpt4, infoOpt6, mode } from "../types/api";
+import {
+  infoOpt1,
+  InfoOpt2,
+  infoOpt3,
+  infoOpt4,
+  infoOpt6,
+  mode,
+} from "../types/api";
 import { ResponseBody } from "@/constants/types";
 import { toast } from "react-toastify";
 
@@ -72,6 +83,70 @@ export const useUpdateInfoOpt1 = () => {
     onSuccess: (data) => {
       toast.success("수정완료되었습니다.");
       setPlaceInfoOpt1(data as infoOpt1);
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
+
+export const useGetInfoOpt2 = (id: string) => {
+  const { setMainImgSrc, setSliderImgsSrc, setMode } = usePlaceInfoOpt2Store();
+
+  const { data, isLoading, isError, isSuccess } = useQuery({
+    queryKey: ["getInfoOpt2", id],
+    queryFn: async () => {
+      const info = await getInfoOpt2(id);
+      setMode(info?.mode as mode);
+      console.log(info);
+
+      if (info?.mode === "update") {
+        setMainImgSrc([info?.info.mainImgSrc as string]);
+        setSliderImgsSrc(info?.info.sliderImgsSrc as string[]);
+      }
+
+      return info;
+    },
+    enabled: !!id,
+    staleTime: 0,
+    gcTime: 0,
+  });
+  return { data, isLoading, isError, isSuccess };
+};
+export const useCreateInfoOpt2 = () => {
+  const { mainImgSrc, sliderImgsSrc, setMainImgSrc, setSliderImgsSrc } =
+    usePlaceInfoOpt2Store();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async (placeId: string) => {
+      const updatedInfo = await createInfoOpt2(placeId, {
+        placeId,
+        sliderImgsSrc: JSON.stringify(sliderImgsSrc),
+        mainImgSrc: mainImgSrc[0],
+      });
+      return updatedInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("최초설정이 완료되었습니다.");
+      setMainImgSrc([data?.mainImgSrc as string]);
+      setSliderImgsSrc(data?.sliderImgsSrc as string[]);
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
+export const useUpdateInfoOpt2 = () => {
+  const { mainImgSrc, sliderImgsSrc, setMainImgSrc, setSliderImgsSrc } =
+    usePlaceInfoOpt2Store();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async (placeId: string) => {
+      const updatedInfo = await updateInfoOpt2(placeId, {
+        placeId,
+        sliderImgsSrc: JSON.stringify(sliderImgsSrc),
+        mainImgSrc: mainImgSrc[0],
+      });
+      return updatedInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("수정완료되었습니다.");
     },
   });
 

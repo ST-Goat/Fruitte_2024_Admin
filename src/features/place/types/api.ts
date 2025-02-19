@@ -31,6 +31,23 @@ export interface UpdateInfoOpt1Response
 export interface RemoveInfoOpt1Request {}
 export interface RemoveInfoOpt1Response extends ResponseBody<{}> {}
 
+export interface InfoOpt2 {
+  placeId: string;
+  mainImgSrc: string;
+  sliderImgsSrc: string[];
+}
+export interface GetInfoOpt2Request {}
+export interface GetInfoOpt2Response
+  extends ResponseBody<{ mode: mode; info: InfoOpt2 }> {}
+export interface CreateInfoOpt2Request extends Omit<InfoOpt2, "sliderImgsSrc"> {
+  sliderImgsSrc: string;
+}
+export interface CreateInfoOpt2Response extends ResponseBody<InfoOpt2> {}
+export interface UpdateInfoOpt2Request extends Omit<InfoOpt2, "sliderImgsSrc"> {
+  sliderImgsSrc: string;
+}
+export interface UpdateInfoOpt2Response extends ResponseBody<InfoOpt2> {}
+
 export interface infoOpt3 {
   progressTime: string;
   indoorStatus: boolean;

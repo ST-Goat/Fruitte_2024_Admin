@@ -149,6 +149,49 @@ export const updateScheduleOpt2 = async (
   }
 };
 
+export const getScheduleOpt3 = async (placeId: string) => {
+  const { data } = await ApiUtils.fetch<
+    i.GetScheduleOpt3Request,
+    AxiosResponse<i.GetScheduleOpt3Response>
+  >(`${API_URL.getScheduleOpt3}/${placeId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const createScheduleOpt3 = async (
+  placeId: string,
+  createInfo: i.CreateScheduleOpt3Request,
+) => {
+  const { data } = await ApiUtils.post<
+    i.CreateScheduleOpt3Request,
+    AxiosResponse<i.CreateScheduleOpt3Response>
+  >(`${API_URL.createScheduleOpt3}/${placeId}`, createInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const updateScheduleOpt3 = async (
+  placeId: string,
+  updateInfo: i.UpdateScheduleOpt3Request,
+) => {
+  const { data } = await ApiUtils.patch<
+    i.UpdateScheduleOpt3Request,
+    AxiosResponse<i.UpdateScheduleOpt3Response>
+  >(`${API_URL.updateScheduleOpt3}/${placeId}`, updateInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+
 export const getScheduleOpt4 = async (id: string) => {
   const { data } = await ApiUtils.fetch<
     i.GetScheduleOpt4Request,

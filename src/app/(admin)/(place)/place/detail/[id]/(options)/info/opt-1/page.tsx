@@ -89,6 +89,9 @@ export default function InfoOpt1({ params }: Props) {
                     >
                       설정 완료
                     </button>
+                    <button className="mt-3 flex w-full justify-center rounded bg-secondary p-3 font-medium text-gray hover:bg-opacity-90">
+                      갱신하기
+                    </button>
                   </div>
                 </div>
               </div>

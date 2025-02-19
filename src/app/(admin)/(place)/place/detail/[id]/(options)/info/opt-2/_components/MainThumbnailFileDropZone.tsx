@@ -1,7 +1,33 @@
-import Dropzone from "dropzone";
-import { useEffect } from "react";
+import React, { useEffect, ChangeEvent } from "react";
+import { uploadImgOnS3 } from "@/features/upload/api";
+import ImageResize from "@/js/image-resize";
+import * as hook from "@/features/place/hooks/placeInfo";
 
-const FileDropZone = () => {
+const MainThumbnailFileDropZone = () => {
+  const { setMainImgSrc } = hook.usePlaceInfoOpt2Store();
+
+  useEffect(() => {
+    ImageResize();
+  });
+
+  // 단일 업로드
+  const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    try {
+      const uploadedImageUrl = await uploadImgOnS3(
+        files[0],
+        "/program-view/content/images/",
+      );
+      setMainImgSrc([uploadedImageUrl]); // 기존 이미지를 교체
+    } catch (error) {
+      console.error("파일 업로드 실패:", error);
+    }
+
+    event.target.value = ""; // 같은 파일 재업로드 가능하도록 초기화
+  };
+
   return (
     <div className="p-6.5">
       <div
@@ -12,6 +38,7 @@ const FileDropZone = () => {
           type="file"
           accept="image/*"
           className="absolute inset-0 z-50 m-0 h-full w-full cursor-pointer p-0 opacity-0 outline-none"
+          onChange={handleFileUpload}
         />
         <div className="flex flex-col items-center justify-center space-y-3">
           <span className="flex h-10 w-10 items-center justify-center rounded-full border border-stroke bg-white dark:border-strokedark dark:bg-boxdark">
@@ -54,4 +81,4 @@ const FileDropZone = () => {
   );
 };
 
-export default FileDropZone;
+export default MainThumbnailFileDropZone;

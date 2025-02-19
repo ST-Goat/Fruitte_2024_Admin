@@ -17,7 +17,6 @@ import {
 } from "@tanstack/react-query";
 import TokenExpiration from "@/components/Auth/Auth";
 import { toast, ToastContainer } from "react-toastify";
-import { ResponseBody } from "@/constants/types";
 import { queryClient } from "@/lib/queryClient";
 
 export default function RootLayout({
