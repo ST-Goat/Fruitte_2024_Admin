@@ -335,7 +335,7 @@ export const useGetIntroOpt4 = (id: string) => {
         setInfo(data?.info);
       }
 
-      return data?.info;
+      return data;
     },
     enabled: !!id,
     staleTime: 0,

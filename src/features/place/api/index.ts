@@ -1,65 +1,64 @@
 import ApiUtils from "@/lib/axiosInstanceAuth";
 import { API_URL } from "@/constants/api";
 import { AxiosResponse } from "axios";
-import {
-  CreatePlaceRequest,
-  CreatePlaceResponse,
-  GetInfoOpt1Request,
-  GetInfoOpt1Response,
-  UpdateInfoOpt1Request,
-  UpdateInfoOpt1Response,
-  GetInfoOpt3Request,
-  GetInfoOpt3Response,
-  CreateInfoOpt3Request,
-  CreateInfoOpt3Response,
-  UpdateInfoOpt3Request,
-  UpdateInfoOpt3Response,
-  GetInfoOpt4Request,
-  GetInfoOpt4Response,
-  CreateInfoOpt4Request,
-  CreateInfoOpt4Response,
-  UpdateInfoOpt4Request,
-  UpdateInfoOpt4Response,
-  GetInfoOpt5Request,
-  GetInfoOpt5Response,
-  CreateInfoOpt5Request,
-  CreateInfoOpt5Response,
-  UpdateInfoOpt5Request,
-  UpdateInfoOpt5Response,
-  GetInfoOpt6Request,
-  GetInfoOpt6Response,
-  infoOpt6,
-  CreateInfoOpt6Request,
-  CreateInfoOpt6Response,
-  UpdateInfoOpt6Request,
-  UpdateInfoOpt6Response,
-  GetInfoOpt2Request,
-  CreateInfoOpt2Response,
-  GetInfoOpt2Response,
-  CreateInfoOpt2Request,
-  UpdateInfoOpt2Request,
-  UpdateInfoOpt2Response,
-} from "../types/api";
+import * as i from "../types/api";
 
-export const updatePlaceInfo = async (placeId: string) => {};
-
-export const createPlace = async (placeInfo: CreatePlaceRequest) => {
-  const { data } = await ApiUtils.post<
-    CreatePlaceRequest,
-    AxiosResponse<CreatePlaceResponse>
-  >(`${API_URL.getInfoOpt1}`, placeInfo);
+export const updatePlaceInfoJson = async (placeId: string) => {};
+export const getPartners = async () => {
+  const { data } = await ApiUtils.fetch<
+    i.GetPartnersRequest,
+    AxiosResponse<i.GetPartnersResponse>
+  >(`${API_URL.getPartners}`);
 
   const { statusCode, msg, response } = data;
 
   if (statusCode === 200) {
+    return response;
+  }
+};
+export const getPlaceList = async () => {
+  const { data } = await ApiUtils.fetch<
+    i.GetPlaceListRequest,
+    AxiosResponse<i.GetPlaceListResponse>
+  >(`${API_URL.getPlaceList}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+
+export const createPlace = async (placeInfo: i.CreatePlaceRequest) => {
+  const { data } = await ApiUtils.post<
+    i.CreatePlaceRequest,
+    AxiosResponse<i.CreatePlaceResponse>
+  >(`${API_URL.createPlace}`, placeInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 201) {
+    return response;
+  }
+};
+export const deletePlace = async (placeId: string) => {
+  const { data } = await ApiUtils.patch<
+    i.DeletePlaceRequest,
+    AxiosResponse<i.DeletePlaceResponse>
+  >(`${API_URL.deletePlace}/${placeId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
   }
 };
 
 export const getInfoOpt1 = async (id: string) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetInfoOpt1Request,
-      AxiosResponse<GetInfoOpt1Response>
+      i.GetInfoOpt1Request,
+      AxiosResponse<i.GetInfoOpt1Response>
     >(`${API_URL.getInfoOpt1}/${id}`);
 
     const { statusCode, msg, response } = data;
@@ -74,11 +73,11 @@ export const getInfoOpt1 = async (id: string) => {
 
 export const updateInfoOpt1 = async (
   id: string,
-  updateInfo: UpdateInfoOpt1Request,
+  updateInfo: i.UpdateInfoOpt1Request,
 ) => {
   const { data } = await ApiUtils.patch<
-    UpdateInfoOpt1Request,
-    AxiosResponse<UpdateInfoOpt1Response>
+    i.UpdateInfoOpt1Request,
+    AxiosResponse<i.UpdateInfoOpt1Response>
   >(`${API_URL.getInfoOpt1}/${id}`, updateInfo);
 
   const { statusCode, msg, response } = data;
@@ -91,8 +90,8 @@ export const updateInfoOpt1 = async (
 export const getInfoOpt2 = async (id: string) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetInfoOpt2Request,
-      AxiosResponse<GetInfoOpt2Response>
+      i.GetInfoOpt2Request,
+      AxiosResponse<i.GetInfoOpt2Response>
     >(`${API_URL.getInfoOpt2}/${id}`);
 
     const { statusCode, msg, response } = data;
@@ -106,11 +105,11 @@ export const getInfoOpt2 = async (id: string) => {
 };
 export const createInfoOpt2 = async (
   id: string,
-  createInfo: CreateInfoOpt2Request,
+  createInfo: i.CreateInfoOpt2Request,
 ) => {
   const { data } = await ApiUtils.post<
-    CreateInfoOpt2Request,
-    AxiosResponse<CreateInfoOpt2Response>
+    i.CreateInfoOpt2Request,
+    AxiosResponse<i.CreateInfoOpt2Response>
   >(`${API_URL.createInfoOpt2}/${id}`, createInfo);
 
   const { statusCode, msg, response } = data;
@@ -121,11 +120,11 @@ export const createInfoOpt2 = async (
 };
 export const updateInfoOpt2 = async (
   id: string,
-  updateInfo: UpdateInfoOpt2Request,
+  updateInfo: i.UpdateInfoOpt2Request,
 ) => {
   const { data } = await ApiUtils.patch<
-    UpdateInfoOpt2Request,
-    AxiosResponse<UpdateInfoOpt2Response>
+    i.UpdateInfoOpt2Request,
+    AxiosResponse<i.UpdateInfoOpt2Response>
   >(`${API_URL.updateInfoOpt2}/${id}`, updateInfo);
 
   const { statusCode, msg, response } = data;
@@ -137,8 +136,8 @@ export const updateInfoOpt2 = async (
 
 export const getInfoOpt3 = async (id: string) => {
   const { data } = await ApiUtils.fetch<
-    GetInfoOpt3Request,
-    AxiosResponse<GetInfoOpt3Response>
+    i.GetInfoOpt3Request,
+    AxiosResponse<i.GetInfoOpt3Response>
   >(`${API_URL.getInfoOpt3}/${id}`);
 
   const { statusCode, msg, response } = data;
@@ -149,11 +148,11 @@ export const getInfoOpt3 = async (id: string) => {
 };
 export const createInfoOpt3 = async (
   placeId: string,
-  createInfo: CreateInfoOpt3Request,
+  createInfo: i.CreateInfoOpt3Request,
 ) => {
   const { data } = await ApiUtils.post<
-    CreateInfoOpt3Request,
-    AxiosResponse<CreateInfoOpt3Response>
+    i.CreateInfoOpt3Request,
+    AxiosResponse<i.CreateInfoOpt3Response>
   >(`${API_URL.getInfoOpt3}/${placeId}`, createInfo);
 
   const { statusCode, msg, response } = data;
@@ -164,11 +163,11 @@ export const createInfoOpt3 = async (
 };
 export const updateInfoOpt3 = async (
   placeId: string,
-  updateInfo: UpdateInfoOpt3Request,
+  updateInfo: i.UpdateInfoOpt3Request,
 ) => {
   const { data } = await ApiUtils.patch<
-    UpdateInfoOpt3Request,
-    AxiosResponse<UpdateInfoOpt3Response>
+    i.UpdateInfoOpt3Request,
+    AxiosResponse<i.UpdateInfoOpt3Response>
   >(`${API_URL.getInfoOpt3}/${placeId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
@@ -181,8 +180,8 @@ export const updateInfoOpt3 = async (
 export const getInfoOpt4 = async (id: string) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetInfoOpt4Request,
-      AxiosResponse<GetInfoOpt4Response>
+      i.GetInfoOpt4Request,
+      AxiosResponse<i.GetInfoOpt4Response>
     >(`${API_URL.getInfoOpt4}/${id}`);
 
     const { statusCode, msg, response } = data;
@@ -196,12 +195,12 @@ export const getInfoOpt4 = async (id: string) => {
 };
 export const createInfoOpt4 = async (
   placeId: string,
-  createInfo: CreateInfoOpt4Request,
+  createInfo: i.CreateInfoOpt4Request,
 ) => {
   try {
     const { data } = await ApiUtils.post<
-      CreateInfoOpt4Request,
-      AxiosResponse<CreateInfoOpt4Response>
+      i.CreateInfoOpt4Request,
+      AxiosResponse<i.CreateInfoOpt4Response>
     >(`${API_URL.getInfoOpt4}/${placeId}`, createInfo);
 
     const { statusCode, msg, response } = data;
@@ -215,12 +214,12 @@ export const createInfoOpt4 = async (
 };
 export const updateInfoOpt4 = async (
   placeId: string,
-  updateInfo: UpdateInfoOpt4Request,
+  updateInfo: i.UpdateInfoOpt4Request,
 ) => {
   try {
     const { data } = await ApiUtils.patch<
-      UpdateInfoOpt4Request,
-      AxiosResponse<UpdateInfoOpt4Response>
+      i.UpdateInfoOpt4Request,
+      AxiosResponse<i.UpdateInfoOpt4Response>
     >(`${API_URL.getInfoOpt4}/${placeId}`, updateInfo);
 
     const { statusCode, msg, response } = data;
@@ -236,8 +235,8 @@ export const updateInfoOpt4 = async (
 export const getInfoOpt5 = async (placeId: string) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetInfoOpt5Request,
-      AxiosResponse<GetInfoOpt5Response>
+      i.GetInfoOpt5Request,
+      AxiosResponse<i.GetInfoOpt5Response>
     >(`${API_URL.getInfoOpt5}/${placeId}`);
 
     const { statusCode, msg, response } = data;
@@ -251,11 +250,11 @@ export const getInfoOpt5 = async (placeId: string) => {
 };
 export const createInfoOpt5 = async (
   placeId: string,
-  createInfo: CreateInfoOpt5Request,
+  createInfo: i.CreateInfoOpt5Request,
 ) => {
   const { data } = await ApiUtils.post<
-    CreateInfoOpt5Request,
-    AxiosResponse<CreateInfoOpt5Response>
+    i.CreateInfoOpt5Request,
+    AxiosResponse<i.CreateInfoOpt5Response>
   >(`${API_URL.createInfoOpt5}/${placeId}`, createInfo);
 
   const { statusCode, msg, response } = data;
@@ -266,11 +265,11 @@ export const createInfoOpt5 = async (
 };
 export const updateInfoOpt5 = async (
   placeId: string,
-  updateInfo: UpdateInfoOpt5Request,
+  updateInfo: i.UpdateInfoOpt5Request,
 ) => {
   const { data } = await ApiUtils.patch<
-    UpdateInfoOpt5Request,
-    AxiosResponse<UpdateInfoOpt5Response>
+    i.UpdateInfoOpt5Request,
+    AxiosResponse<i.UpdateInfoOpt5Response>
   >(`${API_URL.getInfoOpt5}/${placeId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
@@ -283,8 +282,8 @@ export const updateInfoOpt5 = async (
 export const getInfoOpt6 = async (placeId: string) => {
   try {
     const { data } = await ApiUtils.fetch<
-      GetInfoOpt6Request,
-      AxiosResponse<GetInfoOpt6Response>
+      i.GetInfoOpt6Request,
+      AxiosResponse<i.GetInfoOpt6Response>
     >(`${API_URL.getInfoOpt6}/${placeId}`);
 
     const { statusCode, msg, response } = data;
@@ -298,12 +297,12 @@ export const getInfoOpt6 = async (placeId: string) => {
 };
 export const createInfoOpt6 = async (
   placeId: string,
-  createInfo: CreateInfoOpt6Request,
+  createInfo: i.CreateInfoOpt6Request,
 ) => {
   try {
     const { data } = await ApiUtils.post<
-      CreateInfoOpt6Request,
-      AxiosResponse<CreateInfoOpt6Response>
+      i.CreateInfoOpt6Request,
+      AxiosResponse<i.CreateInfoOpt6Response>
     >(`${API_URL.createInfoOpt6}/${placeId}`, createInfo);
 
     const { statusCode, msg, response } = data;
@@ -317,12 +316,12 @@ export const createInfoOpt6 = async (
 };
 export const updateInfoOpt6 = async (
   placeId: string,
-  updateInfo: UpdateInfoOpt6Request,
+  updateInfo: i.UpdateInfoOpt6Request,
 ) => {
   try {
     const { data } = await ApiUtils.patch<
-      UpdateInfoOpt6Request,
-      AxiosResponse<UpdateInfoOpt6Response>
+      i.UpdateInfoOpt6Request,
+      AxiosResponse<i.UpdateInfoOpt6Response>
     >(`${API_URL.updateInfoOpt6}/${placeId}`, updateInfo);
 
     const { statusCode, msg, response } = data;

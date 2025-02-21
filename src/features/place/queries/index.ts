@@ -17,9 +17,14 @@ import {
   getInfoOpt2,
   createInfoOpt2,
   updateInfoOpt2,
+  getPartners,
+  createPlace,
+  deletePlace,
+  getPlaceList,
 } from "../api";
 import {
   filterValidSections,
+  usePlaceCreateStore,
   usePlaceInfoOpt1Store,
   usePlaceInfoOpt2Store,
   usePlaceInfoOpt3Store,
@@ -37,6 +42,78 @@ import {
 } from "../types/api";
 import { ResponseBody } from "@/constants/types";
 import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
+export const useGetPartners = () => {
+  const { data, isLoading, isError, isSuccess, error } = useQuery({
+    queryKey: ["getPartners"],
+    queryFn: async () => {
+      const info = await getPartners();
+
+      return info;
+    },
+    staleTime: 0,
+    gcTime: 0,
+    retry: 2,
+  });
+
+  const typedError = error as ResponseBody<any> | null;
+
+  return { data, isLoading, isError, error: typedError, isSuccess };
+};
+
+export const useGetPlaceList = () => {
+  const { data, isLoading, isError, isSuccess, error } = useQuery({
+    queryKey: ["getPlaceList"],
+    queryFn: async () => {
+      const info = await getPlaceList();
+
+      return info;
+    },
+    staleTime: 0,
+    gcTime: 0,
+    retry: 2,
+  });
+
+  const typedError = error as ResponseBody<any> | null;
+
+  return { data, isLoading, isError, error: typedError, isSuccess };
+};
+
+export const useCreatePlace = () => {
+  const router = useRouter();
+  const { title, partnerUsername } = usePlaceCreateStore();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const createdInfo = await createPlace({
+        title,
+        partnerUsername,
+      });
+      return createdInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("생성완료되었습니다.");
+      router.push(`/place/detail/${data?.id}/info/opt-1`);
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
+export const useDeletePlace = (placeId: string) => {
+  const router = useRouter();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const updatedInfo = await deletePlace(placeId);
+      return updatedInfo;
+    },
+    onSuccess: (data) => {
+      toast.error("해당 프로그램이 삭제되었습니다.");
+      router.push(`/place`);
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
 
 export const useGetInfoOpt1 = (id: string) => {
   const set = usePlaceInfoOpt1Store((state) => state.setPlaceInfoOpt1);
@@ -306,13 +383,14 @@ export const useGetInfoOpt5 = (id: string) => {
     queryKey: ["getInfoOpt5", id],
     queryFn: async () => {
       const res = await getInfoOpt5(id);
+
       setMode(res?.mode as mode);
 
       if (res?.mode === "update") {
         setInfo(res?.info.sections as string[]);
       }
 
-      return res?.info.sections;
+      return res;
     },
     enabled: !!id,
     staleTime: 0,

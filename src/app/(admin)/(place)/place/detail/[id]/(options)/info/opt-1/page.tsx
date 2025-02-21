@@ -7,9 +7,12 @@ import PartnerSelectGroup from "./_components/PartnerSelectGroup";
 import Checkbox from "./_components/Checkbox";
 import DatePicker from "./_components/DatePicker";
 import { usePlaceInfoOpt1Store } from "@/features/place/hooks/placeInfo";
-import { useGetInfoOpt1 } from "@/features/place/queries";
 import Loader from "@/components/common/Loader";
-import { useUpdateInfoOpt1 } from "@/features/place/queries";
+import {
+  useGetInfoOpt1,
+  useUpdateInfoOpt1,
+  useDeletePlace,
+} from "@/features/place/queries";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 
@@ -32,6 +35,11 @@ export default function InfoOpt1({ params }: Props) {
     isPending: isUpdating,
     isError: isUpdateError,
   } = useUpdateInfoOpt1();
+  const {
+    mutate: deletePlace,
+    isPending: isDeleting,
+    isError: isDeleteError,
+  } = useDeletePlace(params.id);
 
   useEffect(() => {
     if (isFetchError) {
@@ -48,6 +56,12 @@ export default function InfoOpt1({ params }: Props) {
   const handleUpdate = () => {
     if (!isUpdating) {
       update(params.id);
+    }
+  };
+
+  const handleDelete = () => {
+    if (!isDeleting && window.confirm("정말 삭제하시겠습니까?")) {
+      deletePlace();
     }
   };
 
@@ -80,7 +94,7 @@ export default function InfoOpt1({ params }: Props) {
                         onChange={(e) => setTitle(e.target.value)}
                       />
                     </div>
-                    <PartnerSelectGroup />
+                    <PartnerSelectGroup id={params.id} />
                     <DatePicker />
                     <Checkbox />
                     <button
@@ -91,6 +105,12 @@ export default function InfoOpt1({ params }: Props) {
                     </button>
                     <button className="mt-3 flex w-full justify-center rounded bg-secondary p-3 font-medium text-gray hover:bg-opacity-90">
                       갱신하기
+                    </button>
+                    <button
+                      className="mt-8 flex w-full justify-center rounded bg-red p-3 font-medium text-gray hover:bg-opacity-90"
+                      onClick={handleDelete}
+                    >
+                      삭제하기
                     </button>
                   </div>
                 </div>

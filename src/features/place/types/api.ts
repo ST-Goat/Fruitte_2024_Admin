@@ -2,11 +2,29 @@ import { ResponseBody } from "@/constants/types";
 
 export type mode = "create" | "update";
 
+export interface PlaceInfo {
+  id: number;
+  title: string;
+  partnerUsername: string;
+  openStatus: boolean;
+  openDateTime: Date;
+}
+export interface GetPlaceListRequest {}
+export interface GetPlaceListResponse extends ResponseBody<PlaceInfo[]> {}
+
+export interface GetPartnersRequest {}
+export interface GetPartnersResponse
+  extends ResponseBody<{ username: string; nickname: string }[]> {}
+
 export interface CreatePlaceRequest {
   partnerUsername: string;
-  placeTitle: string;
+  title: string;
 }
-export interface CreatePlaceResponse extends ResponseBody<{}> {}
+export interface CreatePlaceResponse extends ResponseBody<{ id: string }> {}
+
+export interface DeletePlaceRequest {}
+export interface DeletePlaceResponse extends ResponseBody<{}> {}
+
 export interface infoOpt1 {
   title: string;
   partnerUsername: string;

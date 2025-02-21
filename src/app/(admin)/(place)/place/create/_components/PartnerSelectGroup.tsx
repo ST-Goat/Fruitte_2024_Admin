@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from "react";
-import { usePlaceInfoOpt1Store } from "@/features/place/hooks/placeInfo";
-import { useGetInfoOpt1 } from "@/features/place/queries";
-const PartnerSelectGroup = ({ id }: { id: string }) => {
+import { useGetPartners } from "@/features/place/queries";
+import { usePlaceCreateStore } from "@/features/place/hooks/placeInfo";
+
+const PartnerSelectGroup = () => {
   const [isOptionSelected, setIsOptionSelected] = useState<boolean>(false);
-  const { setPartnerUsername, partnerUsername } = usePlaceInfoOpt1Store();
-  const { data } = useGetInfoOpt1(id);
+  const { setPartnerUsername, partnerUsername } = usePlaceCreateStore();
+  const { data } = useGetPartners();
 
   const changeTextColor = () => {
     setIsOptionSelected(true);
@@ -14,8 +15,7 @@ const PartnerSelectGroup = ({ id }: { id: string }) => {
   return (
     <div className="mb-5.5">
       <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-        {" "}
-        파트너 선택{" "}
+        파트너 선택
       </label>
 
       <div className="relative z-20 bg-transparent dark:bg-form-input">
@@ -32,7 +32,7 @@ const PartnerSelectGroup = ({ id }: { id: string }) => {
           <option value="" disabled className="text-body dark:text-bodydark">
             파트너를 선택해주세요.
           </option>
-          {data?.partners?.map((e, i) => (
+          {data?.map((e, i) => (
             <option
               value={e.username}
               key={i}

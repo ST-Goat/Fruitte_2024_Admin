@@ -6,6 +6,10 @@ export const BASE_URL: string =
     : "http://localhost:8080/api";
 
 export const API_URL = {
+  getPlaceList: `${BASE_URL}/admin/place/list`,
+  getPartners: `${BASE_URL}/admin/place/partnerInfo`,
+  createPlace: `${BASE_URL}/admin/place`,
+  deletePlace: `${BASE_URL}/admin/place/delete`,
   getPresignedUrl: `${BASE_URL}/upload/presigned-url`,
   getInfoOpt1: `${BASE_URL}/admin/place/info/opt1`,
   updateInfoOpt1: `${BASE_URL}/admin/place/info/opt1`,

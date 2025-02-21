@@ -2,6 +2,20 @@ import { create } from "zustand";
 import { mode, infoOpt4, infoOpt6 } from "../types/api";
 import { toast } from "react-toastify";
 
+interface PlaceCreateState {
+  title: string;
+  setTitle: (title: string) => void;
+  partnerUsername: string;
+  setPartnerUsername: (partnerUsername: string) => void;
+}
+
+export const usePlaceCreateStore = create<PlaceCreateState>((set) => ({
+  title: "",
+  setTitle: (title) => set({ title }),
+  partnerUsername: "",
+  setPartnerUsername: (partnerUsername) => set({ partnerUsername }),
+}));
+
 interface PlaceInfoOpt1State {
   title: string;
   partnerUsername: string;

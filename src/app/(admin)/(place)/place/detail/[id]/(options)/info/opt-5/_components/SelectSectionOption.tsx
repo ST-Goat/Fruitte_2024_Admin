@@ -30,7 +30,7 @@ const CheckboxInputGroup: React.FC<{
         type="checkbox"
         name="roleSelect"
         id={id}
-        checked={isChecked}
+        checked={isChecked || false}
         onChange={onChange}
       />
       <span
@@ -63,7 +63,7 @@ const SelectSectionOption: React.FC = () => {
           <CheckboxInputGroup
             key={section.id}
             id={section.id}
-            isChecked={selectedSections.includes(section.id)}
+            isChecked={selectedSections?.includes(section.id)}
             onChange={() => setSections(section.id)}
           />
         ))}
