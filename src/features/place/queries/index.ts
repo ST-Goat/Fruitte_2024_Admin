@@ -1,5 +1,6 @@
 import { useQuery, useMutation } from "@tanstack/react-query";
 import {
+  updatePlaceInfoJson,
   getInfoOpt1,
   updateInfoOpt1,
   getInfoOpt3,
@@ -44,6 +45,19 @@ import { ResponseBody } from "@/constants/types";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
+export const updatePlaceDetailJson = (placeId: string) => {
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const createdInfo = await updatePlaceInfoJson(placeId);
+      return createdInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("플레이스 플랫폼 노출 정보가 갱신되었습니다.");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
 export const useGetPartners = () => {
   const { data, isLoading, isError, isSuccess, error } = useQuery({
     queryKey: ["getPartners"],

@@ -12,6 +12,7 @@ import {
   useGetInfoOpt1,
   useUpdateInfoOpt1,
   useDeletePlace,
+  updatePlaceDetailJson,
 } from "@/features/place/queries";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -40,6 +41,11 @@ export default function InfoOpt1({ params }: Props) {
     isPending: isDeleting,
     isError: isDeleteError,
   } = useDeletePlace(params.id);
+  const {
+    mutate: updateJson,
+    isPending: isUpdatingJson,
+    isError: isUpdateJsonError,
+  } = updatePlaceDetailJson(params.id);
 
   useEffect(() => {
     if (isFetchError) {
@@ -62,6 +68,12 @@ export default function InfoOpt1({ params }: Props) {
   const handleDelete = () => {
     if (!isDeleting && window.confirm("정말 삭제하시겠습니까?")) {
       deletePlace();
+    }
+  };
+
+  const handleUpdateJson = () => {
+    if (!isUpdatingJson) {
+      updateJson();
     }
   };
 
@@ -103,7 +115,10 @@ export default function InfoOpt1({ params }: Props) {
                     >
                       설정 완료
                     </button>
-                    <button className="mt-3 flex w-full justify-center rounded bg-secondary p-3 font-medium text-gray hover:bg-opacity-90">
+                    <button
+                      className="mt-3 flex w-full justify-center rounded bg-secondary p-3 font-medium text-gray hover:bg-opacity-90"
+                      onClick={handleUpdateJson}
+                    >
                       갱신하기
                     </button>
                     <button

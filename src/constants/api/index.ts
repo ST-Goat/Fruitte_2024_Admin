@@ -7,6 +7,7 @@ export const BASE_URL: string =
 
 export const API_URL = {
   getPlaceList: `${BASE_URL}/admin/place/list`,
+  updatePlaceInfoJson: `${BASE_URL}/admin/place/json/detail`,
   getPartners: `${BASE_URL}/admin/place/partnerInfo`,
   createPlace: `${BASE_URL}/admin/place`,
   deletePlace: `${BASE_URL}/admin/place/delete`,

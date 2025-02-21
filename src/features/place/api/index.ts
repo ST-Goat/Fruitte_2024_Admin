@@ -3,7 +3,18 @@ import { API_URL } from "@/constants/api";
 import { AxiosResponse } from "axios";
 import * as i from "../types/api";
 
-export const updatePlaceInfoJson = async (placeId: string) => {};
+export const updatePlaceInfoJson = async (placeId: string) => {
+  const { data } = await ApiUtils.patch<
+    i.UpdatePlaceInfoJsonRequest,
+    AxiosResponse<i.UpdatePlaceInfoJsonResponse>
+  >(`${API_URL.updatePlaceInfoJson}/${placeId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
 export const getPartners = async () => {
   const { data } = await ApiUtils.fetch<
     i.GetPartnersRequest,

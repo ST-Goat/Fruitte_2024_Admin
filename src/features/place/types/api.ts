@@ -9,6 +9,10 @@ export interface PlaceInfo {
   openStatus: boolean;
   openDateTime: Date;
 }
+
+export interface UpdatePlaceInfoJsonRequest {}
+export interface UpdatePlaceInfoJsonResponse extends ResponseBody<{}> {}
+
 export interface GetPlaceListRequest {}
 export interface GetPlaceListResponse extends ResponseBody<PlaceInfo[]> {}
 
