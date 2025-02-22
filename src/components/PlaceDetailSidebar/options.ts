@@ -31,6 +31,7 @@ export const placeDetailOptions = {
       { name: "“프로그램 VIEW” 컨텐츠 파트 설정", link: "/profile" }, // s_place_programview_content
       { name: "“프로그램 VIEW” 옵션 파트 설정", link: "/profile" }, // s_place_programview_option
       { name: "“꼭 알아두세요!” 설정", link: "/profile" }, // s_place_notice
+      { name: "“프로그램 소개” 설정", link: "/profile" }, // s_place_notice
     ],
   },
   schedule: {

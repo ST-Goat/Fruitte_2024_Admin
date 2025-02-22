@@ -521,3 +521,48 @@ export const updateIntroOpt7 = async (
     return response;
   }
 };
+
+export const getIntroOpt8 = async (id: string) => {
+  const { data } = await ApiUtils.fetch<
+    i.GetIntroOpt8Request,
+    AxiosResponse<i.GetIntroOpt8Response>
+  >(`${API_URL.getIntroOpt8}/${id}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    console.log(response);
+
+    return response;
+  }
+};
+export const createIntroOpt8 = async (
+  placeId: string,
+  createInfo: i.CreateIntroOpt8Request,
+) => {
+  const { data } = await ApiUtils.post<
+    i.CreateIntroOpt8Request,
+    AxiosResponse<i.CreateIntroOpt8Response>
+  >(`${API_URL.createIntroOpt8}/${placeId}`, createInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+export const updateIntroOpt8 = async (
+  placeId: string,
+  updateInfo: i.UpdateIntroOpt8Request,
+) => {
+  const { data } = await ApiUtils.patch<
+    i.UpdateIntroOpt8Request,
+    AxiosResponse<i.UpdateIntroOpt8Response>
+  >(`${API_URL.updateIntroOpt8}/${placeId}`, updateInfo);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};

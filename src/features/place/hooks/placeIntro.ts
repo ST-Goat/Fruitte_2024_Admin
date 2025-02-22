@@ -733,3 +733,76 @@ export const usePlaceIntroOpt7Store = create<usePlaceIntroOpt7State>((set) => ({
     set({ mode });
   },
 }));
+
+interface PlaceIntroOpt8State {
+  mode: mode;
+  setMode: (mode: mode) => void;
+  title: string;
+  setTitle: (title: string) => void;
+  description: string;
+  setDescription: (description: string) => void;
+  images: string[];
+  setImages: (images: string[]) => void;
+  setImageStep: (index: number, step: 1 | -1) => void;
+  removeImage: (index: number) => void;
+}
+export const usePlaceIntroOpt8Store = create<PlaceIntroOpt8State>((set) => ({
+  mode: "create",
+  setMode: (mode: mode) => {
+    set({ mode });
+  },
+  title: "",
+  setTitle: (title: string) => {
+    set({ title });
+  },
+  description: "",
+  setDescription: (description: string) => {
+    set({ description });
+  },
+  images: [],
+  setImages: (images: string[]) => {
+    set({ images });
+  },
+  setImageStep: (index: number, step: 1 | -1) => {
+    set((state) => {
+      const currentImages = [...state.images];
+
+      // 유효한 index인지 확인
+      if (index < 0 || index >= currentImages.length) {
+        console.warn("Invalid index for image step adjustment");
+        return state;
+      }
+
+      // 이동할 새 위치 계산
+      const newIndex = index + step;
+
+      // 이동 대상이 배열 범위를 벗어난 경우 처리하지 않음
+      if (newIndex < 0 || newIndex >= currentImages.length) {
+        console.warn("Step adjustment out of bounds");
+        return state;
+      }
+
+      // 이미지 위치 변경
+      const [movedImage] = currentImages.splice(index, 1); // 선택된 이미지를 제거
+      currentImages.splice(newIndex, 0, movedImage); // 새 위치에 삽입
+
+      return { images: currentImages };
+    });
+  },
+  removeImage: (index: number) => {
+    set((state) => {
+      const currentImages = [...state.images];
+
+      // 유효한 index인지 확인
+      if (index < 0 || index >= currentImages.length) {
+        console.warn("Invalid index for removing image");
+        return state;
+      }
+
+      // 해당 이미지를 제거
+      currentImages.splice(index, 1);
+
+      return { images: currentImages };
+    });
+  },
+}));

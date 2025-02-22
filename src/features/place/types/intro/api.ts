@@ -185,3 +185,25 @@ export interface UpdateIntroOpt7Request extends introOpt7 {
 }
 export interface UpdateIntroOpt7Response
   extends ResponseBody<UpdateIntroOpt7Request> {}
+
+export interface introOpt8 {
+  title: string;
+  description: string;
+  img: string[];
+}
+export interface GetIntroOpt8Request {}
+export interface GetIntroOpt8Response
+  extends ResponseBody<{
+    mode: mode;
+    info: introOpt8;
+  }> {}
+export interface CreateIntroOpt8Request extends Omit<introOpt8, "img"> {
+  placeId: string;
+  img: string;
+}
+export interface CreateIntroOpt8Response extends ResponseBody<introOpt8> {}
+export interface UpdateIntroOpt8Request extends Omit<introOpt8, "img"> {
+  placeId: string;
+  img: string;
+}
+export interface UpdateIntroOpt8Response extends ResponseBody<introOpt8> {}

@@ -713,3 +713,72 @@ export const useUpdateIntroOpt7 = () => {
 
   return { mutate, isError, isPending };
 };
+
+export const useGetIntroOpt8 = (id: string) => {
+  const { setMode, setTitle, setDescription, setImages } =
+    hook.usePlaceIntroOpt8Store();
+
+  const { data, isLoading, isError, isSuccess } = useQuery({
+    queryKey: ["getIntroOpt8", id],
+    queryFn: async () => {
+      const data = await api.getIntroOpt8(id);
+      setMode(data?.mode as mode);
+
+      if (data?.mode === "update") {
+        setTitle(data?.info.title as string);
+        setDescription(data?.info.description as string);
+        setImages(data?.info.img as string[]);
+      }
+
+      return data;
+    },
+    enabled: !!id,
+    staleTime: 0,
+    gcTime: 0,
+  });
+  return { data, isLoading, isError, isSuccess };
+};
+export const useCreateIntroOpt8 = () => {
+  const store = hook.usePlaceIntroOpt8Store();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async (placeId: string) => {
+      const createdInfo = await api.createIntroOpt8(placeId, {
+        placeId,
+        title: store.title,
+        description: store.description,
+        img:
+          store.images.length > 0
+            ? JSON.stringify(store.images)
+            : JSON.stringify([]),
+      });
+      return createdInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("최초설정이 완료되었습니다.");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
+export const useUpdateIntroOpt8 = () => {
+  const store = hook.usePlaceIntroOpt8Store();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async (placeId: string) => {
+      const updatedInfo = await api.updateIntroOpt8(placeId, {
+        placeId,
+        description: store.description,
+        title: store.title,
+        img:
+          store.images.length > 0
+            ? JSON.stringify(store.images)
+            : JSON.stringify([]),
+      });
+      return updatedInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("수정완료되었습니다");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
