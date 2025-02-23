@@ -21,7 +21,10 @@ const UpdateDropdown: React.FC<{
 
   const handleDelete = () => {
     if (!isDeleting) {
-      if (window.confirm("정말 삭제하시겠습니까?")) {
+      if (
+        window.confirm("정말 삭제하시겠습니까?") &&
+        typeof window !== "undefined"
+      ) {
         deleteTicket();
       }
     }

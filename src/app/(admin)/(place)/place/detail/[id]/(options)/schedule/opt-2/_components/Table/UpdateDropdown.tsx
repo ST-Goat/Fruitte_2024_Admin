@@ -20,7 +20,7 @@ const UpdateDropdown: React.FC<{
     query.useDeleteScheduleOpt2(placeId, contentId);
 
   const handleDelete = () => {
-    if (!isDeleting) {
+    if (!isDeleting && typeof window !== "undefined") {
       if (window.confirm("정말 삭제하시겠습니까?")) {
         deleteContent();
       }

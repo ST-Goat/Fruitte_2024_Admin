@@ -21,7 +21,7 @@ const UpdateDropdown: React.FC<{
     query.useDeleteOrderPriceOpt2(placeId, id);
 
   const handleDelete = () => {
-    if (!isDeleting) {
+    if (!isDeleting typeof window !== "undefined") {
       if (window.confirm("정말 삭제하시겠습니까?")) {
         deleteTicket();
       }
