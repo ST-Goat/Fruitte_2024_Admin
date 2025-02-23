@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import ImageResize from "@/js/image-resize";
 import Image from "next/image";
-import { usePlaceIntroOpt8Store } from "@/features/place/hooks/placeIntro";
+import { usePlaceIntroOpt6CreateStore } from "@/features/place/hooks/placeIntro";
 
 const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
-  const { setImageStep, removeImage, images } = usePlaceIntroOpt8Store();
+  const { setImageStep, removeImage } = usePlaceIntroOpt6CreateStore();
   useEffect(() => {
     ImageResize();
   });
@@ -33,24 +33,22 @@ const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
               />
             </svg>
           )}
-          {index + 1 !== images.length && (
-            <svg
-              onClick={() => setImageStep(index, 1)}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-              />
-            </svg>
-          )}
 
+          <svg
+            onClick={() => setImageStep(index, 1)}
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="size-6"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
+            />
+          </svg>
           <svg
             onClick={() => removeImage(index)}
             xmlns="http://www.w3.org/2000/svg"
@@ -71,7 +69,7 @@ const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
       <div className="p-4 sm:p-6 xl:p-10">
         <div className="relative">
           <div id="pane" className="overflow-hidden">
-            <Image src={src} width={1374} height={520} alt="Cover" priority />
+            <Image src={src} width={1374} height={520} alt="Cover" />
           </div>
           <div
             id="ghostpane"
