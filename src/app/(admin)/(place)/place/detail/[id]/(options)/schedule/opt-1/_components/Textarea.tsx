@@ -25,7 +25,7 @@ const Textarea = () => {
           htmlFor="textareaLabel"
           className="mb-4.5 block text-sm font-medium text-black dark:text-white"
         >
-          "날짜 및 시간" - 줄바꿈 기준으로 나열됩니다.
+          &quot;날짜 및 시간&quot; - 줄바꿈 기준으로 나열됩니다.
         </label>
         <textarea
           rows={6}

@@ -43,12 +43,12 @@ const PlaceScheduleOpt1 = ({ params }: Props) => {
     if (isFetchError) {
       router.push("/");
     }
-  }, [isFetchError]);
+  }, [isFetchError, router]);
 
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`총 소요시간, "날짜 및 시간" 설정`} />
+        <Breadcrumb pageName={`총 소요시간, &quot;날짜 및 시간&quot; 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">
@@ -57,7 +57,7 @@ const PlaceScheduleOpt1 = ({ params }: Props) => {
               <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
                   <h3 className="font-medium text-black dark:text-white">
-                    총 소요시간, "날짜 및 시간" 설정
+                    총 소요시간, &quot;날짜 및 시간&quot; 설정
                   </h3>
                 </div>
                 <div className="p-6.5">

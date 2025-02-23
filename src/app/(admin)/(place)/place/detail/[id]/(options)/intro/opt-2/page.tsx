@@ -24,7 +24,7 @@ export default function IntroOpt2({ params }: Props) {
     <>
       <PlaceDetailLayout>
         <Breadcrumb
-          pageName={`"프룻 큐레이터의 PICK 포인트" 컨텐츠 파트 설정 `}
+          pageName={`&quot;프룻 큐레이터의 PICK 포인트&quot; 설명 파트 설정`}
         />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
@@ -34,7 +34,7 @@ export default function IntroOpt2({ params }: Props) {
               <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
                   <h3 className="font-medium text-black dark:text-white">
-                    프룻 큐레이터의 PICK 포인트" 컨텐츠 리스트
+                    &quot;프룻 큐레이터의 PICK 포인트&quot; 컨텐츠 리스트
                   </h3>
                 </div>
                 <div className="p-6.5">

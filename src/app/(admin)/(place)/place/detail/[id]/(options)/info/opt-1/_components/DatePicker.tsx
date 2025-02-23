@@ -3,31 +3,48 @@ import { useEffect, useRef } from "react";
 import { usePlaceInfoOpt1Store } from "@/features/place/hooks/placeInfo";
 
 const DatePicker = () => {
-  useEffect(() => {
-    // Init flatpickr with date and time
-    flatpickr(".form-datepicker", {
-      mode: "single",
-      static: true,
-      enableTime: true, // Enable time selection
-      time_24hr: true, // Use 24-hour format (optional)
-      defaultHour: 12, // Default selected hour
-      defaultMinute: 0, // Default selected minute
-      monthSelectorType: "static",
-      dateFormat: "Y-m-d H:i", // Format to include date and time
-      prevArrow:
-        '<svg className="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
-      nextArrow:
-        '<svg className="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
-      defaultDate: openDateTime,
-      onChange: (selectedDates) => {
-        if (selectedDates.length > 0) {
-          setOpenDateTime(selectedDates[0]); // Zustand 상태 업데이트
-        }
-      },
-    });
-  }, []);
   const { openDateTime, setOpenDateTime } = usePlaceInfoOpt1Store();
   const datePickerRef = useRef<HTMLInputElement | null>(null);
+  const flatpickrInstance = useRef<flatpickr.Instance | null>(null); // Flatpickr 인스턴스 저장
+
+  useEffect(() => {
+    if (datePickerRef.current) {
+      // 기존 인스턴스 제거 후 새로 초기화 방지
+      if (flatpickrInstance.current) {
+        flatpickrInstance.current.destroy();
+      }
+
+      flatpickrInstance.current = flatpickr(datePickerRef.current, {
+        mode: "single",
+        static: true,
+        enableTime: true,
+        time_24hr: true,
+        defaultHour: 12,
+        defaultMinute: 0,
+        monthSelectorType: "static",
+        dateFormat: "Y-m-d H:i",
+        prevArrow:
+          '<svg className="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M5.4 10.8l1.4-1.4-4-4 4-4L5.4 0 0 5.4z" /></svg>',
+        nextArrow:
+          '<svg className="fill-current" width="7" height="11" viewBox="0 0 7 11"><path d="M1.4 10.8L0 9.4l4-4-4-4L1.4 0l5.4 5.4z" /></svg>',
+        defaultDate: openDateTime,
+        onChange: (selectedDates) => {
+          if (selectedDates.length > 0) {
+            setOpenDateTime(selectedDates[0]); // Zustand 상태 업데이트
+          }
+        },
+      });
+    }
+
+    // 클린업 함수에서 인스턴스 제거
+    return () => {
+      if (flatpickrInstance.current) {
+        flatpickrInstance.current.destroy();
+        flatpickrInstance.current = null;
+      }
+    };
+  }, [openDateTime, setOpenDateTime]);
+
   return (
     <div>
       <label className="mb-3 block text-sm font-medium text-black dark:text-white">
@@ -40,7 +57,6 @@ const DatePicker = () => {
           placeholder="오픈일을 설정해주세요."
           data-class="flatpickr-right"
         />
-
         <div className="pointer-events-none absolute inset-0 left-auto right-5 flex items-center">
           <svg
             width="18"

@@ -11,7 +11,7 @@ const Textarea = () => {
         htmlFor="textareaLabel"
         className="mb-4.5 block text-sm font-medium text-black dark:text-white"
       >
-        "꼭 알아두세요." - 줄바꿈 기준으로 나열됩니다.
+        &quot;꼭 알아두세요.&quot; - 줄바꿈 기준으로 나열됩니다.
       </label>
       <textarea
         rows={6}

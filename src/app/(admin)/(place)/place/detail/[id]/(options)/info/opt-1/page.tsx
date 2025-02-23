@@ -12,7 +12,7 @@ import {
   useGetInfoOpt1,
   useUpdateInfoOpt1,
   useDeletePlace,
-  updatePlaceDetailJson,
+  useUpdatePlaceDetailJson,
 } from "@/features/place/queries";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
@@ -45,13 +45,13 @@ export default function InfoOpt1({ params }: Props) {
     mutate: updateJson,
     isPending: isUpdatingJson,
     isError: isUpdateJsonError,
-  } = updatePlaceDetailJson(params.id);
+  } = useUpdatePlaceDetailJson(params.id);
 
   useEffect(() => {
     if (isFetchError) {
       router.push("/");
     }
-  }, [isFetchError]);
+  }, [isFetchError, router]);
 
   useEffect(() => {
     if (isUpdateError) {

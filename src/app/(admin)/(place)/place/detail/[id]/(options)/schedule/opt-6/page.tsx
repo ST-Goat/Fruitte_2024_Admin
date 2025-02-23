@@ -40,7 +40,7 @@ const PlaceScheduleOpt6 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`"주의사항" 설정 `} />
+        <Breadcrumb pageName={`&quot;주의사항&quot; 설정 `} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">
@@ -49,7 +49,7 @@ const PlaceScheduleOpt6 = ({ params }: Props) => {
               <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
                   <h3 className="font-medium text-black dark:text-white">
-                    "주의사항" 설정
+                    &quot;주의사항&quot; 설정
                   </h3>
                 </div>
                 <form action={handleUpdate}>

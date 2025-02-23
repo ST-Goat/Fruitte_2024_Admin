@@ -44,7 +44,7 @@ export default function InfoOpt3({ params }: Props) {
     if (isFetchError) {
       router.push("/");
     }
-  }, [isFetchError]);
+  }, [isFetchError, router]);
 
   const handleUpdate = () => {
     if (mode === "create" && !isCreating) {

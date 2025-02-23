@@ -11,8 +11,8 @@ const Textarea = () => {
         htmlFor="textareaLabel"
         className="mb-4.5 block text-sm font-medium text-black dark:text-white"
       >
-        "가격 및 상품 정보" 설명 파트 - 티켓과 옵션 리스트 아래 추가 설명을
-        작성합니다.
+        &quot;가격 및 상품 정보&quot; 설명 파트 - 티켓과 옵션 리스트 아래 추가
+        설명을 작성합니다.
       </label>
       <textarea
         rows={6}

@@ -45,7 +45,7 @@ import { ResponseBody } from "@/constants/types";
 import { toast } from "react-toastify";
 import { useRouter } from "next/navigation";
 
-export const updatePlaceDetailJson = (placeId: string) => {
+export const useUpdatePlaceDetailJson = (placeId: string) => {
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async () => {
       const createdInfo = await updatePlaceInfoJson(placeId);
