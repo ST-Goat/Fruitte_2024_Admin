@@ -2,28 +2,23 @@
   "rewrites": [
     {
       "source": "/api/auth/login",
-      "destination": "http://223.130.131.154:8080/api/auth/login",
-      "methods": ["*"]
+      "destination": "http://223.130.131.154:8080/api/auth/login"
     },
     {
       "source": "/api/auth/refresh-token",
-      "destination": "http://223.130.131.154:8080/api/auth/refresh-token",
-      "methods": ["*"]
+      "destination": "http://223.130.131.154:8080/api/auth/refresh-token"
     },
     {
       "source": "/api/upload/presigned-url",
-      "destination": "http://223.130.131.154:8080/api/upload/presigned-url",
-      "methods": ["*"]
+      "destination": "http://223.130.131.154:8080/api/upload/presigned-url"
     },
     {
       "source": "/api/admin/place/list",
-      "destination": "http://223.130.131.154:8080/api/admin/place/list",
-      "methods": ["*"]
+      "destination": "http://223.130.131.154:8080/api/admin/place/list"
     },
     {
       "source": "/api/admin/place/partnerInfo",
-      "destination": "http://223.130.131.154:8080/api/admin/place/partnerInfo",
-      "methods": ["*"]
+      "destination": "http://223.130.131.154:8080/api/admin/place/partnerInfo"
     }
   ]
 }
