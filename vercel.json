@@ -77,26 +77,193 @@
       "destination": "http://223.130.131.154:8080/api/admin/place/info/opt2/:placeId"
     },
     {
-      "source": "/api/admin/place/info/opt1/:id",
-      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+      "source": "/api/admin/place/info/opt3/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt3/:id"
     },
     {
-      "source": "/api/admin/place/info/opt1/:id",
-      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+      "source": "/api/admin/place/info/opt3/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt3/:placeId"
     },
     {
-      "source": "/api/admin/place/info/opt1/:id",
-      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+      "source": "/api/admin/place/info/opt4/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt4/:id"
     },
     {
-      "source": "/api/admin/place/info/opt1/:id",
-      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+      "source": "/api/admin/place/info/opt4/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt4/:placeId"
     },
     {
-      "source": "/api/admin/place/info/opt1/:id",
-      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+      "source": "/api/admin/place/info/opt5/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt5/:placeId"
     },
-
+    {
+      "source": "/api/admin/place/info/opt6/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt6/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt1/desc/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt1/desc/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt2/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt2/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt2/detail/:id/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt2/detail/:id/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt2/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt2/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt2/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt2/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt2/delete/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt2/delete/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt3/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt3/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt3/detail/:id/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt3/detail/:id/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt3/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt3/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt3/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt3/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt3/delete/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt3/delete/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt4/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt4/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt5/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt5/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt5/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt5/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt5/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt5/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt5/delete/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt5/delete/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt6/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt6/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt6/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt6/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt6/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt6/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt6/delete/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt6/delete/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt7/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt7/:placeId"
+    },
+    {
+      "source": "/api/admin/place/intro/opt8/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/intro/opt8/:placeId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt1/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt1/:placeId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt2/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt2/:placeId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt2/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt2/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt2/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt2/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt2/delete/:placeId/:contentId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt2/delete/:placeId/:contentId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt4/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt4/:placeId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt3/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt3/:placeId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt5/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt5/:placeId"
+    },
+    {
+      "source": "/api/admin/place/schedule/opt6/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/schedule/opt6/:placeId"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt1/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt1/:placeId"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt1/:placeId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt1/:placeId/:id"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt1/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt1/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt1/delete/:placeId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt1/delete/:placeId/:id"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt2/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt2/:placeId"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt2/:placeId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt2/:placeId/:id"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt2/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt2/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt2/delete/:placeId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt2/delete/:placeId/:id"
+    },
+    {
+      "source": "/api/admin/place/orderPrice/opt3/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/orderPrice/opt3/:placeId"
+    },
+    {
+      "source": "/api/admin/place/json/detail/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/json/detail/:placeId"
+    },
     {
       "source": "/api/upload/presigned-url",
       "destination": "http://223.130.131.154:8080/api/upload/presigned-url"
