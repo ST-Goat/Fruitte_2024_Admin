@@ -5,12 +5,48 @@
       "destination": "http://223.130.131.154:8080/api/auth/login"
     },
     {
+      "source": "/api/auth/profile",
+      "destination": "http://223.130.131.154:8080/api/auth/profile"
+    },
+    {
       "source": "/api/auth/refresh-token",
       "destination": "http://223.130.131.154:8080/api/auth/refresh-token"
     },
     {
-      "source": "/api/upload/presigned-url",
-      "destination": "http://223.130.131.154:8080/api/upload/presigned-url"
+      "source": "/api/json",
+      "destination": "http://223.130.131.154:8080/api/json"
+    },
+    {
+      "source": "/api/farm-places",
+      "destination": "http://223.130.131.154:8080/api/farm-places"
+    },
+    {
+      "source": "/api/farm-place",
+      "destination": "http://223.130.131.154:8080/api/farm-place"
+    },
+    {
+      "source": "/api/farm-place/:id",
+      "destination": "http://223.130.131.154:8080/api/farm-place/:id"
+    },
+    {
+      "source": "/api/farm-place/remove/:id",
+      "destination": "http://223.130.131.154:8080/api/farm-place/remove/:id"
+    },
+    {
+      "source": "/api/place",
+      "destination": "http://223.130.131.154:8080/api/place"
+    },
+    {
+      "source": "/api/place/:placeId",
+      "destination": "http://223.130.131.154:8080/api/place/:placeId"
+    },
+    {
+      "source": "/api/place/:id",
+      "destination": "http://223.130.131.154:8080/api/place/:id"
+    },
+    {
+      "source": "/api/place/remove/:id",
+      "destination": "http://223.130.131.154:8080/api/place/remove/:id"
     },
     {
       "source": "/api/admin/place/list",
@@ -19,6 +55,51 @@
     {
       "source": "/api/admin/place/partnerInfo",
       "destination": "http://223.130.131.154:8080/api/admin/place/partnerInfo"
+    },
+    {
+      "source": "/api/admin/place",
+      "destination": "http://223.130.131.154:8080/api/admin/place"
+    },
+    {
+      "source": "/api/admin/place/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/delete/:id"
+    },
+    {
+      "source": "/api/admin/place/json/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/json/:placeId"
+    },
+    {
+      "source": "/api/admin/place/info/opt1/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+    },
+    {
+      "source": "/api/admin/place/info/opt2/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt2/:placeId"
+    },
+    {
+      "source": "/api/admin/place/info/opt1/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+    },
+    {
+      "source": "/api/admin/place/info/opt1/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+    },
+    {
+      "source": "/api/admin/place/info/opt1/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+    },
+    {
+      "source": "/api/admin/place/info/opt1/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+    },
+    {
+      "source": "/api/admin/place/info/opt1/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/info/opt1/:id"
+    },
+
+    {
+      "source": "/api/upload/presigned-url",
+      "destination": "http://223.130.131.154:8080/api/upload/presigned-url"
     }
   ]
 }
