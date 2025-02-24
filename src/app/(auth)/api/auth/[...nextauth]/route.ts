@@ -32,7 +32,7 @@ const handler = NextAuth({
         password: { label: "password", type: "password" },
       },
       async authorize(credentials, req): Promise<User | null> {
-        const res = await fetch(`http://localhost:8080/api/auth/login`, {
+        const res = await fetch(`/api/auth/login`, {
           method: "POST",
           body: JSON.stringify(credentials),
           headers: { "Content-Type": "application/json" },
@@ -90,17 +90,14 @@ const handler = NextAuth({
       if (isExpiringSoon) {
         try {
           // Refresh Token을 사용하여 새로운 Access Token을 요청
-          const response = await fetch(
-            "http://localhost:8080/api/auth/refresh-token",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${token.accessToken}`,
-              },
-              body: JSON.stringify({ refreshToken: token.refreshToken }),
+          const response = await fetch("/api/auth/refresh-token", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${token.accessToken}`,
             },
-          );
+            body: JSON.stringify({ refreshToken: token.refreshToken }),
+          });
 
           if (response.ok) {
             const data = await response.json();
