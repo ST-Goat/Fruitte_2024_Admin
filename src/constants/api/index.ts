@@ -1,6 +1,6 @@
 import { uploadImgOnS3 } from "@/features/upload/api";
 
-export const BASE_URL: string = "/api";
+export const BASE_URL: string = "/";
 
 export const API_URL = {
   getPlaceList: `${BASE_URL}/admin/place/list`,
