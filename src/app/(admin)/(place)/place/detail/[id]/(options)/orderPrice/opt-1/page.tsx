@@ -23,7 +23,7 @@ const PlaceOrderPriceOpt1 = ({ params }: Props) => {
 
   return (
     <PlaceDetailLayout>
-      <Breadcrumb pageName={`&quot;가격 및 상품 정보&quot; 티켓 리스트`} />
+      <Breadcrumb pageName={`가격 및 상품 정보 티켓 리스트`} />
       {isFetchLoading && <Loader />}
       {isFetchSuccess && (
         <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">

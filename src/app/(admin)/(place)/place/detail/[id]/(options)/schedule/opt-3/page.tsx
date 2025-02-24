@@ -39,7 +39,7 @@ const PlaceScheduleOpt3 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`&quot;장소&quot; 설정`} />
+        <Breadcrumb pageName={`장소 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">

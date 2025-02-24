@@ -40,7 +40,7 @@ const PlaceOrderPriceOpt3 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`&quot;가격 및 상품 정보&quot; 설명 파트 설정`} />
+        <Breadcrumb pageName={`가격 및 상품 정보 설명 파트 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">

@@ -42,7 +42,7 @@ const PlaceScheduleOpt4 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`&quot;길 안내&quot; 설정`} />
+        <Breadcrumb pageName={`길 안내 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">

@@ -24,7 +24,7 @@ const PlaceIntroOpt3 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`&quot;클래스를 즐기는 방법&quot; 설정`} />
+        <Breadcrumb pageName={`클래스를 즐기는 방법 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">

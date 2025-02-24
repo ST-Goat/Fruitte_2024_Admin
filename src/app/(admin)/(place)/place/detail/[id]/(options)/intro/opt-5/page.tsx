@@ -24,7 +24,7 @@ const PlaceIntroOpt5 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`&quot;프로그램 VIEW&quot; 컨텐츠 설정`} />
+        <Breadcrumb pageName={`프로그램 VIEW 컨텐츠 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">

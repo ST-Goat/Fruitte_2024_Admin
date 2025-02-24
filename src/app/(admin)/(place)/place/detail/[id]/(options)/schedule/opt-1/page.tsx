@@ -48,7 +48,7 @@ const PlaceScheduleOpt1 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`총 소요시간, &quot;날짜 및 시간&quot; 설정`} />
+        <Breadcrumb pageName={`총 소요시간, 날짜 및 시간 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">

@@ -23,9 +23,7 @@ export default function IntroOpt2({ params }: Props) {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb
-          pageName={`&quot;프룻 큐레이터의 PICK 포인트&quot; 설명 파트 설정`}
-        />
+        <Breadcrumb pageName={`프룻 큐레이터의 PICK 포인트 설명 파트 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">

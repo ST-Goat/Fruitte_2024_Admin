@@ -39,7 +39,7 @@ const PlaceIntroOpt7 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`&quot;꼭 알아두세요&quot; 설정`} />
+        <Breadcrumb pageName={`꼭 알아두세요 설정`} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">

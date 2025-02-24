@@ -49,7 +49,7 @@ const PlaceIntroOpt4 = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`&quot;프로그램 VIEW&quot; 설명 파트 설정 `} />
+        <Breadcrumb pageName={`프로그램 VIEW 설명 파트 설정 `} />
         {isFetchLoading && <Loader />}
         {isFetchSuccess && (
           <div className="grid grid-cols-1 gap-9">
