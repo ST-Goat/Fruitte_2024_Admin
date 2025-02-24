@@ -1,0 +1,29 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/auth/login",
+      "destination": "http://223.130.131.154:8080/api/auth/login",
+      "methods": ["*"]
+    },
+    {
+      "source": "/api/auth/refresh-token",
+      "destination": "http://223.130.131.154:8080/api/auth/refresh-token",
+      "methods": ["*"]
+    },
+    {
+      "source": "/api/upload/presigned-url",
+      "destination": "http://223.130.131.154:8080/api/upload/presigned-url",
+      "methods": ["*"]
+    },
+    {
+      "source": "/api/admin/place/list",
+      "destination": "http://223.130.131.154:8080/api/admin/place/list",
+      "methods": ["*"]
+    },
+    {
+      "source": "/api/admin/place/partnerInfo",
+      "destination": "http://223.130.131.154:8080/api/admin/place/partnerInfo",
+      "methods": ["*"]
+    }
+  ]
+}
