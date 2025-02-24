@@ -159,10 +159,10 @@ interface PlaceInfoOpt3State {
 }
 export const usePlaceInfoOpt3Store = create<PlaceInfoOpt3State>((set) => ({
   mode: "create",
-  progressTime: "",
+  progressTime: "0",
   indoorStatus: false,
-  minimumPrice: "",
-  pricePerPerson: "",
+  minimumPrice: "0",
+  pricePerPerson: "0",
   youtubeLink: "",
   setMode: (mode: PlaceInfoOpt3State["mode"]) => set({ mode }),
   setProgressTime: (time: string) => set({ progressTime: time }),
