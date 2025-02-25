@@ -1,13 +1,13 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import * as hook from "@/features/place/hooks/placeIntro";
+import * as hook from "@/features/place/hooks/placeNearby";
 
 const StepDropdown: React.FC<{ classes: string; id: number; step: number }> = ({
   classes,
   id,
   step,
 }) => {
-  const { setInfoStep } = hook.usePlaceIntroOpt6Store();
+  const { setInfoStep } = hook.usePlaceNearbyOpt1Store();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);

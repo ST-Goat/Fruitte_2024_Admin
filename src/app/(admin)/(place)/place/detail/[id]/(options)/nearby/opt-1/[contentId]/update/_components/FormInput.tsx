@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { usePlaceNearbyOpt1CreateStore } from "@/features/place/hooks/placeNearby";
+import { usePlaceNearbyOpt1DetailStore } from "@/features/place/hooks/placeNearby";
 
 const FormInput = () => {
   const {
@@ -17,7 +17,7 @@ const FormInput = () => {
     setLong,
     lat,
     setLat,
-  } = usePlaceNearbyOpt1CreateStore();
+  } = usePlaceNearbyOpt1DetailStore();
   return (
     <>
       <div className="mb-5">

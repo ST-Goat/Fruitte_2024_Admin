@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import ImageResize from "@/js/image-resize";
 import Image from "next/image";
-import { usePlaceIntroOpt6CreateStore } from "@/features/place/hooks/placeIntro";
+import { usePlaceNearbyOpt1CreateStore } from "@/features/place/hooks/placeNearby";
 
 const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
-  const { setImageStep, removeImage } = usePlaceIntroOpt6CreateStore();
+  const { setImageStep, removeImage } = usePlaceNearbyOpt1CreateStore();
   useEffect(() => {
     ImageResize();
   });

@@ -3,10 +3,8 @@
 import React from "react";
 import Breadcrumb from "../../_components/Breadcrumb";
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
-import DescriptionInput from "./_components/DescriptionInput";
 import Images from "./_components/Images";
-import * as query from "@/features/place/queries/intro";
-import TitleInput from "./_components/TitleInput";
+import * as query from "@/features/place/queries/nearby";
 import FormInput from "./_components/FormInput";
 
 type Props = {
@@ -16,7 +14,7 @@ type Props = {
 };
 
 const Opt1CreatePage = ({ params }: Props) => {
-  const { mutate: create, isPending: isCreating } = query.useCreateIntroOpt6();
+  const { mutate: create, isPending: isCreating } = query.useCreateNearbyOpt1();
 
   const handleCreate = () => {
     if (!isCreating) {

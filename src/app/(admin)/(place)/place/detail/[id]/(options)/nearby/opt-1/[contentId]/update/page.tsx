@@ -3,12 +3,12 @@
 import React from "react";
 import Breadcrumb from "../../../_components/Breadcrumb";
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
-import TitleInput from "./_components/TitleInput";
-import DescriptionInput from "./_components/DescriptionInput";
 import Images from "./_components/Images";
-import * as query from "@/features/place/queries/intro";
+import * as query from "@/features/place/queries/nearby";
 import Loader from "@/components/common/Loader";
 import { Opt6Info } from "@/features/place/types/intro/api";
+import FormInput from "./_components/FormInput";
+import { NearbyOpt1 } from "@/features/place/types/nearby/api";
 
 type Props = {
   params: {
@@ -22,9 +22,9 @@ const Opt6DetailPage = ({ params }: Props) => {
     isLoading: isFetchLoading,
     isSuccess: isFetchSuccess,
     isError: isFetchError,
-  } = query.useGetIntroOpt6Detail(params.id, params.contentId);
-  const { mutate: update, isPending: isUpdating } = query.useUpdateIntroOpt6(
-    data as Opt6Info,
+  } = query.useGetNearbyOpt1Detail(params.id, params.contentId);
+  const { mutate: update, isPending: isUpdating } = query.useUpdateNearbyOpt1(
+    data as NearbyOpt1,
   );
 
   const handleUpdate = () => {
@@ -49,19 +49,7 @@ const Opt6DetailPage = ({ params }: Props) => {
                   </h3>
                 </div>
                 <div className="p-6.5">
-                  <div className="mb-5">
-                    <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-                      노출순위(step) - 리스트 조회페이지에서 수정이 가능합니다.
-                    </label>
-                    <input
-                      type="text"
-                      disabled
-                      className="w-full rounded-lg border-[1.5px] border-stroke bg-transparent px-5 py-3 text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary dark:disabled:bg-black"
-                      value={data?.step}
-                    />
-                  </div>
-                  <TitleInput />
-                  <DescriptionInput />
+                  <FormInput />
                   <Images />
                   <button
                     className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"

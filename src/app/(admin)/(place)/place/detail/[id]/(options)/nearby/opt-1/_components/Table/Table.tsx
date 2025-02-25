@@ -1,10 +1,10 @@
 import React from "react";
 import StepDropdown from "./StepDropdown";
 import UpdateDropdown from "./UpdateDropdown";
-import * as hook from "@/features/place/hooks/placeIntro";
+import * as hook from "@/features/place/hooks/placeNearby";
 
 const Table: React.FC = () => {
-  const { info } = hook.usePlaceIntroOpt6Store();
+  const { info } = hook.usePlaceNearbyOpt1Store();
 
   return (
     <div className="max-w-full overflow-x-auto overflow-y-auto">
@@ -17,9 +17,11 @@ const Table: React.FC = () => {
           <div className="col-span-1">
             <h5 className="font-medium text-white">고유번호</h5>
           </div>
-          <div className="col-span-3">
+          <div className="col-span-1">
             <h5 className="font-medium text-white">장소이름</h5>
           </div>
+          <div className="col-span-1"></div>
+          <div className="col-span-1"></div>
         </div>
         {/* table header end */}
 
@@ -36,7 +38,7 @@ const Table: React.FC = () => {
               <div className="col-span-1">
                 <p className="text-[#637381] dark:text-bodydark">{item.id}</p>
               </div>
-              <div className="col-span-3">
+              <div className="col-span-1">
                 <p className="text-[#637381] dark:text-bodydark">
                   {item.title}
                 </p>

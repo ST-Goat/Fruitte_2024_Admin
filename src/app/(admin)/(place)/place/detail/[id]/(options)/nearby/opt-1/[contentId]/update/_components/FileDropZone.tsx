@@ -1,9 +1,9 @@
 import { ChangeEvent } from "react";
 import { uploadImgOnS3 } from "@/features/upload/api";
-import { usePlaceIntroOpt6CreateStore } from "@/features/place/hooks/placeIntro";
+import { usePlaceNearbyOpt1DetailStore } from "@/features/place/hooks/placeNearby";
 
 const FileDropZone = () => {
-  const { setImages } = usePlaceIntroOpt6CreateStore();
+  const { setImages } = usePlaceNearbyOpt1DetailStore();
 
   const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;

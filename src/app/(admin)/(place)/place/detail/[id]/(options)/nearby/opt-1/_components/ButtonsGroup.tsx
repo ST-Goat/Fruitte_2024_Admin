@@ -1,9 +1,9 @@
 import Link from "next/link";
-import * as query from "@/features/place/queries/intro";
+import * as query from "@/features/place/queries/nearby";
 
 const ButtonsGroup = ({ placeId }: { placeId: string }) => {
   const { mutate: updateStep, isPending: isUpdating } =
-    query.useUpdateIntroOpt6Step();
+    query.useUpdateNearbyOpt1Step();
 
   const handleUpdateStep = () => {
     if (!isUpdating) {

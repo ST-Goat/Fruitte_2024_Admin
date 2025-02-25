@@ -2,7 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import * as query from "@/features/place/queries/intro";
+import * as query from "@/features/place/queries/nearby";
 
 const UpdateDropdown: React.FC<{
   classes: string;
@@ -18,7 +18,7 @@ const UpdateDropdown: React.FC<{
   const dropdown = useRef<any>(null);
 
   const { mutate: deleteContent, isPending: isDeleting } =
-    query.useDeleteIntroOpt6(placeId, contentId);
+    query.useDeleteNearbyOpt1(placeId, contentId);
 
   const handleDelete = () => {
     if (!isDeleting) {

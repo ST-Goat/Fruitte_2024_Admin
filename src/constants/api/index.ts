@@ -101,4 +101,10 @@ export const API_URL = {
   getOrderPriceOpt3: `${BASE_URL}/admin/place/orderPrice/opt3`,
   createOrderPriceOpt3: `${BASE_URL}/admin/place/orderPrice/opt3`,
   updateOrderPriceOpt3: `${BASE_URL}/admin/place/orderPrice/opt3`,
+  getNearbyOpt1: `${BASE_URL}/admin/place/nearby/opt1`,
+  createNearbyOpt1: `${BASE_URL}/admin/place/nearby/opt1`,
+  getNearbyOpt1Detail: `${BASE_URL}/admin/place/nearby/opt1/detail`,
+  updateNearbyOpt1: `${BASE_URL}/admin/place/nearby/opt1`,
+  deleteNearbyOpt1: `${BASE_URL}/admin/place/nearby/opt1/delete`,
+  updateNearbyOpt1Step: `${BASE_URL}/admin/place/nearby/opt1/step`,
 };
