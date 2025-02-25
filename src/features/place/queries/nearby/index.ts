@@ -3,7 +3,6 @@ import { toast } from "react-toastify";
 import * as hook from "../../hooks/placeNearby";
 import * as api from "../../api/nearby";
 import * as i from "../../types/nearby/api";
-import { mode } from "@/constants/types";
 import { useRouter } from "next/navigation";
 
 export const useGetNearbyOpt1 = (placeId: string) => {
@@ -31,13 +30,14 @@ export const useGetNearbyOpt1Detail = (placeId: string, id: string) => {
     queryKey: ["getNearbyOpt1Detail", placeId, id],
     queryFn: async () => {
       const info = await api.getNearbyOpt1Detail(placeId, id);
+
       setTitle(info?.title as string);
       setInfo(info?.info as string);
-      setImages([info?.thumbnail as string] as string[]);
       setAddress(info?.address as string);
       setLat(String(info?.lat as number));
       setLong(String(info?.long as number));
       setUrl(info?.url as string);
+      if (info?.thumbnail !== "") setImages([info?.thumbnail as string]);
 
       return info;
     },
@@ -50,7 +50,7 @@ export const useGetNearbyOpt1Detail = (placeId: string, id: string) => {
 };
 export const useCreateNearbyOpt1 = () => {
   const router = useRouter();
-  const { title, info, images, address, lat, long, url } =
+  const { title, info, images, address, lat, long, url, recommend } =
     hook.usePlaceNearbyOpt1CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
@@ -58,11 +58,12 @@ export const useCreateNearbyOpt1 = () => {
         placeId,
         title,
         info,
-        thumbnail: JSON.stringify(images[0]),
+        thumbnail: images[0],
         address,
         lat: Number(lat),
         long: Number(long),
         url,
+        recommend,
       });
       return createdInfo;
     },
@@ -90,6 +91,8 @@ export const useUpdateNearbyOpt1 = (data: i.NearbyOpt1) => {
     setLat,
     setLong,
     setUrl,
+    recommend,
+    setRecommend,
   } = hook.usePlaceNearbyOpt1DetailStore();
 
   const { mutate, isError, isPending } = useMutation({
@@ -99,12 +102,13 @@ export const useUpdateNearbyOpt1 = (data: i.NearbyOpt1) => {
         id: data.id,
         step: data.step,
         title,
-        thumbnail: JSON.stringify(images[0]),
+        thumbnail: images[0],
         info,
         address,
         url,
         lat: Number(lat),
         long: Number(long),
+        recommend,
       });
 
       return updatedInfo;
@@ -112,11 +116,12 @@ export const useUpdateNearbyOpt1 = (data: i.NearbyOpt1) => {
     onSuccess: (data) => {
       setTitle(data?.title as string);
       setInfo(data?.info as string);
-      setImages([data?.thumbnail as string] as string[]);
       setAddress(data?.address as string);
       setLat(String(data?.lat as number));
       setLong(String(data?.long as number));
       setUrl(data?.url as string);
+      setRecommend(data?.recommend as boolean);
+      if (data?.thumbnail !== "") setImages([data?.thumbnail as string]);
 
       toast.success("수정완료되었습니다");
     },

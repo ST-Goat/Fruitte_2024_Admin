@@ -52,6 +52,8 @@ interface PlaceNearbyOpt1CreateState {
   setLong: (long: string) => void;
   lat: string;
   setLat: (lat: string) => void;
+  recommend: boolean;
+  setRecommend: (recommend: boolean) => void;
   images: string[];
   setImages: (images: string[]) => void;
   setImageStep: (index: number, step: 1 | -1) => void;
@@ -76,6 +78,9 @@ export const usePlaceNearbyOpt1CreateStore = create<PlaceNearbyOpt1CreateState>(
 
     lat: "37.547742858806956",
     setLat: (lat: string) => set({ lat }),
+
+    recommend: false,
+    setRecommend: (recommend: boolean) => set({ recommend }),
 
     images: [],
     setImages: (images: string[]) => set({ images }),
@@ -132,6 +137,8 @@ interface PlaceNearbyOpt1DetailState {
   setLong: (long: string) => void;
   lat: string;
   setLat: (lat: string) => void;
+  recommend: boolean;
+  setRecommend: (recommend: boolean) => void;
   images: string[];
   setImages: (images: string[]) => void;
   setImageStep: (index: number, step: 1 | -1) => void;
@@ -156,6 +163,8 @@ export const usePlaceNearbyOpt1DetailStore = create<PlaceNearbyOpt1DetailState>(
 
     lat: "0",
     setLat: (lat: string) => set({ lat }),
+    recommend: false,
+    setRecommend: (recommend: boolean) => set({ recommend }),
     images: [],
     setImages: (images: string[]) => {
       set({ images });

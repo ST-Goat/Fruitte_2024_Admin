@@ -6,9 +6,9 @@ import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
 import Images from "./_components/Images";
 import * as query from "@/features/place/queries/nearby";
 import Loader from "@/components/common/Loader";
-import { Opt6Info } from "@/features/place/types/intro/api";
 import FormInput from "./_components/FormInput";
 import { NearbyOpt1 } from "@/features/place/types/nearby/api";
+import Checkbox from "./_components/Checkbox";
 
 type Props = {
   params: {
@@ -50,6 +50,7 @@ const Opt6DetailPage = ({ params }: Props) => {
                 </div>
                 <div className="p-6.5">
                   <FormInput />
+                  <Checkbox />
                   <Images />
                   <button
                     className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"

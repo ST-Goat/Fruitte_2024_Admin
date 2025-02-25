@@ -29,7 +29,7 @@ export const getNearbyOpt1Detail = async (placeId: string, id: string) => {
     const { statusCode, msg, response } = data;
 
     if (statusCode === 200) {
-      return response?.info;
+      return response;
     }
   } catch (e) {
     throw e;
