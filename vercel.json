@@ -267,6 +267,22 @@
     {
       "source": "/api/upload/presigned-url",
       "destination": "http://223.130.131.154:8080/api/upload/presigned-url"
+    },
+    {
+      "source": "/api/admin/place/nearby/opt1/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/nearby/opt1/:placeId"
+    },
+    {
+      "source": "/api/admin/place/nearby/opt1/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/nearby/opt1/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/nearby/opt1/:placeId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/nearby/opt1/:placeId/:id"
+    },
+    {
+      "source": "/api/admin/place/nearby/opt1/delete/:placeId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/nearby/opt1/delete/:placeId/:id"
     }
   ]
 }
