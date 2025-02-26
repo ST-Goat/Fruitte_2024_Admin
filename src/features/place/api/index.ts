@@ -33,10 +33,14 @@ export const getPlaceList = async () => {
     AxiosResponse<i.GetPlaceListResponse>
   >(`${API_URL.getPlaceList}`);
 
-  const { statusCode, msg, response } = data;
+  try {
+    const { statusCode, msg, response } = data;
 
-  if (statusCode === 200) {
-    return response;
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    alert(e);
   }
 };
 

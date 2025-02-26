@@ -160,7 +160,19 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
               공지사항
             </h3>
-            <ul className="mb-6 flex flex-col gap-1.5"></ul>
+            <ul className="mb-6 flex flex-col gap-1.5">
+              {" "}
+              <li>
+                <Link
+                  href="/notice"
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname === "/notice" && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  리스트
+                </Link>
+              </li>
+            </ul>
           </div>
 
           <div>
