@@ -8,12 +8,14 @@ export type NoticeType =
   | "security"
   | "star";
 
-interface Notice {
+export interface Notice {
   step: number;
   id: number;
   type: NoticeType;
   title: string;
-  // content: string;
+  content: string;
   exposed: boolean;
   date: Date;
 }
+
+export interface NoticeTable extends Omit<Notice, "content"> {}
