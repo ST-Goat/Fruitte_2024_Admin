@@ -25,7 +25,7 @@ const Opt2CreatePage = ({ params }: Props) => {
   return (
     <>
       <PlaceDetailLayout>
-        <Breadcrumb pageName={`"클래스를 즐기는 방법" 컨텐츠 생성`} />
+        <Breadcrumb pageName={`"프루떼 추천 즐기는 방법" 컨텐츠 생성`} />
         <div className="grid grid-cols-1 gap-9">
           <div className="flex flex-col gap-9">
             {/* <!-- Survey Form --> */}

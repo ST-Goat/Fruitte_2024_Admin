@@ -107,4 +107,10 @@ export const API_URL = {
   updateNearbyOpt1: `/admin/place/nearby/opt1`,
   deleteNearbyOpt1: `/admin/place/nearby/opt1/delete`,
   updateNearbyOpt1Step: `/admin/place/nearby/opt1/step`,
+  getNotice: `/admin/notice`,
+  getNoticeDetail: `/admin/notice`,
+  createNotice: `/admin/notice`,
+  updateNotice: `/admin/notice`,
+  deleteNotice: `/admin/notice/delete`,
+  updateNoticeStep: `/admin/notice/step`,
 };

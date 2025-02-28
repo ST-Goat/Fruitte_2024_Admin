@@ -58,34 +58,23 @@ interface PlaceInfoOpt2State {
   setMode: (mode: mode) => void;
   mainImgSrc: string[];
   setMainImgSrc: (mainImgSrc: string[]) => void;
-  removeMainImgSrc: (index: number) => void;
+  removeMainImgSrc: () => void;
   sliderImgsSrc: string[];
   setSliderImgsSrc: (images: string[]) => void;
   setSliderImgsSrcStep: (index: number, step: 1 | -1) => void;
   removeSliderImgsSrc: (index: number) => void;
 }
 
-export const usePlaceInfoOpt2Store = create<PlaceInfoOpt2State>((set) => ({
+export const usePlaceInfoOpt2Store = create<PlaceInfoOpt2State>((set,get) => ({
   mode: "create",
   setMode: (mode: mode) => set({ mode }),
   mainImgSrc: [],
   setMainImgSrc: (mainImgSrc: string[]) => {
     set({ mainImgSrc });
   },
-  removeMainImgSrc: (index: number) => {
+  removeMainImgSrc: () => {
     set((state) => {
-      const currentImages = [...state.mainImgSrc];
-
-      // 유효한 index인지 확인
-      if (index < 0 || index >= currentImages.length) {
-        console.warn("Invalid index for removing image");
-        return state;
-      }
-
-      // 해당 이미지를 제거
-      currentImages.splice(index, 1);
-
-      return { sliderImgsSrc: currentImages };
+      return { mainImgSrc: [] };
     });
   },
   sliderImgsSrc: [],

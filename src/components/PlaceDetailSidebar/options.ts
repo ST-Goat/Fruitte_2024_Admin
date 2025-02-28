@@ -25,7 +25,7 @@ export const placeDetailOptions = {
       //   name: "“프룻 큐레이터의 PICK 포인트” 컨텐츠 이미지 설정",
       //   link: "/profile",
       // }, // s_place_pickpoint_content_img
-      { name: "“클래스를 즐기는 방법” 설정", link: "/profile" }, // s_place_enjoy_content
+      { name: "“프루떼 추천 즐기는 방법” 설정", link: "/profile" }, // s_place_enjoy_content
       // { name: "“클래스를 즐기는 방법” 컨텐츠 이미지 ", link: "/profile" }, // s_place_enjoy_content_img
       { name: "“프로그램 VIEW” 설명 파트 설정", link: "/profile" }, // s_place_programview_desc
       { name: "“프로그램 VIEW” 컨텐츠 파트 설정", link: "/profile" }, // s_place_programview_content

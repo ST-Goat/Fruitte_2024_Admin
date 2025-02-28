@@ -20,7 +20,7 @@ const MainThumbnailImage: React.FC = () => {
             </h3>
             <div className="flex gap-2">
               <svg
-                onClick={() => removeMainImgSrc(index)}
+                onClick={() => removeMainImgSrc()}
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
                 viewBox="0 0 24 24"

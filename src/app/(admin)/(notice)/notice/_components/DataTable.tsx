@@ -9,94 +9,67 @@ import {
   Column,
 } from "react-table";
 import * as t from "@/features/notice/types/api";
-
-const dataTwo: t.NoticeTable[] = [
-  {
-    step: 1,
-    id: 101,
-    type: "announcement",
-    title: "서비스 점검 안내",
-    exposed: true,
-    date: new Date(),
-  },
-  {
-    step: 2,
-    id: 102,
-    type: "notification",
-    title: "신규 기능 추가 안내",
-    exposed: false,
-    date: new Date("2024-02-05"),
-  },
-  {
-    step: 3,
-    id: 103,
-    type: "warning",
-    title: "보안 업데이트 필수 적용",
-    exposed: true,
-    date: new Date("2024-02-10"),
-  },
-  {
-    step: 4,
-    id: 104,
-    type: "security",
-    title: "비밀번호 변경 권장 안내",
-    exposed: true,
-    date: new Date("2024-02-15"),
-  },
-  {
-    step: 5,
-    id: 105,
-    type: "star",
-    title: "이벤트 당첨자 발표",
-    exposed: false,
-    date: new Date("2024-02-20"),
-  },
-  {
-    step: 6,
-    id: 106,
-    type: "congratulation",
-    title: "신규 가입 환영 메시지",
-    exposed: true,
-    date: new Date("2024-02-25"),
-  },
-];
-// table header
-const columns: Column<t.NoticeTable>[] = [
-  {
-    Header: "노출 우선순위",
-    accessor: "step",
-  },
-  {
-    Header: "고유번호",
-    accessor: "id",
-  },
-  {
-    Header: "타입",
-    accessor: "type",
-  },
-  {
-    Header: "제목",
-    accessor: "title",
-  },
-  {
-    Header: "노출여부",
-    accessor: "exposed",
-    Cell: ({ value }) => (value ? "노출" : "숨김"),
-  },
-  {
-    Header: "생성(수정)일자",
-    accessor: "date",
-    Cell: ({ value }) => moment(value).format("YYYY-MM-DD"),
-  },
-];
+import * as query from "@/features/notice/queries";
+import UpdateDropdown from "./UpdateDropdown";
+import StepDropdown from "./StepDropdown";
 
 const DataTable = () => {
-  const data = useMemo(() => dataTwo, []);
+  const { data: tableData, isLoading, isError, isSuccess, refetch } = query.useGetNotice();
+  const data = useMemo(() => tableData, [tableData, isSuccess]);
+
+  const columns: Column<t.NoticeTable>[] = useMemo(
+    () => [
+      {
+        Header: "노출 우선순위",
+        accessor: "step",
+      },
+      {
+        Header: "고유번호",
+        accessor: "id",
+      },
+      {
+        Header: "타입",
+        accessor: "type",
+      },
+      {
+        Header: "제목",
+        accessor: "title",
+      },
+      {
+        Header: "노출여부",
+        accessor: "exposed",
+        Cell: ({ value }) => (value ? "노출" : "숨김"),
+      },
+      {
+        Header: "생성(수정)일자",
+        accessor: "date",
+        Cell: ({ value }) => moment(value).format("YYYY-MM-DD HH:mm"),
+      },
+      {
+        Header: "",
+        id: "actions",
+        sortable: false,
+        Cell: ({ row }) => (
+          <UpdateDropdown
+            id={row.original.id}
+            classes={
+              row.index < 2
+                ? "top-full mt-1"
+                : row.index >= (data?.length || 0) - 2
+                  ? "bottom-full mb-1"
+                  : ""
+            }
+          />
+        ),
+      },
+    ],
+    [data]
+  );
 
   const tableInstance = useTable(
     {
       columns,
-      data,
+      data: data as t.NoticeTable[],
     },
     useFilters,
     useGlobalFilter,
@@ -251,9 +224,8 @@ const DataTable = () => {
               onClick={() => {
                 gotoPage(index);
               }}
-              className={`${
-                pageIndex === index && "bg-primary text-white"
-              } mx-1 flex cursor-pointer items-center justify-center rounded-md p-1 px-3 hover:bg-primary hover:text-white`}
+              className={`${pageIndex === index && "bg-primary text-white"
+                } mx-1 flex cursor-pointer items-center justify-center rounded-md p-1 px-3 hover:bg-primary hover:text-white`}
             >
               {index + 1}
             </button>

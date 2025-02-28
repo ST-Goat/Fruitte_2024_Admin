@@ -12,9 +12,9 @@ import {
 } from "@/features/place/queries";
 import Loader from "@/components/common/Loader";
 import { useRouter } from "next/navigation";
-
+  
 type Props = {
-  params: {
+  params: {  
     id: string;
   };
 };
