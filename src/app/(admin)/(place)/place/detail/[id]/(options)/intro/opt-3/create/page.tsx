@@ -5,7 +5,7 @@ import Breadcrumb from "../../_components/Breadcrumb";
 import PlaceDetailLayout from "@/components/Layouts/PlaceDetailLayout";
 import DescriptionInput from "./_components/DescriptionInput";
 import Images from "./_components/Images";
-import { useCreateIntroOpt3 } from "@/features/place/queries/intro";
+import { useCreateIntroOpt2 } from "@/features/place/queries/intro";
 
 type Props = {
   params: {
@@ -14,7 +14,7 @@ type Props = {
 };
 
 const Opt2CreatePage = ({ params }: Props) => {
-  const { mutate: create, isPending: isCreating } = useCreateIntroOpt3();
+  const { mutate: create, isPending: isCreating } = useCreateIntroOpt2();
 
   const handleCreate = () => {
     if (!isCreating) {

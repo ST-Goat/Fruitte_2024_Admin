@@ -23,7 +23,7 @@ export const useGetScheduleOpt1 = (id: string) => {
     queryFn: async () => {
       const info = await api.getScheduleOpt1(id);
       setMode(info?.mode as mode);
-
+    
       if (info?.mode === "update") {
         setTotalTime(String(info?.info.totalTime) as string);
         setRainyProceeding(info?.info.rainyProceeding as boolean);
@@ -142,7 +142,7 @@ export const useGetScheduleOpt2Detail = (
 };
 export const useCreateScheduleOpt2 = () => {
   const router = useRouter();
-  const { description, title, time, notices } =
+  const { description, title, time, notices, reset } =
     hook.usePlaceScheduleOpt2CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
@@ -151,13 +151,14 @@ export const useCreateScheduleOpt2 = () => {
         title,
         description,
         time: Number(time),
-        notices: JSON.stringify(notices?.split("\n")),
+        notices: notices ? JSON.stringify(notices.split("\n")) : JSON.stringify([]),
       });
 
       return createdInfo;
     },
     onSuccess: (data) => {
       toast.success("컨텐츠가 생성되었습니다.");
+      reset();
       router.push(`/place/detail/${data?.placeId}/schedule/opt-2`);
     },
   });
@@ -227,7 +228,7 @@ export const useUpdateScheduleOpt2 = (data: i.Opt2Info) => {
         title,
         description,
         time: Number(time),
-        notices: JSON.stringify(notices?.split("\n")),
+        notices: notices ? JSON.stringify(notices.split("\n")) : JSON.stringify([]),
       });
 
       return updatedInfo;
@@ -353,7 +354,7 @@ export const useGetScheduleOpt4 = (id: string) => {
       setMode(data?.mode as mode);
 
       if (data?.mode === "update") {
-        setDescription((data?.info.description as string[]).join("\n"));
+        setDescription(JSON.parse(data?.info.description as string).join("\n"));
         setImages(data?.info.img as string[]);
       }
 
@@ -417,8 +418,9 @@ export const useGetScheduleOpt5 = (id: string) => {
       const data = await api.getScheduleOpt5(id);
       setMode(data?.mode as mode);
 
+        
       if (data?.mode === "update") {
-        setDescription((data?.info.description as string[]).join("\n"));
+        setDescription(JSON.parse(data?.info.description as string).join("\n"));
         setImages(data?.info.img as string[]);
       }
 

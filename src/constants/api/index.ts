@@ -84,7 +84,7 @@ export const API_URL = {
   createScheduleOpt5: `/admin/place/schedule/opt5`,
   updateScheduleOpt5: `/admin/place/schedule/opt5`,
   getScheduleOpt6: `/admin/place/schedule/opt6`,
-  createScheduleOpt6: `/admin/place/intschedulero/opt6`,
+  createScheduleOpt6: `/admin/place/schedule/opt6`,
   updateScheduleOpt6: `/admin/place/schedule/opt6`,
   getOrderPriceOpt1: `/admin/place/orderPrice/opt1`,
   createOrderPriceOpt1: `/admin/place/orderPrice/opt1`,

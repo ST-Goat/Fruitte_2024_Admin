@@ -44,7 +44,7 @@ export const useGetOrderPriceOpt1Detail = (placeId: string, id: string) => {
 };
 export const useCreateOrderPriceOpt1 = () => {
   const router = useRouter();
-  const { title, price } = hook.usePlaceOrderPriceOpt1CreateStore();
+  const { title, price, reset } = hook.usePlaceOrderPriceOpt1CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createOrderPriceOpt1(placeId, {
@@ -56,6 +56,7 @@ export const useCreateOrderPriceOpt1 = () => {
     },
     onSuccess: (data) => {
       toast.success("티켓이 생성되었습니다.");
+      reset();
       router.push(`/place/detail/${data?.placeId}/orderPrice/opt-1`);
     },
   });
@@ -166,7 +167,7 @@ export const useGetOrderPriceOpt2Detail = (placeId: string, id: string) => {
 };
 export const useCreateOrderPriceOpt2 = () => {
   const router = useRouter();
-  const { title, price } = hook.usePlaceOrderPriceOpt2CreateStore();
+  const { title, price, reset } = hook.usePlaceOrderPriceOpt2CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createOrderPriceOpt2(placeId, {
@@ -178,6 +179,7 @@ export const useCreateOrderPriceOpt2 = () => {
     },
     onSuccess: (data) => {
       toast.success("티켓이 생성되었습니다.");
+      reset();
       router.push(`/place/detail/${data?.placeId}/orderPrice/opt-2`);
     },
   });
@@ -275,8 +277,7 @@ export const useGetOrderPriceOpt3 = (id: string) => {
   return { data, isLoading, isError, isSuccess };
 };
 export const useCreateOrderPriceOpt3 = () => {
-  const { description, setAll } = hook.usePlaceOrderPriceOpt3Store();
-
+  const { description, setAll, reset } = hook.usePlaceOrderPriceOpt3Store();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createOrderPriceOpt3(placeId, {
@@ -288,6 +289,7 @@ export const useCreateOrderPriceOpt3 = () => {
     onSuccess: (data) => {
       toast.success("최초설정이 완료되었습니다.");
       setAll(data?.description as string);
+      reset();
     },
   });
 

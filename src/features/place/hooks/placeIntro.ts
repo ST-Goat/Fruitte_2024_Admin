@@ -66,6 +66,7 @@ interface PlaceIntroOpt2CreateState {
   setImages: (images: string[]) => void;
   setImageStep: (index: number, step: 1 | -1) => void;
   removeImage: (index: number) => void;
+  reset: () => void;
 }
 export const usePlaceIntroOpt2CreateStore = create<PlaceIntroOpt2CreateState>(
   (set) => ({
@@ -119,6 +120,7 @@ export const usePlaceIntroOpt2CreateStore = create<PlaceIntroOpt2CreateState>(
         return { images: currentImages };
       });
     },
+    reset: () => set({ description: "", images: [] }),
   }),
 );
 interface PlaceIntroOpt2DetailState {
@@ -228,6 +230,7 @@ interface PlaceIntroOpt3CreateState {
   setImages: (images: string[]) => void;
   setImageStep: (index: number, step: 1 | -1) => void;
   removeImage: (index: number) => void;
+  reset: () => void;
 }
 export const usePlaceIntroOpt3CreateStore = create<PlaceIntroOpt3CreateState>(
   (set) => ({
@@ -281,6 +284,7 @@ export const usePlaceIntroOpt3CreateStore = create<PlaceIntroOpt3CreateState>(
         return { images: currentImages };
       });
     },
+    reset: () => set({ description: "", images: [] }),
   }),
 );
 interface PlaceIntroOpt3DetailState {
@@ -413,6 +417,7 @@ interface PlaceIntroOpt5CreateState {
   setImages: (images: string[]) => void;
   setImageStep: (index: number, step: 1 | -1) => void;
   removeImage: (index: number) => void;
+  reset: () => void;
 }
 export const usePlaceIntroOpt5CreateStore = create<PlaceIntroOpt5CreateState>(
   (set) => ({
@@ -470,6 +475,7 @@ export const usePlaceIntroOpt5CreateStore = create<PlaceIntroOpt5CreateState>(
         return { images: currentImages };
       });
     },
+    reset: () => set({ title: "", description: "", images: [] }),
   }),
 );
 interface PlaceIntroOpt5DetailState {
@@ -588,6 +594,7 @@ interface PlaceIntroOpt6CreateState {
   setImages: (images: string[]) => void;
   setImageStep: (index: number, step: 1 | -1) => void;
   removeImage: (index: number) => void;
+  reset: () => void;
 }
 export const usePlaceIntroOpt6CreateStore = create<PlaceIntroOpt6CreateState>(
   (set) => ({
@@ -645,6 +652,7 @@ export const usePlaceIntroOpt6CreateStore = create<PlaceIntroOpt6CreateState>(
         return { images: currentImages };
       });
     },
+    reset: () => set({ title: "", description: "", images: [] }),
   }),
 );
 interface PlaceIntroOpt6DetailState {

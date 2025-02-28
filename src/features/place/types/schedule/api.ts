@@ -107,7 +107,7 @@ export interface GetScheduleOpt4Request {}
 export interface GetScheduleOpt4Response
   extends ResponseBody<{
     mode: mode;
-    info: { description: string[]; img: string[] };
+    info: { description: string; img: string[] };
   }> {}
 export interface CreateScheduleOpt4Request extends Omit<Opt4Info, "img"> {
   placeId: string;
@@ -132,7 +132,7 @@ export interface GetScheduleOpt5Request {}
 export interface GetScheduleOpt5Response
   extends ResponseBody<{
     mode: mode;
-    info: { description: string[]; img: string[] };
+    info: { description: string; img: string[] };
   }> {}
 export interface CreateScheduleOpt5Request extends Omit<Opt5Info, "img"> {
   placeId: string;

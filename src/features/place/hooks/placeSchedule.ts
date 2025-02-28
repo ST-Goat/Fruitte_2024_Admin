@@ -74,6 +74,7 @@ interface PlaceScheduleOpt2CreateState {
   setTime: (time: string) => void;
   notices: string;
   setNotices: (notices: string) => void;
+  reset: () => void;
 }
 export const usePlaceScheduleOpt2CreateStore =
   create<PlaceScheduleOpt2CreateState>((set) => ({
@@ -93,6 +94,7 @@ export const usePlaceScheduleOpt2CreateStore =
     setNotices: (notices: string) => {
       set({ notices });
     },
+    reset: () => set({ title: "", description: "", time: "", notices: "" }),
   }));
 interface PlaceScheduleOpt2DetailState {
   title: string;

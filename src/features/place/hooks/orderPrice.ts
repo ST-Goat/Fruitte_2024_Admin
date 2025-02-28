@@ -47,9 +47,10 @@ interface PlaceOrderPriceOpt1CreateState {
   setTitle: (title: string) => void;
   price: string;
   setPrice: (price: string) => void;
+  reset: () => void;
 }
-export const usePlaceOrderPriceOpt1CreateStore =
-  create<PlaceOrderPriceOpt1CreateState>((set) => ({
+export const usePlaceOrderPriceOpt1CreateStore = create<PlaceOrderPriceOpt1CreateState>(
+  (set) => ({
     title: "",
     setTitle: (title: string) => {
       set({ title });
@@ -58,7 +59,9 @@ export const usePlaceOrderPriceOpt1CreateStore =
     setPrice: (price: string) => {
       set({ price });
     },
-  }));
+    reset: () => set({ title: "", price: "" }),
+  }),
+);
 interface PlaceOrderPriceOpt1DetailState {
   title: string;
   setTitle: (title: string) => void;
@@ -121,9 +124,10 @@ interface PlaceOrderPriceOpt2CreateState {
   setTitle: (title: string) => void;
   price: string;
   setPrice: (price: string) => void;
+  reset: () => void;
 }
-export const usePlaceOrderPriceOpt2CreateStore =
-  create<PlaceOrderPriceOpt2CreateState>((set) => ({
+export const usePlaceOrderPriceOpt2CreateStore = create<PlaceOrderPriceOpt2CreateState>(
+  (set) => ({
     title: "",
     setTitle: (title: string) => {
       set({ title });
@@ -132,7 +136,9 @@ export const usePlaceOrderPriceOpt2CreateStore =
     setPrice: (price: string) => {
       set({ price });
     },
-  }));
+    reset: () => set({ title: "", price: "" }),
+  }),
+);
 interface PlaceOrderPriceOpt2DetailState {
   title: string;
   setTitle: (title: string) => void;
@@ -156,6 +162,7 @@ interface PlaceOrderPriceOpt3State {
   setDescription: (description: string) => void;
   setMode: (mode: mode) => void;
   setAll: (description: PlaceOrderPriceOpt3State["description"]) => void;
+  reset: () => void;
 }
 export const usePlaceOrderPriceOpt3Store = create<PlaceOrderPriceOpt3State>(
   (set) => ({
@@ -167,5 +174,6 @@ export const usePlaceOrderPriceOpt3Store = create<PlaceOrderPriceOpt3State>(
       set({
         description,
       }),
+    reset: () => set({ description: "", mode: "create" }),
   }),
 );

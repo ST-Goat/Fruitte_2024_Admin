@@ -109,7 +109,7 @@ export const useGetIntroOpt2Detail = (placeId: string, contentId: string) => {
 };
 export const useCreateIntroOpt2 = () => {
   const router = useRouter();
-  const { description, images } = hook.usePlaceIntroOpt2CreateStore();
+  const { description, images, reset } = hook.usePlaceIntroOpt2CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createIntroOpt2(placeId, {
@@ -121,6 +121,7 @@ export const useCreateIntroOpt2 = () => {
     },
     onSuccess: (data) => {
       toast.success("컨텐츠가 생성되었습니다.");
+      reset();
       router.push(`/place/detail/${data?.placeId}/intro/opt-2`);
     },
   });
@@ -236,7 +237,7 @@ export const useGetIntroOpt3Detail = (placeId: string, contentId: string) => {
 };
 export const useCreateIntroOpt3 = () => {
   const router = useRouter();
-  const { description, images } = hook.usePlaceIntroOpt3CreateStore();
+  const { description, images, reset } = hook.usePlaceIntroOpt3CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createIntroOpt3(placeId, {
@@ -248,6 +249,7 @@ export const useCreateIntroOpt3 = () => {
     },
     onSuccess: (data) => {
       toast.success("컨텐츠가 생성되었습니다.");
+      reset();
       router.push(`/place/detail/${data?.placeId}/intro/opt-3`);
     },
   });
@@ -427,7 +429,7 @@ export const useGetIntroOpt5Detail = (placeId: string, contentId: string) => {
 };
 export const useCreateIntroOpt5 = () => {
   const router = useRouter();
-  const { description, title, images } = hook.usePlaceIntroOpt5CreateStore();
+  const { description, title, images, reset } = hook.usePlaceIntroOpt5CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createIntroOpt5(placeId, {
@@ -441,6 +443,7 @@ export const useCreateIntroOpt5 = () => {
     },
     onSuccess: (data) => {
       toast.success("컨텐츠가 생성되었습니다.");
+      reset();
       router.push(`/place/detail/${data?.placeId}/intro/opt-5`);
     },
   });
@@ -564,7 +567,7 @@ export const useGetIntroOpt6Detail = (placeId: string, contentId: string) => {
 };
 export const useCreateIntroOpt6 = () => {
   const router = useRouter();
-  const { description, title, images } = hook.usePlaceIntroOpt6CreateStore();
+  const { description, title, images, reset } = hook.usePlaceIntroOpt6CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createIntroOpt6(placeId, {
@@ -578,7 +581,8 @@ export const useCreateIntroOpt6 = () => {
     },
     onSuccess: (data) => {
       toast.success("컨텐츠가 생성되었습니다.");
-      router.push(`/place/detail/${data?.placeId}/intro/opt-5`);
+      reset();
+      router.push(`/place/detail/${data?.placeId}/intro/opt-6`);
     },
   });
 
