@@ -283,6 +283,23 @@
     {
       "source": "/api/admin/place/nearby/opt1/delete/:placeId/:id",
       "destination": "http://223.130.131.154:8080/api/admin/place/nearby/opt1/delete/:placeId/:id"
+    },
+    {
+      "source": "/api/admin/notice",
+      "destination": "http://223.130.131.154:8080/api/admin/notice"
+    },
+    {
+      "source": "/api/admin/notice/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/notice/:id"
+    },
+    {
+      "source": "/api/admin/notice/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/notice/delete/:id"
+    },
+    {
+      "source": "/api/admin/notice/step",
+      "destination": "http://223.130.131.154:8080/api/admin/notice/step"
     }
+    
   ]
 }
