@@ -18,10 +18,7 @@ const options: Option[] = [
 ];
 
 const SelectOption: React.FC = () => {
-  const { type, setType } = useNoticeDetailStore((state) => ({
-    type: state.type,
-    setType: state.setType,
-  }));
+  const { type, setType } = useNoticeDetailStore();
 
   const handleRadioChange = (value: NoticeType) => {
     setType(value);
@@ -49,14 +46,12 @@ const SelectOption: React.FC = () => {
                 onChange={() => handleRadioChange(option.id)}
               />
               <span
-                className={`flex h-5 w-5 items-center justify-center rounded-full border ${
-                  type === option.id ? "border-primary" : "border-body"
-                }`}
+                className={`flex h-5 w-5 items-center justify-center rounded-full border ${type === option.id ? "border-primary" : "border-body"
+                  }`}
               >
                 <span
-                  className={`h-2.5 w-2.5 rounded-full bg-primary ${
-                    type === option.id ? "flex" : "hidden"
-                  }`}
+                  className={`h-2.5 w-2.5 rounded-full bg-primary ${type === option.id ? "flex" : "hidden"
+                    }`}
                 ></span>
               </span>
               {option.label}

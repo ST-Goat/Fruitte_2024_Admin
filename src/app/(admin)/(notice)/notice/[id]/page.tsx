@@ -8,6 +8,7 @@ import Checkbox from "./_components/Checkbox";
 import * as query from "@/features/notice/queries";
 import Loader from "@/components/common/Loader";
 import { Notice } from "@/features/notice/types/api";
+import SelectOption from "./_components/SelectOption";
 
 type Props = {
   params: {
@@ -25,7 +26,6 @@ const NoticeDetail = ({ params }: Props) => {
   const { mutate: update, isPending: isUpdating } = query.useUpdateNotice(
     data as Notice,
   );
-
   const handleUpdate = () => {
     if (!isUpdating) {
       update();
@@ -45,7 +45,7 @@ const NoticeDetail = ({ params }: Props) => {
               </h3>
             </div>
             <div className="p-6.5">
-              <FormInput />
+              <SelectOption />
               <FormInput />
               <Checkbox />
               <button

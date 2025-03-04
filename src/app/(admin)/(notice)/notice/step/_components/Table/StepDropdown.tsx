@@ -1,26 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import * as query from "@/features/notice/queries";
+import { useNoticeStore } from "@/features/notice/hooks/notice";
 
-const UpdateDropdown: React.FC<{
-  classes: string;
-  id: string;
-}> = ({ classes, id }) => {
-  const { mutate: deleteContent, isPending: isDeleting } =
-    query.useDeleteNotice(Number(id) as number);
-
-  const handleDelete = () => {
-    if (!isDeleting) {
-      if (
-        window.confirm("정말 삭제하시겠습니까?") &&
-        typeof window !== "undefined"
-      ) {
-        deleteContent();
-      }
-    }
-  };
+const StepDropdown: React.FC<{ classes: string; id: number }> = ({
+  classes,
+  id,
+}) => {
+  const { setNoticeStep } = useNoticeStore();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
 
@@ -57,7 +45,7 @@ const UpdateDropdown: React.FC<{
         ref={trigger}
         onClick={() => setDropdownOpen(!dropdownOpen)}
       >
-        설정
+        노출순위 수정
         <svg
           className="fill-current"
           width="16"
@@ -80,21 +68,21 @@ const UpdateDropdown: React.FC<{
           dropdownOpen === true ? "block" : "hidden"
         }`}
       >
-        <Link
-          href={`/notice/${id}`}
-          className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-        >
-          수정
-        </Link>
         <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-          onClick={handleDelete}
+          onClick={() => setNoticeStep(id, -1)}
         >
-          삭제
+          ↑
+        </button>
+        <button
+          className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
+          onClick={() => setNoticeStep(id, 1)}
+        >
+          ↓
         </button>
       </div>
     </div>
   );
 };
 
-export default UpdateDropdown;
+export default StepDropdown;

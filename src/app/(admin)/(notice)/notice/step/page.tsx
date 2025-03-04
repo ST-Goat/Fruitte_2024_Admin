@@ -3,19 +3,13 @@
 import React, { useEffect } from "react";
 import DefaultLayout from "@/components/Layouts/DefaultLayout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
-import DataTable from "./_components/DataTable";
-import ButtonsGroup from "./_components/ButtonsGroup";
+import Table from "./_components/Table/Table";
 import * as query from "@/features/notice/queries";
 import Loader from "@/components/common/Loader";
+import ButtonsGroup from "./_components/ButtonsGroup";
 
-type Props = {
-  params: {
-    id: string;
-  };
-};
-
-export default function NoticeList({ params }: Props) {
-  const { data, isLoading, isError, isSuccess, refetch } = query.useGetNotice();
+const NoticeStep = () => {
+  const { isSuccess, refetch, isLoading } = query.useGetExposedNotice();
 
   useEffect(() => {
     if (isSuccess) {
@@ -26,7 +20,7 @@ export default function NoticeList({ params }: Props) {
   return (
     <>
       <DefaultLayout>
-        <Breadcrumb pageName="공지사항" />
+        <Breadcrumb pageName="공지사항 우선순위 수정" />
         {isLoading && <Loader />}
         {isSuccess && (
           <div className="grid grid-cols-1 gap-9">
@@ -34,12 +28,12 @@ export default function NoticeList({ params }: Props) {
               <div className="rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
                 <div className="border-b border-stroke px-6.5 py-4 dark:border-strokedark">
                   <h3 className="font-medium text-black dark:text-white">
-                    공지사항 리스트
+                    공개중인 공지사항 리스트
                   </h3>
                 </div>
                 <div className="p-6.5">
                   <ButtonsGroup />
-                  <DataTable />
+                  <Table />
                 </div>
               </div>
             </div>
@@ -48,4 +42,6 @@ export default function NoticeList({ params }: Props) {
       </DefaultLayout>
     </>
   );
-}
+};
+
+export default NoticeStep;

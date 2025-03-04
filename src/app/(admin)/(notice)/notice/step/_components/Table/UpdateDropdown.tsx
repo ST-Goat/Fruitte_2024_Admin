@@ -5,10 +5,14 @@ import * as query from "@/features/notice/queries";
 
 const UpdateDropdown: React.FC<{
   classes: string;
-  id: string;
+  id: number;
 }> = ({ classes, id }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const trigger = useRef<any>(null);
+  const dropdown = useRef<any>(null);
   const { mutate: deleteContent, isPending: isDeleting } =
-    query.useDeleteNotice(Number(id) as number);
+    query.useDeleteNotice(id);
 
   const handleDelete = () => {
     if (!isDeleting) {
@@ -20,9 +24,6 @@ const UpdateDropdown: React.FC<{
       }
     }
   };
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const trigger = useRef<any>(null);
-  const dropdown = useRef<any>(null);
 
   // close on click outside
   useEffect(() => {

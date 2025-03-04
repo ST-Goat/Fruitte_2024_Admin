@@ -9,13 +9,13 @@ import {
   Column,
 } from "react-table";
 import * as t from "@/features/notice/types/api";
-import * as query from "@/features/notice/queries";
 import UpdateDropdown from "./UpdateDropdown";
-import StepDropdown from "./StepDropdown";
+import * as hook from "@/features/notice/hooks/notice";
 
 const DataTable = () => {
-  const { data: tableData, isLoading, isError, isSuccess, refetch } = query.useGetNotice();
-  const data = useMemo(() => tableData, [tableData, isSuccess]);
+  const { notices } = hook.useNoticeStore();
+
+  const data = useMemo(() => notices, [notices]);
 
   const columns: Column<t.NoticeTable>[] = useMemo(
     () => [
@@ -36,9 +36,9 @@ const DataTable = () => {
         accessor: "title",
       },
       {
-        Header: "노출여부",
+        Header: "공개여부",
         accessor: "exposed",
-        Cell: ({ value }) => (value ? "노출" : "숨김"),
+        Cell: ({ value }) => (value == true ? "공개중" : "미공개"),
       },
       {
         Header: "생성(수정)일자",
@@ -49,13 +49,13 @@ const DataTable = () => {
         Header: "",
         id: "actions",
         sortable: false,
-        Cell: ({ row }) => (
+        Cell: ({ row, index }) => (
           <UpdateDropdown
-            id={row.original.id}
+            id={row?.values?.id}
             classes={
-              row.index < 2
+              index < 2
                 ? "top-full mt-1"
-                : row.index >= (data?.length || 0) - 2
+                : index >= (data?.length || 0) - 2
                   ? "bottom-full mb-1"
                   : ""
             }
@@ -63,7 +63,7 @@ const DataTable = () => {
         ),
       },
     ],
-    [data]
+    [data],
   );
 
   const tableInstance = useTable(
@@ -224,8 +224,9 @@ const DataTable = () => {
               onClick={() => {
                 gotoPage(index);
               }}
-              className={`${pageIndex === index && "bg-primary text-white"
-                } mx-1 flex cursor-pointer items-center justify-center rounded-md p-1 px-3 hover:bg-primary hover:text-white`}
+              className={`${
+                pageIndex === index && "bg-primary text-white"
+              } mx-1 flex cursor-pointer items-center justify-center rounded-md p-1 px-3 hover:bg-primary hover:text-white`}
             >
               {index + 1}
             </button>

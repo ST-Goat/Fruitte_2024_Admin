@@ -13,10 +13,23 @@ export const useGetNotice = () => {
     queryKey: ["getNotice"],
     queryFn: async () => {
       const notices = await api.getNotice();
+      setNotices(notices as i.Notice[]);
+      return notices;
+    },
+    staleTime: 0,
+    gcTime: 0,
+  });
 
-      console.log(notices);
-      
+  return { data, isLoading, isError, isSuccess, refetch };
+};
 
+export const useGetExposedNotice = () => {
+  const setNotices = hook.useNoticeStore((state) => state.setNotices);
+
+  const { data, isLoading, isError, isSuccess, refetch } = useQuery({
+    queryKey: ["getNoticeExposed"],
+    queryFn: async () => {
+      const notices = await api.getExposedNotice();
       setNotices(notices as i.Notice[]);
       return notices;
     },
@@ -105,6 +118,7 @@ export const useUpdateNoticeStep = () => {
       const updatedNotices = await api.updateNoticeStep({
         notices,
       });
+
       return updatedNotices;
     },
     onSuccess: () => {

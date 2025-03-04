@@ -2,13 +2,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNoticeStore } from "@/features/notice/hooks/notice";
 
-const StepDropdown: React.FC<{ classes: string; id: number; step: number }> = ({
+const StepDropdown: React.FC<{ classes: string; id: number }> = ({
   classes,
   id,
-  step,
 }) => {
   const { setNoticeStep } = useNoticeStore();
   const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  console.log(id);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
@@ -65,8 +66,9 @@ const StepDropdown: React.FC<{ classes: string; id: number; step: number }> = ({
         ref={dropdown}
         onFocus={() => setDropdownOpen(true)}
         onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 z-1 w-full max-w-39.5 rounded-[5px] bg-white py-2.5 shadow-12 dark:bg-boxdark ${classes} ${dropdownOpen === true ? "block" : "hidden"
-          }`}
+        className={`absolute right-0 z-1 w-full max-w-39.5 rounded-[5px] bg-white py-2.5 shadow-12 dark:bg-boxdark ${classes} ${
+          dropdownOpen === true ? "block" : "hidden"
+        }`}
       >
         <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"

@@ -4,14 +4,7 @@ import React from "react";
 import { useNoticeDetailStore } from "@/features/notice/hooks/notice";
 
 const FormInput = () => {
-  const { title, content, setTitle, setContent } = useNoticeDetailStore(
-    (state) => ({
-      title: state.title,
-      content: state.content,
-      setTitle: state.setTitle,
-      setContent: state.setContent,
-    })
-  );
+  const { title, content, setTitle, setContent } = useNoticeDetailStore();
 
   return (
     <>

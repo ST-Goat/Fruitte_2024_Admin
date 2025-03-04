@@ -20,6 +20,23 @@ export const getNotice = async () => {
   }
 };
 
+export const getExposedNotice = async () => {
+  try {
+    const { data } = await ApiUtils.fetch<
+      i.GetNoticeRequest,
+      AxiosResponse<i.GetNoticeResponse>
+    >(API_URL.getExposedNotice);
+
+    const { statusCode, msg, response } = data;
+
+    if (statusCode === 200) {
+      return response;
+    }
+  } catch (e) {
+    throw e;
+  }
+};
+
 export const getNoticeDetail = async (noticeId: string) => {
   try {
     const { data } = await ApiUtils.fetch<
@@ -58,12 +75,16 @@ export const updateNotice = async (updateInfo: i.UpdateNoticeRequest) => {
 
   const { statusCode, msg, response } = data;
 
+  console.log(data);
+
   if (statusCode === 200) {
     return response;
   }
 };
 
-export const updateNoticeStep = async (updateInfo: i.UpdateNoticeStepRequest) => {
+export const updateNoticeStep = async (
+  updateInfo: i.UpdateNoticeStepRequest,
+) => {
   const { data } = await ApiUtils.patch<
     i.UpdateNoticeStepRequest,
     AxiosResponse<i.UpdateNoticeStepResponse>

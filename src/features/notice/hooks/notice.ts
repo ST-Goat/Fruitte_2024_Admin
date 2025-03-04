@@ -14,22 +14,28 @@ export const useNoticeStore = create<NoticeState>((set) => ({
   },
   setNoticeStep: (id: number, step: 1 | -1) => {
     set((state) => {
+      // 현재 객체를 앞으로 또는 뒤로 이동
       const currentIndex = state.notices.findIndex((item) => item.id === id);
-      if (currentIndex === -1) return state;
+      if (currentIndex === -1) return state; // id가 없는 경우 처리
 
       const targetIndex = currentIndex + step;
+      // 이동할 위치가 배열 범위를 벗어나면 이동하지 않음
+
       if (targetIndex < 0 || targetIndex >= state.notices.length) return state;
 
-      const updatedNotices = [...state.notices];
-      const [movedItem] = updatedNotices.splice(currentIndex, 1);
-      updatedNotices.splice(targetIndex, 0, movedItem);
+      // 배열 재배치
+      const updatedInfo = [...state.notices];
 
-      const reorderedNotices = updatedNotices.map((item, index) => ({
+      const [movedItem] = updatedInfo.splice(currentIndex, 1); // 현재 객체 제거
+      updatedInfo.splice(targetIndex, 0, movedItem); // 새 위치에 삽입
+
+      // 배열 순서에 따라 step 값 재설정
+      const reorderedInfo = updatedInfo.map((item, index) => ({
         ...item,
         step: index + 1,
       }));
 
-      return { notices: reorderedNotices };
+      return { notices: reorderedInfo };
     });
   },
 }));

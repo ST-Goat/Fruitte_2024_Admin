@@ -3,10 +3,7 @@
 import { useNoticeDetailStore } from "@/features/notice/hooks/notice";
 
 const Checkbox = () => {
-  const { exposed, setExposed } = useNoticeDetailStore((state) => ({
-    exposed: state.exposed,
-    setExposed: state.setExposed,
-  }));
+  const { exposed, setExposed } = useNoticeDetailStore();
 
   return (
     <div className="my-5">
@@ -19,17 +16,16 @@ const Checkbox = () => {
             type="checkbox"
             id="checkboxLabelTwo"
             className="sr-only"
-            checked={exposed}
+            checked={!!exposed}
             onChange={() => {
               setExposed(!exposed);
             }}
           />
           <div
-            className={`mr-4 flex h-5 w-5 items-center justify-center rounded border ${
-              exposed && "border-primary bg-gray dark:bg-transparent"
-            }`}
+            className={`mr-4 flex h-5 w-5 items-center justify-center rounded border ${exposed ? "border-primary bg-gray dark:bg-transparent" : ""
+              }`}
           >
-            <span className={`opacity-0 ${exposed && "!opacity-100"}`}>
+            <span className={`opacity-0 ${exposed ? "!opacity-100" : ""}`}>
               <svg
                 width="11"
                 height="8"
