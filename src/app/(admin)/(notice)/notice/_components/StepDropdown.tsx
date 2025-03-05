@@ -9,8 +9,6 @@ const StepDropdown: React.FC<{ classes: string; id: number }> = ({
   const { setNoticeStep } = useNoticeStore();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
-  console.log(id);
-
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
 
