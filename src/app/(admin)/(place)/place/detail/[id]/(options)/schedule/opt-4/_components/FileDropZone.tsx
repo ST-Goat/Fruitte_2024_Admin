@@ -68,12 +68,9 @@ const FileDropZone = () => {
               />
             </svg>
           </span>
-          <p>
-            <span className="text-primary">Click to upload</span> or drag and
-            drop
+          <p className="mt-1.5">
+            4:3 비율로 최소 가로길이 최소 495px 이상의 이미지를 업로드해주세요.
           </p>
-          <p className="mt-1.5">SVG, PNG, JPG or GIF</p>
-          <p>(max, 800 X 800px)</p>
         </div>
       </div>
     </div>
