@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import TaskPopup from "./TaskPopup";
+import CreatePopup from "./CreatePopup";
 import Image from "next/image";
 
 const Header = () => {
@@ -36,11 +36,12 @@ const Header = () => {
 
   return (
     <>
-      <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-        티켓
-      </label>
-      <div className="flex flex-col gap-y-4 rounded-sm border border-stroke bg-white p-3 shadow-default dark:border-strokedark dark:bg-boxdark sm:flex-row sm:items-center sm:justify-between">
-        <div></div>
+      <div className="flex flex-col gap-y-4 rounded-sm bg-white pb-4 dark:border-strokedark dark:bg-boxdark sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <label className="mb-3 block text-sm font-medium text-black dark:text-white">
+            티켓
+          </label>
+        </div>
         <div className="flex flex-col gap-4 2xsm:flex-row 2xsm:items-center">
           <div>
             <button
@@ -65,7 +66,7 @@ const Header = () => {
             </button>
 
             {/* <!-- ===== Task Popup Start ===== --> */}
-            <TaskPopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
+            <CreatePopup popupOpen={popupOpen} setPopupOpen={setPopupOpen} />
             {/* <!-- ===== Task Popup End ===== --> */}
           </div>
         </div>

@@ -65,11 +65,8 @@ export interface FruittePickIntro {
 }
 
 export interface Ticket {
-  category: string;
-  items: {
-    title: string;
-    price: number;
-  }[];
+  title: string;
+  price: number;
 }
 export interface Option {
   title: string;

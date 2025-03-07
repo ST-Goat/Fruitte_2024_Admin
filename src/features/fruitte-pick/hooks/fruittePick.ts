@@ -225,3 +225,38 @@ export const useFruittePickIntroStore = create<FruittePickIntroState>(
     },
   }),
 );
+
+interface FruittePickIntroCreate {
+  placeId: string;
+  setPlaceId: (placeId: string) => void;
+  title: string;
+  setTitle: (title: string) => void;
+  prologue: string;
+  setPrologue: (prologue: string) => void;
+  ticket: i.Ticket[];
+  setTicket: (ticket: i.Ticket[]) => void;
+  option: i.Option[];
+  setOption: (option: i.Option[]) => void;
+  program: i.Program[];
+  setProgram: (program: i.Program[]) => void;
+  exposed: boolean;
+  setExposed: (exposed: boolean) => void;
+}
+export const useFruittePickIntroCreateStore = create<FruittePickIntroCreate>(
+  (set) => ({
+    placeId: "",
+    setPlaceId: (placeId) => set({ placeId }),
+    title: "",
+    setTitle: (title) => set({ title }),
+    prologue: "",
+    setPrologue: (prologue) => set({ prologue }),
+    ticket: [],
+    setTicket: (ticket) => set({ ticket }),
+    option: [],
+    setOption: (option) => set({ option }),
+    program: [],
+    setProgram: (program) => set({ program }),
+    exposed: false,
+    setExposed: (exposed) => set({ exposed }),
+  }),
+);
