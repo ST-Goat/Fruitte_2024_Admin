@@ -1,13 +1,11 @@
 "use client";
 
 import React from "react";
-
+import Header from "./Header";
 const TicketContainer = () => {
   return (
     <div className="mb-5">
-      <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-        티켓
-      </label>
+      <Header />
     </div>
   );
 };

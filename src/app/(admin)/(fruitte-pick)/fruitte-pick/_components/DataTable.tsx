@@ -11,6 +11,7 @@ import {
 import UpdateDropdown from "./UpdateDropdown";
 import * as hook from "@/features/fruitte-pick/hooks/fruittePick";
 import * as i from "@/features/fruitte-pick/types/api";
+
 const DataTable = () => {
   const { fruittePicks } = hook.useFruittePicksStore();
 
