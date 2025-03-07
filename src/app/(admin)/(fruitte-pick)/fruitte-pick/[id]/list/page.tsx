@@ -1,16 +1,22 @@
 "use client";
 
 import React, { useEffect } from "react";
-import DefaultLayout from "@/components/Layouts/DefaultLayout";
+import FruittePickLayout from "@/components/Layouts/FruittePickLayout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import ButtonsGroup from "./_components/ButtonsGroup";
 import DataTable from "./_components/DataTable";
 import * as query from "@/features/fruitte-pick/queries";
 import Loader from "@/components/common/Loader";
 
-const FruittePickPage = () => {
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const FruittePickListIntroPage = ({ params }: Props) => {
   const { data, isLoading, isError, isSuccess, refetch } =
-    query.useGetFruittePicks();
+    query.useGetFruittePickIntroList(params.id);
 
   useEffect(() => {
     if (isSuccess) {
@@ -20,8 +26,8 @@ const FruittePickPage = () => {
 
   return (
     <>
-      <DefaultLayout>
-        <Breadcrumb pageName="프룻 PICK 리스트" />
+      <FruittePickLayout>
+        <Breadcrumb pageName="프룻 PICK 소개 컨텐츠 리스트" />
         {isLoading && <Loader />}
         {isSuccess && (
           <div className="grid grid-cols-1 gap-9">
@@ -33,16 +39,16 @@ const FruittePickPage = () => {
                   </h3>
                 </div>
                 <div className="p-6.5">
-                  <ButtonsGroup />
+                  <ButtonsGroup pickId={params.id} />
                   <DataTable />
                 </div>
               </div>
             </div>
           </div>
         )}
-      </DefaultLayout>
+      </FruittePickLayout>
     </>
   );
 };
 
-export default FruittePickPage;
+export default FruittePickListIntroPage;

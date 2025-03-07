@@ -3,9 +3,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
-import SidebarLinkGroup from "./SidebarLinkGroup";
-
+import { placeDetailOptions } from "./options";
+import { useParams } from "next/navigation";
 interface SidebarProps {
   sidebarOpen: boolean;
   setSidebarOpen: (arg: boolean) => void;
@@ -13,7 +12,7 @@ interface SidebarProps {
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const pathname = usePathname();
-
+  const { id } = useParams();
   const trigger = useRef<any>(null);
   const sidebar = useRef<any>(null);
 
@@ -67,16 +66,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* <!-- SIDEBAR HEADER --> */}
       <div className="flex items-center justify-center gap-2 px-6 py-5.5 lg:py-6.5">
-        <Link href="/">
-          {/* <Image
-            width={176}
-            height={32}
-            src={"/images/logo/logo.svg"}
-            alt="Logo"
-            priority
-          /> */}
-          프루떼 관리자모드
-        </Link>
+        <Link href="/">홈으로</Link>
 
         <button
           ref={trigger}
@@ -104,114 +94,59 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
       <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
         {/* <!-- Sidebar Menu --> */}
-        <nav className="mt-5 px-4 py-4 lg:mt-9 lg:px-6">
+        <nav className="px-4 py-4 lg:px-6">
           {/* place Menu */}
           <div>
             <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              플레이스
+              프룻 PICK 수정
             </h3>
 
             <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <Link
-                  href="/place"
-                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === "/place" && "bg-graydark dark:bg-meta-4"
-                  }`}
+                  href={`/fruitte-pick/${id}`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
                 >
-                  리스트
+                  정보 수정
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/place/create"
+                  href={`/fruitte-pick/${id}/list`}
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === "/place/create" && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  생성하기
-                </Link>
-              </li>
-            </ul>
-          </div>
-          {/* <!-- Menu Group --> */}
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              예약
-            </h3>
-            <ul className="mb-6 flex flex-col gap-1.5"></ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              고객
-            </h3>
-            <ul className="mb-6 flex flex-col gap-1.5"></ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              쿠폰
-            </h3>
-            <ul className="mb-6 flex flex-col gap-1.5"></ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              공지사항
-            </h3>
-            <ul className="mb-6 flex flex-col gap-1.5">
-              <li>
-                <Link
-                  href="/notice"
-                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === "/notice" && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  리스트
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/notice/step"
-                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === "/notice/step" && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  공개우선순위수정
-                </Link>
-              </li>
-            </ul>
-          </div>
-
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              프룻 PICK
-            </h3>
-            <ul className="mb-6 flex flex-col gap-1.5">
-              <li>
-                <Link
-                  href="/fruitte-pick"
-                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === "/fruitte-pick" && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  리스트
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/fruitte-pick/step"
-                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname === "/fruitte-pick/step" &&
+                    pathname.match(`/fruitte-pick/${id}/list`) &&
                     "bg-graydark dark:bg-meta-4"
                   }`}
                 >
-                  공개우선순위수정
+                  소개 컨텐츠 리스트
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/fruitte-pick/${id}/list/step`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.match(`/fruitte-pick/${id}/list/step`) &&
+                    "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  소개 컨텐츠 공개우선순위
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={"/fruitte-pick"}
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("/fruitte-pick//") &&
+                    "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  이전
                 </Link>
               </li>
             </ul>
           </div>
+
+          {/* <!-- Menu Group --> */}
         </nav>
         {/* <!-- Sidebar Menu --> */}
       </div>

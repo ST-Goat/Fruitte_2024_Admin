@@ -1,3 +1,7 @@
+import {
+  getFruittePick,
+  updateFruittePickStep,
+} from "@/features/fruitte-pick/api";
 import { uploadImgOnS3 } from "@/features/upload/api";
 
 export const BASE_URL: string =
@@ -114,4 +118,17 @@ export const API_URL = {
   updateNotice: `/admin/notice`,
   deleteNotice: `/admin/notice/delete`,
   updateNoticeStep: `/admin/notice/step`,
+  getFruittePicks: "/admin/fruitte-pick",
+  getFruittePicksExposed: "/admin/fruitte-pick/exposed",
+  getFruittePick: "/admin/fruitte-pick",
+  createFruittePicks: "/admin/fruitte-pick",
+  updateFruittePicks: "/admin/fruitte-pick",
+  deleteFruittePicks: "/admin/fruitte-pick/delete",
+  updateFruittePickStep: "/admin/fruitte-pick/step",
+  getFruittePickIntroList: "/admin/fruitte-pick/intro",
+  getFruittePickIntro: "/admin/fruitte-pick/intro",
+  createFruittePickIntro: "/admin/fruitte-pick/intro",
+  updateFruittePickIntro: "/admin/fruitte-pick/intro",
+  deleteFruittePickIntro: "/admin/fruitte-pick/intro/delete",
+  updateFruittePickIntroStep: "/admin/fruitte-pick/intro/step",
 };

@@ -1,9 +1,9 @@
 import { ChangeEvent } from "react";
 import { uploadImgOnS3 } from "@/features/upload/api";
-import { usePlaceIntroOpt6DetailStore } from "@/features/place/hooks/placeIntro";
+import { useFruittePickDetailStore } from "@/features/fruitte-pick/hooks/fruittePick";
 
 const FileDropZone = () => {
-  const { setImages } = usePlaceIntroOpt6DetailStore();
+  const { setPrologueImg } = useFruittePickDetailStore();
 
   const handleFileUpload = async (event: ChangeEvent<HTMLInputElement>) => {
     const files = event.target.files;
@@ -14,7 +14,7 @@ const FileDropZone = () => {
         files[0],
         "/program-view/option/images/",
       );
-      setImages([uploadedImageUrl]); // 기존 이미지를 교체
+      setPrologueImg([uploadedImageUrl]); // 기존 이미지를 교체
     } catch (error) {
       console.error("파일 업로드 실패:", error);
     }
