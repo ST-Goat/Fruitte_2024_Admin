@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { useFruittePickCreateStore } from "@/features/fruitte-pick/hooks/fruittePick";
+import { useFruittePickIntroCreateStore } from "@/features/fruitte-pick/hooks/fruittePick";
 import Checkbox from "./Checkbox";
 // import DatePicker from "./DatePicker";
 import Images from "./Images";
@@ -12,8 +12,8 @@ import OptionContainer from "./Option/Container";
 import ProgramContainer from "./Program/Container";
 
 const FormInput = () => {
-  const { title, setTitle, writer, setWriter, prologue, setPrologue } =
-    useFruittePickCreateStore();
+  const { title, setTitle, prologue, setPrologue } =
+    useFruittePickIntroCreateStore();
 
   return (
     <>
@@ -42,12 +42,10 @@ const FormInput = () => {
           onChange={(e) => setPrologue(e.target.value)}
         />
       </div>
-      {/* <Images /> */}
       <TicketContainer />
       <OptionContainer />
       <ProgramContainer />
       <Checkbox />
-      {/* <DatePicker /> */}
     </>
   );
 };

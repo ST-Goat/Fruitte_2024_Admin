@@ -241,9 +241,33 @@ interface FruittePickIntroCreate {
   setProgram: (program: i.Program[]) => void;
   exposed: boolean;
   setExposed: (exposed: boolean) => void;
+  getTicketValue: (
+    index: number,
+  ) => { title: string; price: string | number } | undefined;
+  setTicketValue: (
+    index: number,
+    value: { title: string; price: string | number },
+  ) => void;
+  removeTicket: (index: number) => void;
+  getOptionValue: (
+    index: number,
+  ) => { title: string; price: string | number } | undefined;
+  setOptionValue: (
+    index: number,
+    value: { title: string; price: string | number },
+  ) => void;
+  removeOption: (index: number) => void;
+  getProgramValue: (
+    index: number,
+  ) => { title: string; img: string; description: string } | undefined;
+  setProgramValue: (
+    index: number,
+    value: { title: string; img: string; description: string },
+  ) => void;
+  removeProgram: (index: number) => void;
 }
 export const useFruittePickIntroCreateStore = create<FruittePickIntroCreate>(
-  (set) => ({
+  (set, get) => ({
     placeId: "",
     setPlaceId: (placeId) => set({ placeId }),
     title: "",
@@ -258,5 +282,184 @@ export const useFruittePickIntroCreateStore = create<FruittePickIntroCreate>(
     setProgram: (program) => set({ program }),
     exposed: false,
     setExposed: (exposed) => set({ exposed }),
+    getTicketValue: (index: number) => {
+      const tickets = get().ticket; // 현재 ticket 배열 가져오기
+      return tickets[index] ?? undefined; // 해당 인덱스 값 반환 (범위를 벗어나면 undefined)
+    },
+    setTicketValue: (index: number, value) => {
+      const tickets = get().ticket; // 현재 ticket 배열 가져오기
+      const updatedTickets = [...tickets]; // tickets 배열 복사
+      updatedTickets[index] = value; // 해당 인덱스 값 변경
+      set({ ticket: updatedTickets });
+    },
+    removeTicket: (index: number) => {
+      const tickets = get().ticket; // 현재 티켓 배열 가져오기
+      const updatedTickets = tickets.filter((_, i) => i !== index); // 해당 인덱스의 티켓 제거
+      set({ ticket: updatedTickets }); // 상태 업데이트
+    },
+    getOptionValue: (index: number) => {
+      const options = get().option; // 현재 ticket 배열 가져오기
+      return options[index] ?? undefined; // 해당 인덱스 값 반환 (범위를 벗어나면 undefined)
+    },
+    setOptionValue: (index: number, value) => {
+      const options = get().option; // 현재 ticket 배열 가져오기
+      const updatedOptions = [...options]; // tickets 배열 복사
+      updatedOptions[index] = value; // 해당 인덱스 값 변경
+      set({ option: updatedOptions });
+    },
+    removeOption: (index: number) => {
+      const options = get().option; // 현재 티켓 배열 가져오기
+      const updatedOptions = options.filter((_, i) => i !== index); // 해당 인덱스의 티켓 제거
+      set({ option: updatedOptions }); // 상태 업데이트
+    },
+    getProgramValue: (index: number) => {
+      const programs = get().program; // 현재 ticket 배열 가져오기
+      return programs[index] ?? undefined; // 해당 인덱스 값 반환 (범위를 벗어나면 undefined)
+    },
+    setProgramValue: (index: number, value) => {
+      const programs = get().program; // 현재 ticket 배열 가져오기
+      const updatedPrograms = [...programs]; // tickets 배열 복사
+      updatedPrograms[index] = value; // 해당 인덱스 값 변경
+      set({ program: updatedPrograms });
+    },
+    removeProgram: (index: number) => {
+      const programs = get().program; // 현재 티켓 배열 가져오기
+      const updatedPrograms = programs.filter((_, i) => i !== index); // 해당 인덱스의 티켓 제거
+      set({ program: updatedPrograms }); // 상태 업데이트
+    },
   }),
 );
+
+interface TicketDetail {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  title: string;
+  setTitle: (title: string) => void;
+  price: string;
+  setPrice: (price: string) => void;
+  reset: () => void;
+  setValue: ({ title, price }: { title: string; price: string }) => void;
+  getFromIndex: (index: number) => void;
+  mode: "create" | "update";
+  setMode: (mode: "create" | "update") => void;
+  index: number;
+  setIndex: (index: number) => void;
+}
+export const useTicketDetailStore = create<TicketDetail>((set, get) => ({
+  open: false,
+  setOpen: (open) => {
+    get().reset();
+    set({ open });
+  },
+  title: "",
+  setTitle: (title) => set({ title }),
+  price: "0",
+  setPrice: (price) => set({ price }),
+  reset: () => set({ open: false, title: "", price: "0", index: undefined }),
+  setValue: ({ title, price }) => {
+    set({ title, price });
+  },
+  getFromIndex: (index: number) => {
+    const { title, price } = get();
+    set({ title: title[index], price: price[index] });
+  },
+  mode: "create",
+  setMode: (mode) => set({ mode }),
+  index: 0,
+  setIndex: (index) => set({ index }),
+}));
+
+interface OptionDetail {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  title: string;
+  setTitle: (title: string) => void;
+  price: string;
+  setPrice: (price: string) => void;
+  reset: () => void;
+  setValue: ({ title, price }: { title: string; price: string }) => void;
+  getFromIndex: (index: number) => void;
+  mode: "create" | "update";
+  setMode: (mode: "create" | "update") => void;
+  index: number;
+  setIndex: (index: number) => void;
+}
+export const useOptionDetailStore = create<OptionDetail>((set, get) => ({
+  open: false,
+  setOpen: (open) => {
+    get().reset();
+    set({ open });
+  },
+  title: "",
+  setTitle: (title) => set({ title }),
+  price: "0",
+  setPrice: (price) => set({ price }),
+  reset: () => set({ open: false, title: "", price: "0", index: undefined }),
+  setValue: ({ title, price }) => {
+    set({ title, price });
+  },
+  getFromIndex: (index: number) => {
+    const { title, price } = get();
+    set({ title: title[index], price: price[index] });
+  },
+  mode: "create",
+  setMode: (mode) => set({ mode }),
+  index: 0,
+  setIndex: (index) => set({ index }),
+}));
+
+interface ProgramDetail {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  title: string;
+  setTitle: (title: string) => void;
+  img: string;
+  setImg: (img: string) => void;
+  description: string;
+  setDescription: (description: string) => void;
+  reset: () => void;
+  setValue: ({
+    title,
+    img,
+    description,
+  }: {
+    title: string;
+    img: string;
+    description: string;
+  }) => void;
+  getFromIndex: (index: number) => void;
+  mode: "create" | "update";
+  setMode: (mode: "create" | "update") => void;
+  index: number;
+  setIndex: (index: number) => void;
+}
+export const useProgramDetailStore = create<ProgramDetail>((set, get) => ({
+  open: false,
+  setOpen: (open) => {
+    get().reset();
+    set({ open });
+  },
+  title: "",
+  setTitle: (title) => set({ title }),
+  img: "0",
+  setImg: (img) => set({ img }),
+  description: "",
+  setDescription: (description) => set({ description }),
+  reset: () =>
+    set({ open: false, title: "", img: "", description: "", index: undefined }),
+  setValue: ({ title, img, description }) => {
+    set({ title, img, description });
+  },
+  getFromIndex: (index: number) => {
+    const { title, img, description } = get();
+    set({
+      title: title[index],
+      img: img[index],
+      description: description[index],
+    });
+  },
+  mode: "create",
+  setMode: (mode) => set({ mode }),
+  index: 0,
+  setIndex: (index) => set({ index }),
+}));

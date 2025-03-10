@@ -12,8 +12,8 @@ const CreatePopup = () => {
     reset,
     mode,
     index,
-  } = hook.useTicketDetailStore();
-  const { ticket, setTicket, setTicketValue } =
+  } = hook.useOptionDetailStore();
+  const { option, setOption, setOptionValue } =
     hook.useFruittePickIntroCreateStore();
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -22,11 +22,11 @@ const CreatePopup = () => {
     if (!title.trim() || !price) return;
 
     if (mode === "create") {
-      setTicket([...ticket, { title, price }]);
+      setOption([...option, { title, price }]);
     }
 
     if (mode === "update") {
-      setTicketValue(index, { title, price });
+      setOptionValue(index, { title, price });
     }
     reset();
     setOpen(false);
@@ -66,7 +66,7 @@ const CreatePopup = () => {
               htmlFor="taskTitle"
               className="mb-2.5 block font-medium text-black dark:text-white"
             >
-              티켓명
+              옵션명
             </label>
             <input
               type="text"
@@ -121,7 +121,7 @@ const CreatePopup = () => {
                     </clipPath>
                   </defs>
                 </svg>
-                티켓 추가
+                옵션 추가
               </button>
             </>
           )}
@@ -130,7 +130,7 @@ const CreatePopup = () => {
               className="flex w-full items-center justify-center gap-2 rounded bg-primary px-4.5 py-2.5 font-medium text-white hover:bg-opacity-90"
               onClick={handleSubmit}
             >
-              티켓 수정
+              옵션 수정
             </button>
           )}
         </form>

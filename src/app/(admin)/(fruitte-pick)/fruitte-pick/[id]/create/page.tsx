@@ -5,7 +5,25 @@ import { useRouter } from "next/navigation";
 import FruittePickLayout from "@/components/Layouts/FruittePickLayout";
 import Breadcrumb from "@/components/Breadcrumbs/Breadcrumb";
 import FormInput from "./_components/FormInput";
-const FruittePickIntroCreate = () => {
+import * as hook from "@/features/fruitte-pick/hooks/fruittePick";
+import * as query from "@/features/fruitte-pick/queries/index";
+
+type Props = {
+  params: {
+    id: string;
+  };
+};
+
+const FruittePickIntroCreate = ({ params }: Props) => {
+  const { mutate: create, isPending: isCreating } =
+    query.useCreateFruittePickIntro(params.id);
+
+  const handleCreate = () => {
+    if (!isCreating) {
+      create();
+    }
+  };
+
   return (
     <>
       <FruittePickLayout>
@@ -23,7 +41,7 @@ const FruittePickIntroCreate = () => {
                 <FormInput />
                 <button
                   className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
-                  //   onClick={handleCreate}
+                  onClick={handleCreate}
                 >
                   컨텐츠 생성
                 </button>

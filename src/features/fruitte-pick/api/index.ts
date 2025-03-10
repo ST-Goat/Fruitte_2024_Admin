@@ -132,7 +132,7 @@ export const createFruittePickIntro = async (
   const { data } = await ApiUtils.post<
     i.createFruittePickIntroRequest,
     AxiosResponse<i.createFruittePickIntroResponse>
-  >(API_URL.createFruittePickIntro, createInfo);
+  >(`${API_URL.createFruittePickIntro}/${createInfo.pickId}`, createInfo);
 
   const { statusCode, msg, response } = data;
 

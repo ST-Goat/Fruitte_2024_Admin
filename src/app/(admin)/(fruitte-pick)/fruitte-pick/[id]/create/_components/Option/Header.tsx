@@ -5,7 +5,7 @@ import * as hooks from "@/features/fruitte-pick/hooks/fruittePick";
 
 const Header = () => {
   const { open, setOpen, setValue, setMode, reset } =
-    hooks.useTicketDetailStore();
+    hooks.useOptionDetailStore();
 
   const trigger = useRef<any>(null);
   const popup = useRef<any>(null);
@@ -47,7 +47,7 @@ const Header = () => {
       <div className="flex flex-col gap-y-4 rounded-sm bg-white pb-4 dark:border-strokedark dark:bg-boxdark sm:flex-row sm:items-center sm:justify-between">
         <div>
           <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-            티켓
+            옵션
           </label>
         </div>
         <div className="flex flex-col gap-4 2xsm:flex-row 2xsm:items-center">
@@ -70,7 +70,7 @@ const Header = () => {
                   fill=""
                 />
               </svg>
-              티켓 추가
+              옵션 추가
             </button>
 
             {/* <!-- ===== Task Popup Start ===== --> */}

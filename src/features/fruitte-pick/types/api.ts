@@ -56,21 +56,20 @@ export interface FruittePickIntro {
   placeId: number;
   title: string;
   prologue: string;
-  prologueImg: string;
-  ticket: string[];
-  option: string[];
-  program: string[];
+  ticket: Ticket[];
+  option: Option[];
+  program: Program[];
   exposed: boolean;
   date: Date;
 }
 
 export interface Ticket {
   title: string;
-  price: number;
+  price: number | string;
 }
 export interface Option {
   title: string;
-  price: number;
+  price: number | string;
 }
 export interface Program {
   title: string;
@@ -92,7 +91,15 @@ export interface getFruittePickIntroRequest {}
 export interface getFruittePickIntroDetailResponse
   extends ResponseBody<FruittePickIntro> {}
 
-export interface createFruittePickIntroRequest extends FruittePickIntro {}
+export interface createFruittePickIntroRequest
+  extends Omit<
+    FruittePickIntro,
+    "id" | "step" | "date" | "ticket" | "option" | "program"
+  > {
+  ticket: string;
+  option: string;
+  program: string;
+}
 export interface createFruittePickIntroResponse
   extends ResponseBody<FruittePickIntro> {}
 

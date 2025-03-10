@@ -196,3 +196,30 @@ export const useGetFruittePickIntroList = (pickId: string) => {
 
   return { data, isLoading, isError, isSuccess, refetch };
 };
+
+export const useCreateFruittePickIntro = (pickId: string) => {
+  const router = useRouter();
+  const { placeId, title, prologue, ticket, option, program, exposed } =
+    hook.useFruittePickIntroCreateStore();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const createdInfo = await api.createFruittePickIntro({
+        pickId: Number(pickId),
+        title,
+        prologue,
+        placeId: Number(placeId),
+        exposed,
+        ticket: JSON.stringify(ticket),
+        option: JSON.stringify(option),
+        program: JSON.stringify(program),
+      });
+      return createdInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("프룻 PICK 컨텐츠 생성이 완료되었습니다.");
+      router.push(`/fruitte-pick/${pickId}`);
+    },
+  });
+
+  return { mutate, isError, isPending };
+};

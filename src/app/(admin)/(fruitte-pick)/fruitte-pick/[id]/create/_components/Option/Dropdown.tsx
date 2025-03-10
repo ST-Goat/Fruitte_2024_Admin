@@ -33,18 +33,18 @@ const Dropdown = ({ index }: { index: number }) => {
   });
 
   // 수정버튼 클릭시, 모달이 열리면서 해당 index에 해당하는 값을 지정하기
-  const { setOpen, setValue, setMode, setIndex } = hooks.useTicketDetailStore();
-  const { getTicketValue, removeTicket } =
+  const { setOpen, setValue, setMode, setIndex } = hooks.useOptionDetailStore();
+  const { getOptionValue, removeOption } =
     hooks.useFruittePickIntroCreateStore();
 
   const handleUpdate = () => {
     setOpen(true);
     setMode("update");
-    const ticketValue = getTicketValue(index);
+    const optionValue = getOptionValue(index);
     setIndex(index);
     setValue({
-      title: ticketValue?.title as string,
-      price: ticketValue?.price as string,
+      title: optionValue?.title as string,
+      price: optionValue?.price as string,
     });
   };
 
@@ -113,7 +113,7 @@ const Dropdown = ({ index }: { index: number }) => {
         </button>
         <button
           className="flex w-full items-center gap-2 rounded-sm px-4 py-1.5 text-left text-sm hover:bg-gray dark:hover:bg-meta-4"
-          onClick={() => removeTicket(index)}
+          onClick={() => removeOption(index)}
         >
           <svg
             className="fill-current"

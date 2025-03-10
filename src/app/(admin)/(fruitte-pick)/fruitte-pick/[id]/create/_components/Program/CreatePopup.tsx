@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import * as hook from "@/features/fruitte-pick/hooks/fruittePick";
+import Images from "./Images";
 
 const CreatePopup = () => {
   const {
@@ -7,26 +8,28 @@ const CreatePopup = () => {
     setOpen,
     title,
     setTitle,
-    price,
-    setPrice,
+    description,
+    setDescription,
+    img,
+    setImg,
     reset,
     mode,
     index,
-  } = hook.useTicketDetailStore();
-  const { ticket, setTicket, setTicketValue } =
+  } = hook.useProgramDetailStore();
+  const { program, setProgram, setProgramValue } =
     hook.useFruittePickIntroCreateStore();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    if (!title.trim() || !price) return;
+    if (!title.trim() || !description) return;
 
     if (mode === "create") {
-      setTicket([...ticket, { title, price }]);
+      setProgram([...program, { title, description, img }]);
     }
 
     if (mode === "update") {
-      setTicketValue(index, { title, price });
+      setProgramValue(index, { title, description, img });
     }
     reset();
     setOpen(false);
@@ -66,7 +69,7 @@ const CreatePopup = () => {
               htmlFor="taskTitle"
               className="mb-2.5 block font-medium text-black dark:text-white"
             >
-              티켓명
+              프로그램명
             </label>
             <input
               type="text"
@@ -82,16 +85,23 @@ const CreatePopup = () => {
               htmlFor="taskTitle"
               className="mb-2.5 block font-medium text-black dark:text-white"
             >
-              가격
+              설명
             </label>
-            <input
-              type="number"
-              name="taskTitle"
-              id="taskTitle"
-              className="w-full rounded-sm border border-stroke bg-white px-4.5 py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
-              value={price || ""}
-              onChange={(e) => setPrice(e.target.value)}
+            <textarea
+              rows={6}
+              className="w-full rounded border-[1.5px] border-stroke bg-transparent bg-white px-5 py-3 font-normal text-black outline-none transition focus:border-primary active:border-primary disabled:cursor-default disabled:bg-whiter dark:border-form-strokedark dark:bg-form-input dark:text-white dark:focus:border-primary"
+              value={description || ""}
+              onChange={(e) => setDescription(e.target.value)}
             />
+          </div>
+          <div className="mb-5">
+            <label
+              htmlFor="taskTitle"
+              className="mb-2.5 block font-medium text-black dark:text-white"
+            >
+              이미지
+            </label>
+            <Images />
           </div>
 
           {mode === "create" && (
@@ -121,7 +131,7 @@ const CreatePopup = () => {
                     </clipPath>
                   </defs>
                 </svg>
-                티켓 추가
+                프로그램 추가
               </button>
             </>
           )}
@@ -130,7 +140,7 @@ const CreatePopup = () => {
               className="flex w-full items-center justify-center gap-2 rounded bg-primary px-4.5 py-2.5 font-medium text-white hover:bg-opacity-90"
               onClick={handleSubmit}
             >
-              티켓 수정
+              프로그램 수정
             </button>
           )}
         </form>
