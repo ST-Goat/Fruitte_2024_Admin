@@ -82,7 +82,7 @@ const UpdateDropdown: React.FC<{
         }`}
       >
         <Link
-          href={`/notice/${id}`}
+          href={`/fruitte-pick/${id}`}
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
         >
           수정
