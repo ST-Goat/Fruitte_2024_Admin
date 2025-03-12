@@ -463,3 +463,107 @@ export const useProgramDetailStore = create<ProgramDetail>((set, get) => ({
   index: 0,
   setIndex: (index) => set({ index }),
 }));
+
+interface FruittePickIntroDetail {
+  placeId: string;
+  setPlaceId: (placeId: string) => void;
+  title: string;
+  setTitle: (title: string) => void;
+  prologue: string;
+  setPrologue: (prologue: string) => void;
+  ticket: i.Ticket[];
+  setTicket: (ticket: i.Ticket[]) => void;
+  option: i.Option[];
+  setOption: (option: i.Option[]) => void;
+  program: i.Program[];
+  setProgram: (program: i.Program[]) => void;
+  exposed: boolean;
+  setExposed: (exposed: boolean) => void;
+  getTicketValue: (
+    index: number,
+  ) => { title: string; price: string | number } | undefined;
+  setTicketValue: (
+    index: number,
+    value: { title: string; price: string | number },
+  ) => void;
+  removeTicket: (index: number) => void;
+  getOptionValue: (
+    index: number,
+  ) => { title: string; price: string | number } | undefined;
+  setOptionValue: (
+    index: number,
+    value: { title: string; price: string | number },
+  ) => void;
+  removeOption: (index: number) => void;
+  getProgramValue: (
+    index: number,
+  ) => { title: string; img: string; description: string } | undefined;
+  setProgramValue: (
+    index: number,
+    value: { title: string; img: string; description: string },
+  ) => void;
+  removeProgram: (index: number) => void;
+}
+export const useFruittePickIntroDetailStore = create<FruittePickIntroDetail>(
+  (set, get) => ({
+    placeId: "",
+    setPlaceId: (placeId) => set({ placeId }),
+    title: "",
+    setTitle: (title) => set({ title }),
+    prologue: "",
+    setPrologue: (prologue) => set({ prologue }),
+    ticket: [],
+    setTicket: (ticket) => set({ ticket }),
+    option: [],
+    setOption: (option) => set({ option }),
+    program: [],
+    setProgram: (program) => set({ program }),
+    exposed: false,
+    setExposed: (exposed) => set({ exposed }),
+    getTicketValue: (index: number) => {
+      const tickets = get().ticket; // 현재 ticket 배열 가져오기
+      return tickets[index] ?? undefined; // 해당 인덱스 값 반환 (범위를 벗어나면 undefined)
+    },
+    setTicketValue: (index: number, value) => {
+      const tickets = get().ticket; // 현재 ticket 배열 가져오기
+      const updatedTickets = [...tickets]; // tickets 배열 복사
+      updatedTickets[index] = value; // 해당 인덱스 값 변경
+      set({ ticket: updatedTickets });
+    },
+    removeTicket: (index: number) => {
+      const tickets = get().ticket; // 현재 티켓 배열 가져오기
+      const updatedTickets = tickets.filter((_, i) => i !== index); // 해당 인덱스의 티켓 제거
+      set({ ticket: updatedTickets }); // 상태 업데이트
+    },
+    getOptionValue: (index: number) => {
+      const options = get().option; // 현재 ticket 배열 가져오기
+      return options[index] ?? undefined; // 해당 인덱스 값 반환 (범위를 벗어나면 undefined)
+    },
+    setOptionValue: (index: number, value) => {
+      const options = get().option; // 현재 ticket 배열 가져오기
+      const updatedOptions = [...options]; // tickets 배열 복사
+      updatedOptions[index] = value; // 해당 인덱스 값 변경
+      set({ option: updatedOptions });
+    },
+    removeOption: (index: number) => {
+      const options = get().option; // 현재 티켓 배열 가져오기
+      const updatedOptions = options.filter((_, i) => i !== index); // 해당 인덱스의 티켓 제거
+      set({ option: updatedOptions }); // 상태 업데이트
+    },
+    getProgramValue: (index: number) => {
+      const programs = get().program; // 현재 ticket 배열 가져오기
+      return programs[index] ?? undefined; // 해당 인덱스 값 반환 (범위를 벗어나면 undefined)
+    },
+    setProgramValue: (index: number, value) => {
+      const programs = get().program; // 현재 ticket 배열 가져오기
+      const updatedPrograms = [...programs]; // tickets 배열 복사
+      updatedPrograms[index] = value; // 해당 인덱스 값 변경
+      set({ program: updatedPrograms });
+    },
+    removeProgram: (index: number) => {
+      const programs = get().program; // 현재 티켓 배열 가져오기
+      const updatedPrograms = programs.filter((_, i) => i !== index); // 해당 인덱스의 티켓 제거
+      set({ program: updatedPrograms }); // 상태 업데이트
+    },
+  }),
+);

@@ -5,9 +5,13 @@ import * as query from "@/features/fruitte-pick/queries";
 
 const UpdateDropdown: React.FC<{
   classes: string;
-  id: string;
+  id: number;
   pickId: string;
 }> = ({ classes, id, pickId }) => {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const trigger = useRef<any>(null);
+  const dropdown = useRef<any>(null);
   const { mutate: deleteContent, isPending: isDeleting } =
     query.useDeleteFruittePickIntro(Number(id) as number);
 
@@ -21,9 +25,6 @@ const UpdateDropdown: React.FC<{
       }
     }
   };
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-  const trigger = useRef<any>(null);
-  const dropdown = useRef<any>(null);
 
   // close on click outside
   useEffect(() => {

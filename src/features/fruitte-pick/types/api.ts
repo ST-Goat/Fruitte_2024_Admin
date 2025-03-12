@@ -103,7 +103,12 @@ export interface createFruittePickIntroRequest
 export interface createFruittePickIntroResponse
   extends ResponseBody<FruittePickIntro> {}
 
-export interface updateFruittePickIntroRequest extends FruittePickIntro {}
+export interface updateFruittePickIntroRequest
+  extends Omit<FruittePickIntro, "ticket" | "option" | "program" | "date"> {
+  ticket: string;
+  option: string;
+  program: string;
+}
 export interface updateFruittePickIntroResponse
   extends ResponseBody<FruittePickIntro> {}
 

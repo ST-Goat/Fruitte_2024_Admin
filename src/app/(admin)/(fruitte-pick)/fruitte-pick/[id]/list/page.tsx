@@ -40,7 +40,7 @@ const FruittePickListIntroPage = ({ params }: Props) => {
                 </div>
                 <div className="p-6.5">
                   <ButtonsGroup pickId={params.id} />
-                  <DataTable />
+                  <DataTable pickId={params.id} />
                 </div>
               </div>
             </div>

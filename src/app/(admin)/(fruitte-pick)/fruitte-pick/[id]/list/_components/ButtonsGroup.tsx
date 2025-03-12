@@ -1,8 +1,6 @@
 import Link from "next/link";
 
 const ButtonsGroup = ({ pickId }: { pickId: string }) => {
-  console.log(pickId);
-
   return (
     <div className="mb-6 flex items-center justify-between gap-x-4">
       <Link

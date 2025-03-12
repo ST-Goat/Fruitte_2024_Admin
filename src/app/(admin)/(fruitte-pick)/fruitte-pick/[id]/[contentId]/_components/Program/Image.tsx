@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import ImageResize from "@/js/image-resize";
 import Image from "next/image";
-import { usePlaceIntroOpt3CreateStore } from "@/features/place/hooks/placeIntro";
+import * as hook from "@/features/fruitte-pick/hooks/fruittePick";
 
-const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
-  const { setImageStep, removeImage } = usePlaceIntroOpt3CreateStore();
+const ThumbnailImage = ({ src }: { src: string }) => {
+  const { setImg } = hook.useProgramDetailStore();
   useEffect(() => {
     ImageResize();
   });
@@ -12,45 +12,9 @@ const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
   return (
     <>
       <div className="flex justify-between border-b border-stroke px-4 py-4 dark:border-strokedark sm:px-6 xl:px-7.5">
-        <h3 className="font-medium text-black dark:text-white">
-          {index + 1}번째 썸네일
-        </h3>
         <div className="flex gap-2">
-          {index !== 0 && (
-            <svg
-              onClick={() => setImageStep(index, -1)}
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
-              className="size-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18"
-              />
-            </svg>
-          )}
-
           <svg
-            onClick={() => setImageStep(index, 1)}
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth="1.5"
-            stroke="currentColor"
-            className="size-6"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M19.5 13.5 12 21m0 0-7.5-7.5M12 21V3"
-            />
-          </svg>
-          <svg
-            onClick={() => removeImage(index)}
+            onClick={() => setImg("")}
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
             viewBox="0 0 24 24"
@@ -81,4 +45,4 @@ const ImageCommponent = ({ src, index }: { src: string; index: number }) => {
   );
 };
 
-export default ImageCommponent;
+export default ThumbnailImage;

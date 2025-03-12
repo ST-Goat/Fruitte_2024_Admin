@@ -223,3 +223,110 @@ export const useCreateFruittePickIntro = (pickId: string) => {
 
   return { mutate, isError, isPending };
 };
+
+export const useGetFruittePickIntroDetail = (pickId: string, id: string) => {
+  const {
+    setPlaceId,
+    setTitle,
+    setPrologue,
+    setTicket,
+    setOption,
+    setProgram,
+    setExposed,
+  } = hook.useFruittePickIntroDetailStore();
+  const { data, isLoading, isError, isSuccess, refetch } = useQuery({
+    queryKey: ["getFruittePickIntroDetail", pickId, id],
+    queryFn: async () => {
+      const fruittePickIntro = await api.getFruittePickIntro(pickId, id);
+
+      setPlaceId(String(fruittePickIntro?.placeId as number));
+      setTitle(fruittePickIntro?.title as string);
+      setPrologue(fruittePickIntro?.prologue as string);
+      setTicket(fruittePickIntro?.ticket as i.Ticket[]);
+      setOption(fruittePickIntro?.option as i.Option[]);
+      setProgram(fruittePickIntro?.program as i.Program[]);
+      setExposed(fruittePickIntro?.exposed as boolean);
+
+      return fruittePickIntro;
+    },
+    staleTime: 0,
+    gcTime: 0,
+  });
+
+  return { data, isLoading, isError, isSuccess, refetch };
+};
+
+export const useUpdateFruittePickIntro = (info: i.FruittePickIntro) => {
+  const { placeId, title, prologue, ticket, option, program, exposed } =
+    hook.useFruittePickIntroDetailStore();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const updatedInfo = await api.updateFruittePickIntro({
+        pickId: Number(info.id),
+        id: info.id,
+        step: info.step,
+        placeId: Number(placeId),
+        title,
+        prologue,
+        ticket: JSON.stringify(ticket),
+        option: JSON.stringify(option),
+        program: JSON.stringify(program),
+        exposed,
+      });
+      return updatedInfo;
+    },
+    onSuccess: (data) => {
+      toast.success("프룻 PICK 수정이 완료되었습니다.");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
+
+export const useUpdateFruittePickIntroStep = (pickId: string) => {
+  const { fruittePickIntros } = hook.useFruittePickIntroStore();
+
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const updatedFruittePicks = await api.updateFruittePickIntroStep(
+        pickId,
+        fruittePickIntros,
+      );
+
+      toast.success("공개우선순위가 수정되었습니다");
+
+      return updatedFruittePicks;
+    },
+    onError: (error) => {
+      toast.error("수정에 실패했습니다.");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};
+
+export const useDeleteFruittePickIntro = (id: number) => {
+  const { fruittePickIntros, setFruittePickIntros } =
+    hook.useFruittePickIntroStore(); // info와 setInfo를 불러옵니다.
+
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const deletedInfo = await api.deleteFruittePickIntro(id);
+      return deletedInfo;
+    },
+    onSuccess: () => {
+      toast.success("프룻 PICK 컨텐츠 삭제완료");
+
+      // 기존 info를 필터링한 새로운 배열 생성
+      const updatedInfo = fruittePickIntros.filter((item) => item.id !== id);
+
+      // 새로운 배열로 setInfo 호출
+      setFruittePickIntros(updatedInfo);
+    },
+    onError: (error) => {
+      toast.error("삭제에 실패했습니다.");
+    },
+  });
+
+  return { mutate, isError, isPending };
+};

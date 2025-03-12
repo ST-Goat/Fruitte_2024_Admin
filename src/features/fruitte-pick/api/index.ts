@@ -113,11 +113,11 @@ export const getFruittePickIntroList = async (pickId: string) => {
   }
 };
 
-export const getFruittePickIntro = async (pickId: string) => {
+export const getFruittePickIntro = async (pickId: string, id: string) => {
   const { data } = await ApiUtils.fetch<
     i.getFruittePickIntroRequest,
     AxiosResponse<i.getFruittePickIntroDetailResponse>
-  >(`${API_URL.getFruittePickIntro}/${pickId}`);
+  >(`${API_URL.getFruittePickIntro}/${pickId}/${id}`);
 
   const { statusCode, msg, response } = data;
 
@@ -147,7 +147,10 @@ export const updateFruittePickIntro = async (
   const { data } = await ApiUtils.patch<
     i.updateFruittePickIntroRequest,
     AxiosResponse<i.updateFruittePickIntroResponse>
-  >(`${API_URL.updateFruittePickIntro}/${updateInfo.id}`, updateInfo);
+  >(
+    `${API_URL.updateFruittePickIntro}/${updateInfo.pickId}/${updateInfo.id}`,
+    updateInfo,
+  );
 
   const { statusCode, msg, response } = data;
 
@@ -157,12 +160,13 @@ export const updateFruittePickIntro = async (
 };
 
 export const updateFruittePickIntroStep = async (
+  pickId: string,
   updateInfo: i.updateFruittePickIntroStepRequest,
 ) => {
   const { data } = await ApiUtils.patch<
     i.updateFruittePickIntroStepRequest,
     AxiosResponse<i.updateFruittePickIntroStepResponse>
-  >(API_URL.updateFruittePickIntroStep, updateInfo);
+  >(`${API_URL.updateFruittePickIntroStep}/${pickId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
 
@@ -171,15 +175,15 @@ export const updateFruittePickIntroStep = async (
   }
 };
 
-export const deleteFruittePickIntro = async (pickId: number) => {
+export const deleteFruittePickIntro = async (id: number) => {
   const { data } = await ApiUtils.patch<
     i.deleteFruittePickIntroRequest,
     AxiosResponse<i.deleteFruittePickIntroResponse>
-  >(`${API_URL.deleteFruittePickIntro}/${pickId}`);
+  >(`${API_URL.deleteFruittePickIntro}/${id}`);
 
   const { statusCode, msg, response } = data;
 
-  if (statusCode === 200) {
+  if (statusCode === 204) {
     return response;
   }
 };

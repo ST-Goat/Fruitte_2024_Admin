@@ -11,7 +11,8 @@ import {
 import UpdateDropdown from "./UpdateDropdown";
 import * as hook from "@/features/fruitte-pick/hooks/fruittePick";
 import * as i from "@/features/fruitte-pick/types/api";
-const DataTable = () => {
+
+const DataTable = ({ pickId }: { pickId: string }) => {
   const { fruittePickIntros } = hook.useFruittePickIntroStore();
 
   const data = useMemo(() => fruittePickIntros, [fruittePickIntros]);
@@ -42,6 +43,7 @@ const DataTable = () => {
         Cell: ({ row, index }) => (
           <UpdateDropdown
             id={row?.values?.id}
+            pickId={pickId}
             classes={
               index < 2
                 ? "top-full mt-1"
