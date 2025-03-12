@@ -299,7 +299,66 @@
     {
       "source": "/api/admin/notice/step",
       "destination": "http://223.130.131.154:8080/api/admin/notice/step"
+    },
+    {
+      "source": "/api/notice/:id",
+      "destination": "http://223.130.131.154:8080/api/notice/:id"
+    },
+    {
+      "source": "/api/notice",
+      "destination": "http://223.130.131.154:8080/api/notice"
+    },
+    {
+      "source": "/api/admin/fruitte-pick",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/exposed",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/exposed"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/:id"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/step",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/step"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/delete/:id"
+    },
+    {
+      "source": "/api/fruitte-picks",
+      "destination": "http://223.130.131.154:8080/api/fruitte-picks"
+    },
+    {
+      "source": "/api/fruitte-pick/:id",
+      "destination": "http://223.130.131.154:8080/api/fruitte-pick/:id"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/intro/:pickId",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/intro/:pickId"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/intro/:pickId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/intro/:pickId/:id"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/intro/step/:pickId",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/intro/step/:pickId"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/intro/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/intro/delete/:id"
+    },
+    {
+      "source": "/api/admin/fruitte-pick/intro/:pickId/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/fruitte-pick/intro/:pickId/:id"
+    },
+    {
+      "source": "/api/admin/partner",
+      "destination": "http://223.130.131.154:8080/api/admin/partner"
     }
-    
   ]
 }
