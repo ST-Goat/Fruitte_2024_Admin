@@ -262,7 +262,7 @@ export const useUpdateFruittePickIntro = (info: i.FruittePickIntro) => {
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async () => {
       const updatedInfo = await api.updateFruittePickIntro({
-        pickId: Number(info.id),
+        pickId: info.pickId,
         id: info.id,
         step: info.step,
         placeId: Number(placeId),

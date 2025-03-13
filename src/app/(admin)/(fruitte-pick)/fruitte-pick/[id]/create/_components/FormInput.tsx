@@ -3,9 +3,6 @@
 import React from "react";
 import { useFruittePickIntroCreateStore } from "@/features/fruitte-pick/hooks/fruittePick";
 import Checkbox from "./Checkbox";
-// import DatePicker from "./DatePicker";
-import Images from "./Images";
-// import ThumbnailImages from "./ThumbnailImages";
 import PlaceSelector from "./PlaceSelector";
 import TicketContainer from "./Ticket/Container";
 import OptionContainer from "./Option/Container";

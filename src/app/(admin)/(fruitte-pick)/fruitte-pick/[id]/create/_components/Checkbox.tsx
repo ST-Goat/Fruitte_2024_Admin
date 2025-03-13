@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { usePlaceInfoOpt1Store } from "@/features/place/hooks/placeInfo";
-import { useFruittePickCreateStore } from "@/features/fruitte-pick/hooks/fruittePick";
+import { useFruittePickIntroCreateStore } from "@/features/fruitte-pick/hooks/fruittePick";
 
 const Checkbox = () => {
-  const { exposed, setExposed } = useFruittePickCreateStore();
+  const { exposed, setExposed } = useFruittePickIntroCreateStore();
 
   return (
     <div className="my-5">

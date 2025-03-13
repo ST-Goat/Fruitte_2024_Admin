@@ -38,7 +38,7 @@ const FormInput = () => {
       </div>
       <div className="mb-5">
         <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-          프롤로그
+          프롤로그 (띄어쓰기 포함 최대 255글자까지 입력 가능합니다.)
         </label>
         <textarea
           rows={6}

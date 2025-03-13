@@ -62,7 +62,7 @@ const FruittePickDetailPage = ({ params }: Props) => {
                     className="flex w-full justify-center rounded bg-primary p-3 font-medium text-gray hover:bg-opacity-90"
                     onClick={handleUpdate}
                   >
-                    프룻 PICK 생성
+                    프룻 PICK 수정
                   </button>
                 </div>
               </div>
