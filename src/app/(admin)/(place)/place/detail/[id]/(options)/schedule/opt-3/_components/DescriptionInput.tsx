@@ -2,6 +2,7 @@
 
 import React from "react";
 import * as hook from "@/features/place/hooks/placeSchedule";
+import Postcode from "./PostCode";
 
 const DescriptionInput = () => {
   const {
@@ -41,7 +42,8 @@ const DescriptionInput = () => {
           onChange={(e) => setRegion(e.target.value)}
         />
       </div>
-      <div className="mb-5">
+      <Postcode />
+      <div className="my-5">
         <label className="mb-3 block text-sm font-medium text-black dark:text-white">
           주소(예시: 경기도 김포시 하성면 누산봉성로)
         </label>
@@ -53,9 +55,6 @@ const DescriptionInput = () => {
         />
       </div>
       <div className="mb-5">
-        <label className="mb-3 block text-sm font-medium text-black dark:text-white">
-          구글 지도를 통해 좌표를 검색한 후 입력해주세요.
-        </label>
         <div className="mb-5">
           <label className="mb-3 block text-sm font-medium text-black dark:text-white">
             좌표 - 위도
