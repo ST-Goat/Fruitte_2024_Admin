@@ -429,7 +429,8 @@ export const useGetIntroOpt5Detail = (placeId: string, contentId: string) => {
 };
 export const useCreateIntroOpt5 = () => {
   const router = useRouter();
-  const { description, title, images, reset } = hook.usePlaceIntroOpt5CreateStore();
+  const { description, title, images, reset } =
+    hook.usePlaceIntroOpt5CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createIntroOpt5(placeId, {
@@ -567,7 +568,8 @@ export const useGetIntroOpt6Detail = (placeId: string, contentId: string) => {
 };
 export const useCreateIntroOpt6 = () => {
   const router = useRouter();
-  const { description, title, images, reset } = hook.usePlaceIntroOpt6CreateStore();
+  const { description, title, images, reset } =
+    hook.usePlaceIntroOpt6CreateStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async (placeId: string) => {
       const createdInfo = await api.createIntroOpt6(placeId, {
