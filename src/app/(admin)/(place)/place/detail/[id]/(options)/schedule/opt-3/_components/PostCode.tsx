@@ -34,9 +34,6 @@ const Postcode = () => {
       fullAddress += extraAddress !== "" ? ` (${extraAddress})` : "";
     }
 
-    console.log(data);
-
-    console.log(fullAddress); // e.g. '서울 성동구 왕십리로2길 20 (성수동1가)'
     const result = await searchAddress(fullAddress); // `await`으로 결과 받기
 
     if (result) {
