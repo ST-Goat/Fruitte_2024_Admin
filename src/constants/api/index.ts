@@ -131,4 +131,12 @@ export const API_URL = {
   updateFruittePickIntro: "/admin/fruitte-pick/intro",
   deleteFruittePickIntro: "/admin/fruitte-pick/intro/delete",
   updateFruittePickIntroStep: "/admin/fruitte-pick/intro/step",
+  getTickets: "/admin/place/ticket",
+  createTicket: "/admin/place/ticket",
+  updateTicket: "/admin/place/ticket",
+  deleteTicket: "/admin/place/ticket",
+  getOptions: "/admin/place/option",
+  createOption: "/admin/place/option",
+  updateOption: "/admin/place/option",
+  deleteOption: "/admin/place/option",
 };

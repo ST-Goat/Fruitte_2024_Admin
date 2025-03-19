@@ -1,21 +1,41 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useDeleteIntroOpt2 } from "@/features/place/queries/intro";
+import { useTicketPopupStore } from "@/features/place/hooks/ticket/ticket";
+import { useTicketStore } from "@/features/place/hooks/ticket/ticket";
+import * as q from "@/features/place/queries/ticket";
 
 const UpdateDropdown: React.FC<{
   classes: string;
   id: number;
-}> = ({ classes, id }) => {
-  const pathname = usePathname(); // 현재 경로 가져오기
+  placeId: string;
+}> = ({ classes, id: contentId, placeId }) => {
+  const { setValueForUpdate } = useTicketPopupStore();
+  const { info } = useTicketStore();
 
   // Pathname에서 PlaceId를 추출 (예: /place/detail/[placeId]/intro/...)
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
+  const { mutate: deleteTicket, isPending: isDeleting } =
+    q.useDeleteTicket(contentId);
 
-  const handleDelete = () => {};
+  const handleDelete = () => {
+    if (!isDeleting) {
+      if (
+        window.confirm("정말 삭제하시겠습니까?") &&
+        typeof window !== "undefined"
+      ) {
+        deleteTicket();
+      }
+    }
+  };
+
+  const handleUpdate = () => {
+    setValueForUpdate(contentId, info);
+  };
 
   // close on click outside
   useEffect(() => {
@@ -73,18 +93,12 @@ const UpdateDropdown: React.FC<{
           dropdownOpen === true ? "block" : "hidden"
         }`}
       >
-        <Link
-          href={`/place/detail/${id}/info/opt-1/`}
+        <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
+          onClick={handleUpdate}
         >
-          상세보기 수정
-        </Link>
-        <Link
-          href={`/place/order/${id}/ticket`}
-          className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-        >
-          티켓/옵션 수정
-        </Link>
+          수정
+        </button>
         <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
           onClick={handleDelete}

@@ -1,21 +1,14 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-
-const UpdateDropdown: React.FC<{
-  classes: string;
-  id: number;
-}> = ({ classes, id }) => {
-  const pathname = usePathname(); // 현재 경로 가져오기
-
-  // Pathname에서 PlaceId를 추출 (예: /place/detail/[placeId]/intro/...)
+import { usePlaceIntroOpt2Store } from "@/features/place/hooks/placeIntro";
+const StepDropdown: React.FC<{ classes: string; id: number }> = ({
+  classes,
+  id,
+}) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
-
-  const handleDelete = () => {};
 
   // close on click outside
   useEffect(() => {
@@ -50,7 +43,7 @@ const UpdateDropdown: React.FC<{
         ref={trigger}
         onClick={() => setDropdownOpen(!dropdownOpen)}
       >
-        설정
+        노출순위 수정
         <svg
           className="fill-current"
           width="16"
@@ -65,35 +58,8 @@ const UpdateDropdown: React.FC<{
           />
         </svg>
       </button>
-      <div
-        ref={dropdown}
-        onFocus={() => setDropdownOpen(true)}
-        onBlur={() => setDropdownOpen(false)}
-        className={`absolute right-0 z-1 w-full max-w-39.5 rounded-[5px] bg-white py-2.5 shadow-12 dark:bg-boxdark ${classes} ${
-          dropdownOpen === true ? "block" : "hidden"
-        }`}
-      >
-        <Link
-          href={`/place/detail/${id}/info/opt-1/`}
-          className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-        >
-          상세보기 수정
-        </Link>
-        <Link
-          href={`/place/order/${id}/ticket`}
-          className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-        >
-          티켓/옵션 수정
-        </Link>
-        <button
-          className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-          onClick={handleDelete}
-        >
-          삭제
-        </button>
-      </div>
     </div>
   );
 };
 
-export default UpdateDropdown;
+export default StepDropdown;
