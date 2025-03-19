@@ -134,9 +134,9 @@ export const API_URL = {
   getTickets: "/admin/place/ticket",
   createTicket: "/admin/place/ticket",
   updateTicket: "/admin/place/ticket",
-  deleteTicket: "/admin/place/ticket",
+  deleteTicket: "/admin/place/ticket/delete",
   getOptions: "/admin/place/option",
   createOption: "/admin/place/option",
   updateOption: "/admin/place/option",
-  deleteOption: "/admin/place/option",
+  deleteOption: "/admin/place/option/delete",
 };

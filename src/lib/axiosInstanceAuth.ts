@@ -54,8 +54,8 @@ const getHeader = async (customHeader?: CustomHeaders) => {
  * Axios 인스턴스
  */
 const axiosInstance = axios.create({
-  // baseURL: "https://fruitte-2024-admin.vercel.app/api",
-  baseURL: BASE_URL,
+  baseURL: "https://fruitte-2024-admin.vercel.app/api",
+  // baseURL: BASE_URL,
   // headers: {
   //   "Content-Type": "application/json",
   //   "Access-Control-Allow-Credentials": "*",

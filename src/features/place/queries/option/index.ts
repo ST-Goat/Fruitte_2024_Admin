@@ -1,4 +1,4 @@
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import * as hook from "../../hooks/option/option";
 import * as api from "../../api/option";
@@ -23,6 +23,7 @@ export const useGetOptions = (placeId: string) => {
 };
 
 export const useCreateOption = (placeId: string) => {
+  const queryClient = useQueryClient();
   const { title, price, isRequired, setOpen } = hook.useOptionPopupStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async () => {
@@ -36,6 +37,7 @@ export const useCreateOption = (placeId: string) => {
     },
     onSuccess: (data) => {
       toast.success("티켓 생성이 완료되었습니다.");
+      queryClient.invalidateQueries({ queryKey: ["getOptions"] });
       setOpen(false);
     },
   });
@@ -44,6 +46,7 @@ export const useCreateOption = (placeId: string) => {
 };
 
 export const useUpdateOption = (id: number, placeId: string) => {
+  const queryClient = useQueryClient();
   const { title, price, isRequired } = hook.useOptionPopupStore();
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async () => {
@@ -58,6 +61,7 @@ export const useUpdateOption = (id: number, placeId: string) => {
     },
     onSuccess: (data) => {
       toast.success("티켓 수정이 완료되었습니다.");
+      queryClient.invalidateQueries({ queryKey: ["getOptions"] });
     },
   });
 
@@ -65,6 +69,7 @@ export const useUpdateOption = (id: number, placeId: string) => {
 };
 
 export const useDeleteOption = (id: number) => {
+  const queryClient = useQueryClient();
   const { info, setInfo } = hook.useOptionStore(); // info와 setInfo를 불러옵니다.
 
   const { mutate, isError, isPending } = useMutation({
@@ -74,12 +79,7 @@ export const useDeleteOption = (id: number) => {
     },
     onSuccess: () => {
       toast.success("티켓 삭제완료");
-
-      // 기존 info를 필터링한 새로운 배열 생성
-      const updatedInfo = info.filter((item) => item.id !== id);
-
-      // 새로운 배열로 setInfo 호출
-      setInfo(updatedInfo);
+      queryClient.invalidateQueries({ queryKey: ["getOptions"] });
     },
     onError: (error) => {
       toast.error("삭제에 실패했습니다.");

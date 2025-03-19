@@ -69,6 +69,7 @@ export const useUpdateTicket = (id: number, placeId: string) => {
 
 export const useDeleteTicket = (id: number) => {
   const { info, setInfo } = hook.useTicketStore(); // info와 setInfo를 불러옵니다.
+  const queryClient = useQueryClient();
 
   const { mutate, isError, isPending } = useMutation({
     mutationFn: async () => {
@@ -76,13 +77,8 @@ export const useDeleteTicket = (id: number) => {
       return deletedInfo;
     },
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["getTickets"] });
       toast.success("티켓 삭제완료");
-
-      // 기존 info를 필터링한 새로운 배열 생성
-      const updatedInfo = info.filter((item) => item.id !== id);
-
-      // 새로운 배열로 setInfo 호출
-      setInfo(updatedInfo);
     },
     onError: (error) => {
       toast.error("삭제에 실패했습니다.");
