@@ -23,26 +23,19 @@ const Popup = ({ placeId }: { placeId: string }) => {
     id,
   } = useSessionPopupStore();
   const { mutate: create, isPending: isCreating } = q.useCreateSession(placeId);
-
+  const { mutate: update, isPending: isUpdating } = q.useUpdateSession(
+    id as number,
+    placeId,
+  );
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
     if (mode === "create" && !isCreating) {
       create();
     }
-
-    // if (mode === "update" && !isUpdating) {
-    //   update();
-    // }
-
-    console.log({
-      sessionMode,
-      sessionDate: formatDate(sessionDate),
-      sessionTime: formatTime(sessionTime),
-      totalStock,
-      remainingStock,
-      exposed,
-    });
+    if (mode === "update" && !isUpdating) {
+      update();
+    }
 
     setOpen(false);
   };

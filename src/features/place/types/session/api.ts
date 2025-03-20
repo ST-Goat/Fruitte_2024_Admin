@@ -27,7 +27,11 @@ export interface CreateSessionRequest
 }
 export interface CreateSessionResponse extends ResponseBody<Session> {}
 
-export interface UpdateSessionRequest extends Session {}
+export interface UpdateSessionRequest
+  extends Omit<Session, "sessionDate" | "sessionTime"> {
+  sessionDate: string;
+  sessionTime: string;
+}
 export interface UpdateSessionResponse extends ResponseBody<Session> {}
 
 export interface DeleteSessionRequest {}

@@ -1,5 +1,6 @@
 import { create } from "zustand";
 import * as i from "../../types/session/api";
+import * as fd from "@/lib/formatDate";
 
 interface SessionState {
   info: i.Session[];
@@ -84,10 +85,18 @@ export const useSessionPopupStore = create<SessionPopupState>((set, get) => ({
   setExposed: (exposed) => set({ exposed }),
   setValueForUpdate: (id, Sessions) => {
     const info = Sessions.find((item) => item.id === id);
+    console.log(info);
+
     set({
       open: true,
       mode: "update",
       id: info?.id,
+      sessionMode: info?.mode,
+      sessionDate: fd.formatStringDate(info?.sessionDate as Date),
+      sessionTime: fd.formatStringTime(info?.sessionTime as Date),
+      totalStock: String(info?.totalStock),
+      remainingStock: String(info?.remainingStock),
+      exposed: info?.exposed,
     });
   },
   setValueForCreate: () => {

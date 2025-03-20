@@ -3,23 +3,23 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useOptionPopupStore } from "@/features/place/hooks/option/option";
 import { useOptionStore } from "@/features/place/hooks/option/option";
-import * as q from "@/features/place/queries/option";
+import * as h from "@/features/place/hooks/session/session";
+import * as q from "@/features/place/queries/session";
 
 const UpdateDropdown: React.FC<{
   classes: string;
   id: number;
   placeId: string;
 }> = ({ classes, id: contentId, placeId }) => {
-  const { setValueForUpdate } = useOptionPopupStore();
-  const { info } = useOptionStore();
+  const { setValueForUpdate, setOpen } = h.useSessionPopupStore();
+  const { info } = h.useSessionStore();
 
-  // Pathname에서 PlaceId를 추출 (예: /place/detail/[placeId]/intro/...)
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
   const { mutate: deleteOption, isPending: isDeleting } =
-    q.useDeleteOption(contentId);
+    q.useDeleteSession(contentId);
 
   const handleDelete = () => {
     if (!isDeleting) {
