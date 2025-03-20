@@ -383,6 +383,19 @@
     {
       "source": "/api/admin/place/ticket/delete/:id",
       "destination": "http://223.130.131.154:8080/api/admin/place/ticket/delete/:id"
+    },
+    {
+      "source": "/api/admin/place/session/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/:id"
+    },
+
+    {
+      "source": "/api/admin/place/session/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/delete/:id"
     }
   ]
 }
