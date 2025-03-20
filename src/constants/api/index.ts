@@ -139,4 +139,8 @@ export const API_URL = {
   createOption: "/admin/place/option",
   updateOption: "/admin/place/option",
   deleteOption: "/admin/place/option/delete",
+  getSessions: "/admin/place/session",
+  createSession: "/admin/place/session",
+  updateSession: "/admin/place/session",
+  deleteSession: "/admin/place/session/delete",
 };
