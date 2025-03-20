@@ -365,16 +365,12 @@
       "destination": "http://223.130.131.154:8080/api/admin/place/option/:placeId"
     },
     {
-      "source": "/api/admin/place/option/:placeId",
-      "destination": "http://223.130.131.154:8080/api/admin/place/option/:placeId"
-    },
-    {
       "source": "/api/admin/place/option/:id",
       "destination": "http://223.130.131.154:8080/api/admin/place/option/:id"
     },
     {
       "source": "/api/admin/place/option/delete/:id",
-      "destination": "http://223.130.131.154:8080/api/admin/place/option/:placeId"
+      "destination": "http://223.130.131.154:8080/api/admin/place/option/delete/:id"
     },
     {
       "source": "/api/admin/place/ticket/:placeId",
@@ -385,12 +381,8 @@
       "destination": "http://223.130.131.154:8080/api/admin/place/ticket/:id"
     },
     {
-      "source": "/api/admin/place/option/delete/:id",
-      "destination": "http://223.130.131.154:8080/api/admin/place/option/delete/:id"
-    },
-    {
-      "source": "/api/admin/place/option/:placeId",
-      "destination": "http://223.130.131.154:8080/api/admin/place/option/delete/:id"
+      "source": "/api/admin/place/ticket/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/ticket/delete/:id"
     }
   ]
 }
