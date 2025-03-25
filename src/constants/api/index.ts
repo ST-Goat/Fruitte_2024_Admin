@@ -143,4 +143,11 @@ export const API_URL = {
   createSession: "/admin/place/session",
   updateSession: "/admin/place/session",
   deleteSession: "/admin/place/session/delete",
+  createMultipleSession: "/admin/place/session/multiple",
+  getSessionTickets: "/admin/place/session-ticket",
+  createSessionTicket: "/admin/place/session-ticket",
+  updateSessionTicket: "/admin/place/session-ticket",
+  deleteSessionTicket: "/admin/place/session-ticket/delete",
+  getSessionsForSelector: "/admin/place/session/selector",
+  getTicketsForSelector: "/admin/place/ticket/selector",
 };

@@ -109,3 +109,25 @@ export const useDeleteSession = (id: number) => {
 
   return { mutate, isError, isPending };
 };
+
+export const useCreateMultipleSession = (placeId: string) => {
+  const queryClient = useQueryClient();
+  const { getSessionArray, setOpen } =
+    hook.useSessionMultipleCreatePopupStore();
+  const { mutate, isError, isPending } = useMutation({
+    mutationFn: async () => {
+      const createdInfo = await api.createMultipleSession(
+        placeId,
+        getSessionArray(placeId),
+      );
+      return createdInfo;
+    },
+    onSuccess: (data) => {
+      queryClient.invalidateQueries({ queryKey: ["getSessions"] });
+      toast.success("회차 일괄생성이 완료되었습니다.");
+      setOpen(false);
+    },
+  });
+
+  return { mutate, isError, isPending };
+};

@@ -60,3 +60,21 @@ export const deleteSession = async (id: number) => {
     return response;
   }
 };
+
+export const createMultipleSession = async (
+  placeId: string,
+  createInfo: i.CreateMultipleSessionRequest,
+) => {
+  const { data } = await ApiUtils.post<
+    i.CreateMultipleSessionRequest,
+    AxiosResponse<i.CreateMultipleSessionResponse>
+  >(`${API_URL.createMultipleSession}/${placeId}`, createInfo);
+
+  const { statusCode, msg, response } = data;
+
+  console.log(data);
+
+  if (statusCode === 200) {
+    return response;
+  }
+};

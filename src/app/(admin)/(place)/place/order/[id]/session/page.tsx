@@ -8,6 +8,7 @@ import ButtonsGroup from "./_components/ButtonsGroup";
 import Popup from "./_components/Popup";
 import * as q from "@/features/place/queries/session";
 import Loader from "@/components/common/Loader";
+import MultipleCreatePopup from "./_components/MultipleCreatePopup/MultipleCreatePopup";
 
 type Props = {
   params: {
@@ -21,6 +22,7 @@ const Session = ({ params }: Props) => {
   return (
     <PlaceOrderLayout>
       <Popup placeId={params.id} />
+      <MultipleCreatePopup placeId={params.id} />
       <Breadcrumb pageName={`회차 관리`} />
       {isLoading && <Loader />}
       {isSuccess && (

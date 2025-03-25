@@ -11,8 +11,8 @@ import {
   useRowSelect,
   Column,
 } from "react-table";
-import * as i from "@/features/place/types/session/api";
-import * as hook from "@/features/place/hooks/session/session";
+import * as i from "@/features/place/types/session-ticket/api";
+import * as hook from "@/features/place/hooks/session-ticket/session-ticket";
 import UpdateDropdown from "./UpdateDropdown";
 
 type IndeterminateCheckboxProps = {
@@ -38,9 +38,13 @@ const IndeterminateCheckbox: React.FC<IndeterminateCheckboxProps> = ({
 const Table = () => {
   // table header
 
-  const { info: data, selectedRow, setSelectedRow } = hook.useSessionStore();
+  const {
+    info: data,
+    selectedRow,
+    setSelectedRow,
+  } = hook.useSessionTicketStore();
 
-  const columns: Column<i.Session>[] = useMemo(
+  const columns: Column<i.SessionTicketTable>[] = useMemo(
     () => [
       {
         id: "selection",
@@ -65,11 +69,6 @@ const Table = () => {
         accessor: "id",
       },
       {
-        Header: "모드",
-        accessor: "mode",
-        Cell: ({ value }) => (value == "ticket" ? "티켓" : "회차"),
-      },
-      {
         Header: "날짜",
         accessor: "sessionDate",
         Cell: ({ value }) =>
@@ -82,18 +81,20 @@ const Table = () => {
           value instanceof Date ? value.toLocaleTimeString() : value,
       },
       {
-        Header: "총재고",
-        accessor: "totalStock",
+        Header: "공개순위",
+        accessor: "step",
+      },
+      {
+        Header: "티켓명",
+        accessor: "ticket",
       },
       {
         Header: "남은재고",
         accessor: "remainingStock",
       },
-
       {
-        Header: "공개여부",
-        accessor: "exposed",
-        Cell: ({ value }) => (value == true ? "공개" : "미공개"),
+        Header: "총재고",
+        accessor: "totalStock",
       },
       {
         Header: "",
@@ -116,7 +117,7 @@ const Table = () => {
     [data],
   );
 
-  const tableInstance = useTable<i.Session>(
+  const tableInstance = useTable<i.SessionTicketTable>(
     { columns, data },
     useFilters,
     useGlobalFilter,
