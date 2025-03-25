@@ -20,7 +20,10 @@ const CheckSession = () => {
         생성 예정 회차 ({getSessionArray(placeId).length}개)
       </label>
       {getSessionArray(placeId).map((e: CreateSessionRequest, i: number) => (
-        <div className="task relative mb-0.5 flex justify-between rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark">
+        <div
+          key={i}
+          className="task relative mb-0.5 flex justify-between rounded-sm border border-stroke bg-white p-4 shadow-default dark:border-strokedark dark:bg-boxdark"
+        >
           <div>
             <p
               className="text-lg font-medium text-black dark:text-white"
