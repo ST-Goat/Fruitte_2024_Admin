@@ -392,10 +392,65 @@
       "source": "/api/admin/place/session/:id",
       "destination": "http://223.130.131.154:8080/api/admin/place/session/:id"
     },
-
     {
       "source": "/api/admin/place/session/delete/:id",
       "destination": "http://223.130.131.154:8080/api/admin/place/session/delete/:id"
+    },
+    {
+      "source": "/api/admin/place/session/selector/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/selector/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session/selector/step/ticket/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/selector/step/ticket/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session/selector/step/option/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/selector/step/option/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session/multiple/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/multiple/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session-ticket/session/:sessionId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-ticket/session/:sessionId"
+    },
+    {
+      "source": "/api/admin/place/session-ticket/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-ticket/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session-ticket/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-ticket/:id"
+    },
+    {
+      "source": "/api/admin/place/session-ticket/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-ticket/delete/:id"
+    },
+    {
+      "source": "/api/admin/place/session-ticket/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-ticket/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session-option/session/:sessionId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-option/session/:sessionId"
+    },
+    {
+      "source": "/api/admin/place/session-option/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-option/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session-option/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-option/:id"
+    },
+    {
+      "source": "/api/admin/place/session-option/delete/:id",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-option/delete/:id"
+    },
+    {
+      "source": "/api/admin/place/session-option/step/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session-option/step/:placeId"
     }
   ]
 }
