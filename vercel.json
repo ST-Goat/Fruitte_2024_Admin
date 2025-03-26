@@ -459,6 +459,10 @@
     {
       "source": "/api/admin/place/ticket/selector/:placeId",
       "destination": "http://223.130.131.154:8080/api/admin/place/ticket/selector/:placeId"
+    },
+    {
+      "source": "/api/admin/place/option/selector/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/option/selector/:placeId"
     }
   ]
 }
