@@ -451,6 +451,14 @@
     {
       "source": "/api/admin/place/session-option/step/:placeId",
       "destination": "http://223.130.131.154:8080/api/admin/place/session-option/step/:placeId"
+    },
+    {
+      "source": "/api/admin/place/session/selector/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/session/selector/:placeId"
+    },
+    {
+      "source": "/api/admin/place/ticket/selector/:placeId",
+      "destination": "http://223.130.131.154:8080/api/admin/place/ticket/selector/:placeId"
     }
   ]
 }
