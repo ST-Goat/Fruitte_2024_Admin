@@ -4,13 +4,13 @@ import React from "react";
 import { useOptionPopupStore } from "@/features/place/hooks/option/option";
 import { useSessionMultipleCreatePopupStore } from "@/features/place/hooks/session/session";
 import {
-  useSessionTicketStore,
-  useSessionTicketPopupStore,
-} from "@/features/place/hooks/session-ticket/session-ticket";
+  useSessionOptionStore,
+  useSessionOptionPopupStore,
+} from "@/features/place/hooks/session-option/session-option";
 
 const ButtonsGroup = ({ placeId }: { placeId: string }) => {
-  const { selectedRow } = useSessionTicketStore();
-  const { setValueForCreate } = useSessionTicketPopupStore();
+  const { selectedRow } = useSessionOptionStore();
+  const { setValueForCreate } = useSessionOptionPopupStore();
   const { setValueForCreate: multipleCreateOpen } =
     useSessionMultipleCreatePopupStore();
 

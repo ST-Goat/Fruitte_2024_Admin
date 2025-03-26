@@ -3,23 +3,23 @@ import React, { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { useOptionPopupStore } from "@/features/place/hooks/option/option";
 import { useOptionStore } from "@/features/place/hooks/option/option";
-import * as h from "@/features/place/hooks/session-ticket/session-ticket";
-import * as q from "@/features/place/queries/session-ticket";
+import * as h from "@/features/place/hooks/session-option/session-option";
+import * as q from "@/features/place/queries/session-option";
 
 const UpdateDropdown: React.FC<{
   classes: string;
   id: number;
   placeId: string;
 }> = ({ classes, id: contentId, placeId }) => {
-  const { setValueForUpdate, setOpen } = h.useSessionTicketPopupStore();
-  const { info } = h.useSessionTicketStore();
+  const { setValueForUpdate, setOpen } = h.useSessionOptionPopupStore();
+  const { info } = h.useSessionOptionStore();
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
   const { mutate: deleteOption, isPending: isDeleting } =
-    q.useDeleteSessionTicket(contentId);
+    q.useDeleteSessionOption(contentId);
 
   const handleDelete = () => {
     if (!isDeleting) {

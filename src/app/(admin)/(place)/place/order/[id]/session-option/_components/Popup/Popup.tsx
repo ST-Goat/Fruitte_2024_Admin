@@ -1,9 +1,9 @@
 import React from "react";
-import { useSessionTicketPopupStore } from "@/features/place/hooks/session-ticket/session-ticket";
-import * as q from "@/features/place/queries/session-ticket";
+import { useSessionOptionPopupStore } from "@/features/place/hooks/session-option/session-option";
+import * as q from "@/features/place/queries/session-option";
 import { formatDate, formatTime } from "@/lib/formatDate";
 import SelectSession from "./SelectSession";
-import SelectTicket from "./SelectTicket";
+import SelectOption from "./SelectOption";
 
 const Popup = ({ placeId }: { placeId: string }) => {
   const {
@@ -15,17 +15,15 @@ const Popup = ({ placeId }: { placeId: string }) => {
     setMaxSelectable,
     minRequired,
     setMinRequired,
-    stockThreshold,
-    setStockThreshold,
     totalStock,
     setTotalStock,
     remainingStock,
     setRemainingStock,
-  } = useSessionTicketPopupStore();
+  } = useSessionOptionPopupStore();
 
   const { mutate: create, isPending: isCreating } =
-    q.useCreateSessionTicket(placeId);
-  const { mutate: update, isPending: isUpdating } = q.useUpdateSessionTicket(
+    q.useCreateSessionOption(placeId);
+  const { mutate: update, isPending: isUpdating } = q.useUpdateSessionOption(
     id as number,
     placeId,
   );
@@ -74,7 +72,7 @@ const Popup = ({ placeId }: { placeId: string }) => {
 
         <form>
           <SelectSession placeId={placeId} />
-          <SelectTicket placeId={placeId} />
+          <SelectOption placeId={placeId} />
           <div className="mb-5">
             <label
               htmlFor="taskTitle"
@@ -105,22 +103,6 @@ const Popup = ({ placeId }: { placeId: string }) => {
               className="w-full rounded-sm border border-stroke bg-white px-4.5 py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
               value={minRequired}
               onChange={(e) => setMinRequired(e.target.value)}
-            />
-          </div>
-          <div className="mb-5">
-            <label
-              htmlFor="taskTitle"
-              className="mb-2.5 block font-medium text-black dark:text-white"
-            >
-              재고 노출 기준 재고 수
-            </label>
-            <input
-              type="number"
-              name="taskTitle"
-              id="taskTitle"
-              className="w-full rounded-sm border border-stroke bg-white px-4.5 py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
-              value={stockThreshold}
-              onChange={(e) => setStockThreshold(e.target.value)}
             />
           </div>
           <div className="mb-5">

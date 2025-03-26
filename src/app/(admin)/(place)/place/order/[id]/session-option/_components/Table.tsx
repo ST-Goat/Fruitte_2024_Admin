@@ -11,8 +11,8 @@ import {
   useRowSelect,
   Column,
 } from "react-table";
-import * as i from "@/features/place/types/session-ticket/api";
-import * as hook from "@/features/place/hooks/session-ticket/session-ticket";
+import * as i from "@/features/place/types/session-option/api";
+import * as hook from "@/features/place/hooks/session-option/session-option";
 import UpdateDropdown from "./UpdateDropdown";
 import moment from "moment";
 
@@ -43,9 +43,9 @@ const Table = () => {
     info: data,
     selectedRow,
     setSelectedRow,
-  } = hook.useSessionTicketStore();
+  } = hook.useSessionOptionStore();
 
-  const columns: Column<i.SessionTicketTable>[] = useMemo(
+  const columns: Column<i.SessionOptionTable>[] = useMemo(
     () => [
       {
         id: "selection",
@@ -85,8 +85,8 @@ const Table = () => {
         accessor: "step",
       },
       {
-        Header: "티켓명",
-        accessor: "ticket",
+        Header: "옵션명",
+        accessor: "option",
       },
       {
         Header: "남은재고",
@@ -117,7 +117,7 @@ const Table = () => {
     [data],
   );
 
-  const tableInstance = useTable<i.SessionTicketTable>(
+  const tableInstance = useTable<i.SessionOptionTable>(
     { columns, data },
     useFilters,
     useGlobalFilter,

@@ -43,6 +43,21 @@ export interface GetSessionsForSelectorResponse
     { id: string; sessionTime: string; sessionDate: string }[]
   > {}
 
+export interface GetSessionsForStepSelectorRequest {}
+export interface GetSessionsForStepSelectorResponse
+  extends ResponseBody<
+    {
+      id: string;
+      sessionTime: string;
+      sessionDate: Date;
+      ticketCount: number;
+    }[]
+  > {}
+
 export interface GetTicketsForSelectorRequest {}
 export interface GetTicketsForSelectorResponse
   extends ResponseBody<{ id: string; title: string }[]> {}
+
+export interface UpdateSessionTicketStepRequest extends Array<SessionTicket> {}
+export interface UpdateSessionTicketStepResponse
+  extends ResponseBody<SessionTicket[]> {}

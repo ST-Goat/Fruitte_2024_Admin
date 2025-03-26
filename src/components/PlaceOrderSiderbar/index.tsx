@@ -144,6 +144,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   회차관리
                 </Link>
               </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+              회차-티켓 관리
+            </h3>
+            <ul className="mb-6 flex flex-col gap-1.5">
               <li>
                 <Link
                   href={`/place/order/${id}/session-ticket`}
@@ -154,10 +162,34 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </li>
               <li>
                 <Link
+                  href={`/place/order/${id}/session-ticket/step`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+                >
+                  회차-티켓 공개순위 관리
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+              회차-옵션 관리
+            </h3>
+            <ul className="mb-6 flex flex-col gap-1.5">
+              <li>
+                <Link
                   href={`/place/order/${id}/session-option`}
                   className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
                 >
                   회차-옵션 관리
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href={`/place/order/${id}/session-option/step`}
+                  className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4`}
+                >
+                  회차-옵션 공개순위 관리
                 </Link>
               </li>
             </ul>

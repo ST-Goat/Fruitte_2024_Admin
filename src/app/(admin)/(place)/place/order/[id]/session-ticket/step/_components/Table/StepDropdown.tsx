@@ -1,40 +1,17 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
-import Link from "next/link";
-import { useOptionPopupStore } from "@/features/place/hooks/option/option";
-import { useOptionStore } from "@/features/place/hooks/option/option";
-import * as h from "@/features/place/hooks/session-ticket/session-ticket";
-import * as q from "@/features/place/queries/session-ticket";
+import { useSessionTicketStepStore } from "@/features/place/hooks/session-ticket/session-ticket";
 
-const UpdateDropdown: React.FC<{
-  classes: string;
-  id: number;
-  placeId: string;
-}> = ({ classes, id: contentId, placeId }) => {
-  const { setValueForUpdate, setOpen } = h.useSessionTicketPopupStore();
-  const { info } = h.useSessionTicketStore();
-
+const StepDropdown: React.FC<{ classes: string; id: number; step: number }> = ({
+  classes,
+  id,
+  step,
+}) => {
+  const { setInfoStep } = useSessionTicketStepStore();
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const trigger = useRef<any>(null);
   const dropdown = useRef<any>(null);
-  const { mutate: deleteOption, isPending: isDeleting } =
-    q.useDeleteSessionTicket(contentId);
-
-  const handleDelete = () => {
-    if (!isDeleting) {
-      if (
-        window.confirm("정말 삭제하시겠습니까?") &&
-        typeof window !== "undefined"
-      ) {
-        deleteOption();
-      }
-    }
-  };
-
-  const handleUpdate = () => {
-    setValueForUpdate(contentId, info);
-  };
 
   // close on click outside
   useEffect(() => {
@@ -69,7 +46,7 @@ const UpdateDropdown: React.FC<{
         ref={trigger}
         onClick={() => setDropdownOpen(!dropdownOpen)}
       >
-        설정
+        노출순위 수정
         <svg
           className="fill-current"
           width="16"
@@ -94,19 +71,19 @@ const UpdateDropdown: React.FC<{
       >
         <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-          onClick={handleUpdate}
+          onClick={() => setInfoStep(id, -1)}
         >
-          수정
+          ↑
         </button>
         <button
           className="flex w-full px-4 py-2 text-sm hover:bg-whiter hover:text-primary dark:hover:bg-meta-4"
-          onClick={handleDelete}
+          onClick={() => setInfoStep(id, 1)}
         >
-          삭제
+          ↓
         </button>
       </div>
     </div>
   );
 };
 
-export default UpdateDropdown;
+export default StepDropdown;

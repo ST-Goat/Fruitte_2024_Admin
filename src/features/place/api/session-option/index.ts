@@ -1,13 +1,13 @@
 import ApiUtils from "@/lib/axiosInstanceAuth";
 import { API_URL } from "@/constants/api";
 import { AxiosResponse } from "axios";
-import * as i from "../../types/session-ticket/api";
+import * as i from "../../types/session-option/api";
 
-export const getSessionTickets = async (placeId: string) => {
+export const getSessionOptions = async (placeId: string) => {
   const { data } = await ApiUtils.fetch<
-    i.GetSessionTicketsRequest,
-    AxiosResponse<i.GetSessionTicketsResponse>
-  >(`${API_URL.getSessionTickets}/${placeId}`);
+    i.GetSessionOptionsRequest,
+    AxiosResponse<i.GetSessionOptionsResponse>
+  >(`${API_URL.getSessionOptions}/${placeId}`);
 
   const { statusCode, msg, response } = data;
 
@@ -16,11 +16,11 @@ export const getSessionTickets = async (placeId: string) => {
   }
 };
 
-export const getSessionTicketsBySessionId = async (sessionId: string) => {
+export const getSessionOptionsBySessionId = async (sessionId: string) => {
   const { data } = await ApiUtils.fetch<
-    i.GetSessionTicketsRequest,
-    AxiosResponse<i.GetSessionTicketsResponse>
-  >(`${API_URL.getSessionTicketsBySessionId}/${sessionId}`);
+    i.GetSessionOptionsRequest,
+    AxiosResponse<i.GetSessionOptionsResponse>
+  >(`${API_URL.getSessionOptionsBySessionId}/${sessionId}`);
 
   const { statusCode, msg, response } = data;
 
@@ -29,14 +29,14 @@ export const getSessionTicketsBySessionId = async (sessionId: string) => {
   }
 };
 
-export const createSessionTicket = async (
+export const createSessionOption = async (
   placeId: string,
-  createInfo: i.CreateSessionTicketRequest,
+  createInfo: i.CreateSessionOptionRequest,
 ) => {
   const { data } = await ApiUtils.post<
-    i.CreateSessionTicketRequest,
-    AxiosResponse<i.CreateSessionTicketResponse>
-  >(`${API_URL.createSessionTicket}/${placeId}`, createInfo);
+    i.CreateSessionOptionRequest,
+    AxiosResponse<i.CreateSessionOptionResponse>
+  >(`${API_URL.createSessionOption}/${placeId}`, createInfo);
 
   const { statusCode, msg, response } = data;
 
@@ -45,14 +45,14 @@ export const createSessionTicket = async (
   }
 };
 
-export const updateSessionTicket = async (
+export const updateSessionOption = async (
   id: number,
-  updateInfo: i.UpdateSessionTicketRequest,
+  updateInfo: i.UpdateSessionOptionRequest,
 ) => {
   const { data } = await ApiUtils.patch<
-    i.UpdateSessionTicketRequest,
-    AxiosResponse<i.UpdateSessionTicketResponse>
-  >(`${API_URL.updateSessionTicket}/${id}`, updateInfo);
+    i.UpdateSessionOptionRequest,
+    AxiosResponse<i.UpdateSessionOptionResponse>
+  >(`${API_URL.updateSessionOption}/${id}`, updateInfo);
 
   const { statusCode, msg, response } = data;
 
@@ -61,11 +61,11 @@ export const updateSessionTicket = async (
   }
 };
 
-export const deleteSessionTicket = async (id: number) => {
+export const deleteSessionOption = async (id: number) => {
   const { data } = await ApiUtils.patch<
-    i.DeleteSessionTicketRequest,
-    AxiosResponse<i.DeleteSessionTicketResponse>
-  >(`${API_URL.deleteSessionTicket}/${id}`);
+    i.DeleteSessionOptionRequest,
+    AxiosResponse<i.DeleteSessionOptionResponse>
+  >(`${API_URL.deleteSessionOption}/${id}`);
 
   const { statusCode, msg, response } = data;
 
@@ -100,11 +100,11 @@ export const getSessionsForStepSelector = async (placeId: string) => {
   }
 };
 
-export const getTicketsForSelector = async (placeId: string) => {
+export const getSessionsForOptionStepSelector = async (placeId: string) => {
   const { data } = await ApiUtils.fetch<
-    i.GetTicketsForSelectorRequest,
-    AxiosResponse<i.GetTicketsForSelectorResponse>
-  >(`${API_URL.getTicketsForSelector}/${placeId}`);
+    i.GetSessionsForStepSelectorRequest,
+    AxiosResponse<i.GetSessionsForStepSelectorResponse>
+  >(`${API_URL.getSessionsForOptionStepSelector}/${placeId}`);
 
   const { statusCode, msg, response } = data;
 
@@ -113,14 +113,27 @@ export const getTicketsForSelector = async (placeId: string) => {
   }
 };
 
-export const updateSessionTicketStep = async (
+export const getOptionsForSelector = async (placeId: string) => {
+  const { data } = await ApiUtils.fetch<
+    i.GetOptionsForSelectorRequest,
+    AxiosResponse<i.GetOptionsForSelectorResponse>
+  >(`${API_URL.getOptionsForSelector}/${placeId}`);
+
+  const { statusCode, msg, response } = data;
+
+  if (statusCode === 200) {
+    return response;
+  }
+};
+
+export const updateSessionOptionStep = async (
   placeId: string,
-  updateInfo: i.UpdateSessionTicketStepRequest,
+  updateInfo: i.UpdateSessionOptionStepRequest,
 ) => {
   const { data } = await ApiUtils.patch<
-    i.UpdateSessionTicketStepRequest,
-    AxiosResponse<i.UpdateSessionTicketStepResponse>
-  >(`${API_URL.updateSessionTicketStep}/${placeId}`, updateInfo);
+    i.UpdateSessionOptionStepRequest,
+    AxiosResponse<i.UpdateSessionOptionStepResponse>
+  >(`${API_URL.updateSessionOptionStep}/${placeId}`, updateInfo);
 
   const { statusCode, msg, response } = data;
 
