@@ -89,12 +89,12 @@ const Popup = ({ placeId }: { placeId: string }) => {
                 />
                 <div
                   className={`mr-4 flex h-5 w-5 items-center justify-center rounded border ${
-                    sessionMode === "ticket" &&
+                    sessionMode !== "ticket" &&
                     "border-primary bg-gray dark:bg-transparent"
                   }`}
                 >
                   <span
-                    className={`opacity-0 ${sessionMode === "ticket" && "!opacity-100"}`}
+                    className={`opacity-0 ${sessionMode !== "ticket" && "!opacity-100"}`}
                   >
                     <svg
                       width="11"
@@ -128,9 +128,9 @@ const Popup = ({ placeId }: { placeId: string }) => {
               name="taskTitle"
               id="taskTitle"
               className="w-full rounded-sm border border-stroke bg-white px-4.5 py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
-              value={sessionMode === "session" ? "" : remainingStock}
+              value={sessionMode !== "session" ? "" : remainingStock}
               onChange={(e) => setRemainingStock(e.target.value)}
-              disabled={sessionMode === "session"}
+              disabled={sessionMode !== "session"}
             />
           </div>
           <div className="mb-5">
@@ -145,9 +145,9 @@ const Popup = ({ placeId }: { placeId: string }) => {
               name="taskTitle"
               id="taskTitle"
               className="w-full rounded-sm border border-stroke bg-white px-4.5 py-3 text-black focus:border-primary focus-visible:outline-none dark:border-strokedark dark:bg-boxdark dark:text-white dark:focus:border-primary"
-              value={sessionMode === "session" ? "" : totalStock}
+              value={sessionMode !== "session" ? "" : totalStock}
               onChange={(e) => setTotalStock(e.target.value)}
-              disabled={sessionMode === "session"}
+              disabled={sessionMode !== "session"}
             />
           </div>
 

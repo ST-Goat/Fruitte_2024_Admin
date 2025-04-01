@@ -81,7 +81,7 @@ export const useSessionPopupStore = create<SessionPopupState>((set, get) => ({
   },
   id: undefined,
   setId: (id) => set({ id }),
-  sessionMode: "session",
+  sessionMode: "ticket",
   setSessionMode: (sessionMode) => set({ sessionMode }),
   sessionDate: new Date(),
   setSessionDate: (sessionDate) => set({ sessionDate }),
