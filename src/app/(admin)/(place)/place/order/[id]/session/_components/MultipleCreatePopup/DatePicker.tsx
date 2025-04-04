@@ -81,11 +81,6 @@ const DatePicker = () => {
             className="form-enddatepicker w-full rounded border-[1.5px] border-stroke bg-transparent bg-white px-5 py-3 font-normal outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             placeholder="날짜"
             data-class="flatpickr-session-start-date"
-            value={
-              sessionStartDate
-                ? moment(sessionStartDate).format("YYYY-MM-DD")
-                : ""
-            } // sessionStartDate 값 반영
             readOnly
           />
 
@@ -115,9 +110,6 @@ const DatePicker = () => {
             className="form-startdatepicker w-full rounded border-[1.5px] border-stroke bg-transparent bg-white px-5 py-3 font-normal outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
             placeholder="날짜"
             data-class="flatpickr-session-end-date"
-            value={
-              sessionEndDate ? moment(sessionEndDate).format("YYYY-MM-DD") : ""
-            } // sessionEndDate 값 반영
             readOnly
           />
 

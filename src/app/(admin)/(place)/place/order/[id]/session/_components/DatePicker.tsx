@@ -1,7 +1,7 @@
 import flatpickr from "flatpickr";
 import { useEffect, useRef } from "react";
 import { useSessionPopupStore } from "@/features/place/hooks/session/session";
-
+import moment from "moment";
 const DatePicker = () => {
   const { sessionDate, setSessionDate } = useSessionPopupStore();
   const inputRef = useRef<HTMLInputElement>(null);
@@ -16,6 +16,8 @@ const DatePicker = () => {
       dateFormat: "Y-m-d", // 날짜 형식 (예: 2025-03-20)
       defaultDate: sessionDate, // 초기 값 설정
       onChange: (selectedDates) => {
+        console.log(selectedDates);
+
         if (selectedDates.length > 0) {
           setSessionDate(selectedDates[0]); // Zustand 상태 업데이트
         }
@@ -34,7 +36,6 @@ const DatePicker = () => {
           className="form-datepicker w-full rounded border-[1.5px] border-stroke bg-transparent bg-white px-5 py-3 font-normal outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input dark:focus:border-primary"
           placeholder="날짜"
           data-class="flatpickr-right"
-          value={sessionDate?.toISOString()?.split("T")[0]} // YYYY-MM-DD 형식으로 표시
           readOnly
         />
 
